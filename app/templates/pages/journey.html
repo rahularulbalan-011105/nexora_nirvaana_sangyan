@@ -1,0 +1,388 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_my_journey/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}My Journey{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-margin-desktop py-space-lg max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Hero / Top Journey Banner -->
+<div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-surface-container via-surface-container-low to-surface-container-high p-space-xl shadow-[0_4px_24px_-4px_rgba(19,27,46,0.04)]">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="absolute right-64 -bottom-20 w-64 h-64 rounded-full bg-primary-fixed/50 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-2xl flex-1 min-w-0 md:min-w-[18rem]">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest shadow-sm mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary tracking-wide uppercase">Journey started</span>
+<span class="font-label-sm text-label-sm text-tertiary tracking-wide uppercase">{{ journey.member_since }}</span>
+<span class="text-outline-variant text-[10px]">|</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">{{ user.first_name }}</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">My Resilience Journey</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Celebrate your thoughtful pauses, reflection habits, and calm financial decision-making over hype.
+          </p>
+</div>
+<!-- Action Pills -->
+<div class="flex flex-wrap items-center md:justify-end gap-space-sm md:max-w-md">
+<div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lock</span>
+<span>Reflections: Private &amp; Local</span>
+</div>
+<a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg shadow-[0_4px_16px_rgba(0,74,198,0.22)] hover:shadow-[0_6px_20px_rgba(0,74,198,0.32)] transition-all" href="/reports/journey" id="exportReportBtn" target="_blank">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Resilience Report</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 4 High-Impact Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+<!-- Card 1: Resilience Score with SVG Ring Gauge -->
+<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.08)] transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Resilience Score</span>
+<div class="flex items-baseline gap-2 mt-1">
+{% if journey.resilience_score is not none %}
+<span class="font-display-lg text-display-lg text-primary tracking-tight">{{ journey.resilience_score }}<span class="text-headline-md">%</span></span>
+{% else %}
+<span class="font-display-lg text-display-lg text-outline tracking-tight">—</span>
+{% endif %}
+</div>
+</div>
+<!-- Compact SVG Circular Gauge -->
+<div class="relative w-14 h-14 flex-shrink-0">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="{{ journey.resilience_score or 0 }}, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-3 bg-surface-container-low/60 rounded-xl px-3 py-2 flex items-center justify-between">
+{% if journey.resilience_score is not none %}
+<span class="font-body-sm text-body-sm text-on-surface-variant">Share of your reflection checks rated Good</span>
+{% else %}
+<span class="font-body-sm text-body-sm text-on-surface-variant">Complete a reflection to see your score</span>
+{% endif %}
+</div>
+</div>
+<!-- Card 2: Reflections Completed -->
+<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.08)] transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Reflections Done</span>
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight mt-1 block">{{ journey.counts.reflections or 0 }}</span>
+</div>
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/40 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">psychology_alt</span>
+</div>
+</div>
+<div class="mt-space-md pt-3 bg-surface-container-low/60 rounded-xl px-3 py-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Decisions backed by inquiry</span>
+</div>
+</div>
+<!-- Card 3: Tactical Pauses Taken -->
+<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.08)] transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Tactical Pauses</span>
+<span class="font-display-lg text-display-lg text-tertiary tracking-tight mt-1 block">{{ journey.counts.pauses or 0 }}</span>
+</div>
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/60 flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[24px]">timer_pause</span>
+</div>
+</div>
+<div class="mt-space-md pt-3 bg-surface-container-low/60 rounded-xl px-3 py-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">hourglass_bottom</span>
+{% if journey.counts.avg_pause_minutes %}
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Avg cooling period:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ journey.counts.avg_pause_minutes }} min</span>
+{% else %}
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">No pauses completed yet</span>
+{% endif %}
+</div>
+</div>
+<!-- Card 4: Scam Signals Deflected -->
+<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.08)] transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Messages Checked</span>
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight mt-1 block">{{ journey.counts.analyses or 0 }}</span>
+</div>
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[24px]">security</span>
+</div>
+</div>
+<div class="mt-space-md pt-3 bg-surface-container-low/60 rounded-xl px-3 py-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">With warning signals:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ journey.counts.flagged or 0 }}</span>
+</div>
+</div>
+</div>
+<!-- Main 2-Column Split: 65% Left, 35% Right -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- LEFT COLUMN (8 cols = ~66%) -->
+<div class="lg:col-span-8 space-y-space-xl min-w-0">
+<!-- 1. Reflection & Consistency Calendar Heatmap -->
+<div class="bg-surface-container-lowest p-space-xl rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md mb-space-lg">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-primary">calendar_month</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Habits &amp; Reflection Heatmap</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your daily engagement with thoughtful checks, pauses, and lessons</p>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-fixed-dim/30 text-on-secondary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-secondary">local_fire_department</span>
+<span>{{ journey.streak or 0 }}</span>
+<span>day active streak</span>
+</div>
+</div>
+<!-- Heatmap Matrix -->
+<div class="overflow-x-auto pb-2">
+<div class="min-w-[620px]">
+<div class="grid grid-cols-7 gap-2 text-center mb-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+<!-- Last 4 weeks of the user's own activity -->
+<div class="grid grid-cols-7 gap-2">
+{% for cell in journey.heatmap %}
+{% if cell.today %}
+<div class="p-2.5 rounded-xl bg-gradient-to-tr from-primary to-secondary text-on-primary text-center flex flex-col items-center gap-1 shadow-md scale-105" title="{{ cell.date.strftime('%d %b %Y') }}">
+<span class="font-label-sm text-label-sm font-extrabold">{{ cell.day }}</span>
+<div class="w-2.5 h-2.5 rounded-full {% if cell.kind == 'none' %}bg-on-primary/40{% else %}bg-on-primary{% endif %}"></div>
+<span class="text-[10px] font-bold">Today</span>
+</div>
+{% else %}
+<div class="p-2.5 rounded-xl {{ cell.cell }} text-center flex flex-col items-center gap-1 group transition-all" title="{{ cell.date.strftime('%d %b %Y') }}">
+<span class="font-label-sm text-label-sm {{ cell.num }}">{{ cell.day }}</span>
+<div class="w-2.5 h-2.5 rounded-full {{ cell.dot }}"></div>
+<span class="text-[10px] {{ cell.label_cls }} opacity-0 group-hover:opacity-100 transition-opacity">{{ cell.label }}</span>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+</div>
+<!-- Heatmap Legend -->
+<div class="mt-space-md pt-space-sm flex flex-wrap items-center justify-between gap-space-sm border-t border-surface-container-high/40 text-on-surface-variant font-body-sm text-body-sm">
+<span class="text-outline">Consistent behavior leads to lasting protection.</span>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-outline-variant inline-block"></span>No activity</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed inline-block"></span>Explored</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>Paused &amp; Checked</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-tertiary inline-block"></span>Protected</span>
+</div>
+</div>
+</div>
+<!-- 2. Behavioral Growth & Pattern Insights -->
+<div class="bg-surface-container-lowest p-space-xl rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-tertiary">insights</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Behavioral Growth &amp; Pattern Insights</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Objective, supportive patterns observed from your decision moments</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">AI Coach Mode</span>
+</div>
+<div class="space-y-space-md mt-space-md">
+{% for pat in journey.patterns %}
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant mt-0.5">
+<span class="material-symbols-outlined text-[18px]">{{ pat.icon[0] }}</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">{{ pat.name }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+<span>Most often rated</span> <span class="font-semibold text-on-surface">{{ pat.label }}</span> <span>in</span> <span class="font-semibold text-on-surface">{{ pat.count }}</span> <span>of</span> <span class="font-semibold text-on-surface">{{ pat.total }}</span> <span>reflections.</span>
+</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full {{ pat.chip }} font-label-sm text-label-sm font-bold flex-shrink-0">{{ pat.label }}</span>
+</div>
+</div>
+{% else %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant mt-0.5">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No patterns yet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Patterns appear here after you complete a few Pause &amp; Reflect sessions.</p>
+</div>
+</div>
+<a class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm flex-shrink-0" href="/reflect">Start Pause &amp; Reflect</a>
+</div>
+{% endfor %}
+</div>
+</div>
+<!-- 3. Recent Reflection Log -->
+<div class="bg-surface-container-lowest p-space-xl rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-primary">history_edu</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Reflection Log</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real situations where you stepped back to evaluate and verify</p>
+</div>
+<span class="font-label-md text-label-md text-primary"><span>Total:</span> <span>{{ journey.counts.reflections or 0 }}</span></span>
+</div>
+<div class="space-y-space-sm mt-space-md">
+{% for row in journey.log %}
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:shadow-sm transition-all space-y-2">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full {{ row.dot }}"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Pause &amp; Reflect</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">{{ row.date }}</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">{{ row.when }}</span>
+</div>
+{% if row.summary %}
+<p class="font-body-md text-body-md text-on-surface-variant">{{ row.summary }}</p>
+{% endif %}
+<div class="flex flex-wrap items-center gap-2 pt-1 font-label-sm text-label-sm">
+{% for l in row.labels %}
+<span class="px-2 py-0.5 rounded {{ l.chip }}"><span>{{ l.name }}:</span> <span>{{ l.label }}</span></span>
+{% endfor %}
+{% if row.pause_minutes is not none %}
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant"><span>Reflection Time:</span> <span>{{ row.pause_minutes }} min</span></span>
+{% endif %}
+{% if row.linked_check %}
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary">Linked to a message check</span>
+{% endif %}
+</div>
+</div>
+{% else %}
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">No reflections yet</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">When you step back to evaluate a decision with Pause &amp; Reflect, it will be logged here.</p>
+<div class="pt-1">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:underline" href="/reflect">
+<span>Start your first Pause &amp; Reflect</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (4 cols = ~34%) -->
+<div class="lg:col-span-4 space-y-space-xl min-w-0">
+<!-- 1. Badges & Milestones -->
+<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">military_tech</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Badges &amp; Milestones</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant"><span>{{ journey.badges_earned or 0 }}</span> <span>Earned</span></span>
+</div>
+<div class="space-y-space-sm">
+{% for b in journey.badges %}
+<div class="p-3 rounded-2xl bg-surface-container-low flex items-center gap-3{% if not b.earned %} opacity-60{% endif %}">
+<div class="w-12 h-12 rounded-2xl {% if b.earned %}{{ b.style }}{% else %}bg-surface-container text-outline{% endif %} flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">{% if b.earned %}{{ b.icon }}{% else %}lock{% endif %}</span>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">{{ b.name }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ b.detail }}</p>
+{% if not b.earned %}<p class="font-label-sm text-label-sm text-outline">Not earned yet</p>{% endif %}
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="pt-2">
+<button class="w-full py-2 rounded-xl bg-surface-container hover:bg-surface-container-high font-label-md text-label-md text-on-surface transition-colors flex items-center justify-center gap-1.5">
+<span>View Next Milestone: Calm Investor</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- 2. Today's Daily Reflection Prompt -->
+<div class="bg-gradient-to-br from-surface-container-lowest to-surface-container-low p-space-lg rounded-3xl shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary">edit_note</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Today's Daily Reflection</h2>
+</div>
+<div class="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm space-y-2">
+<p class="font-label-md text-label-md text-on-surface font-semibold">
+              "What is one financial decision you feel proud of pausing on this month?"
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Writing down your thoughts cements calm analytical habits.
+            </p>
+</div>
+<div class="space-y-space-sm">
+<textarea class="w-full p-3 rounded-2xl bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none" id="journalInput" placeholder="e.g. I resisted buying an unverified meme crypto my colleague recommended..." rows="3"></textarea>
+<button class="w-full py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-primary-container transition-all flex items-center justify-center gap-1.5" id="saveJournalBtn">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+<span>Save to Private Journal</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-tertiary opacity-0 transition-opacity" id="journalNotice">Saving to your journal is not available yet. Nothing was saved.</p>
+</div>
+</div>
+<!-- 3. Visual Companion Warmth / Community Card -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-lowest p-space-lg shadow-[0_4px_16px_-2px_rgba(15,23,42,0.04)] space-y-space-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">NIRVAAN Resilience Pledge</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Civic Good Guarantee</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 leading-relaxed">
+            "Pause. Understand. Reflect. Decide for yourself." NIRVAAN will never sell your reflection entries, push affiliate investment products, or rate you negatively for financial uncertainties.
+          </p>
+<div class="pt-2 flex items-center justify-between">
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Privacy Charter</a>
+<span class="font-label-sm text-label-sm text-outline">v2.4 Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacing Cushion -->
+<div class="h-6"></div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for Journey screen
+  document.getElementById('saveJournalBtn')?.addEventListener('click', function() {
+    const input = document.getElementById('journalInput');
+    const notice = document.getElementById('journalNotice');
+    if (input && input.value.trim().length > 0) {
+      notice.style.opacity = '1';
+      setTimeout(() => {
+        notice.style.opacity = '0';
+        input.value = '';
+      }, 2500);
+    } else {
+      input.focus();
+    }
+  });
+
+</script>
+{% endblock %}

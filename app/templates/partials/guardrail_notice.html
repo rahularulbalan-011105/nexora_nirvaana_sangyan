@@ -1,0 +1,20 @@
+{# Rendered wherever NIRVAAN declines to give a personalised recommendation.
+   Required by the hackathon guardrails: no buy/sell/hold, no predictions. #}
+<div class="rounded-2xl bg-surface-container-low border border-outline-variant/50
+            px-space-md py-space-md">
+  <div class="flex items-start gap-space-sm">
+    <span class="material-symbols-outlined text-[20px] text-primary">balance</span>
+    <div class="flex-1 space-y-1">
+      <p class="font-label-lg text-label-lg text-on-surface">
+        {{ guardrail_title or "NIRVAAN does not make this decision for you" }}
+      </p>
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        {{ guardrail_body or
+           "I cannot make a personalised buy, sell or hold decision, or predict
+            prices and returns. I can explain the available information, the
+            relevant concepts, the risks, what remains uncertain, and the
+            questions you may want to consider." }}
+      </p>
+    </div>
+  </div>
+</div>

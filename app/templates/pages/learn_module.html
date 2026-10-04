@@ -1,0 +1,199 @@
+{# Lesson page for /learn/{slug} and /explain.
+   Lesson text arrives already in the page language (app/services/learning_content.py).
+   /explain passes ``module_by_lang`` because its context builder does not know
+   the language; this template picks the right entry. #}
+{% extends "base.html" %}
+{% block title %}{% if module is defined and module %}{{ module.title }}{% else %}Explain Simply{% endif %}{% endblock %}
+
+{% block content %}
+{% if module_by_lang is defined and module_by_lang %}
+{% set _ctx = module_by_lang.get(lang_code) or module_by_lang.get('en') %}
+{% set module = _ctx.module %}
+{% set module_progress = _ctx.module_progress %}
+{% set prev_module = _ctx.prev_module %}
+{% set next_module = _ctx.next_module %}
+{% endif %}
+{% set requested_mode = request.query_params.get('mode') %}
+{% set initial_mode = requested_mode if requested_mode in ['simple', 'detailed', 'example', 'analogy'] else 'simple' %}
+{% set mode_meta = [
+  ('simple', 'lightbulb', 'Simple', 'Simple explanation'),
+  ('detailed', 'format_list_bulleted', 'Detailed', 'Detailed explanation'),
+  ('example', 'calculate', 'Example', 'Worked example'),
+  ('analogy', 'family_restroom', 'Analogy', 'Everyday analogy'),
+] %}
+<div class="flex flex-col w-full min-w-0" id="learn-module" data-slug="{{ module.slug }}" data-speech-lang="{{ module.speech_lang }}" data-complete="{{ '1' if module_progress.complete else '0' }}">
+<div class="px-margin-desktop py-space-lg max-w-7xl mx-auto w-full space-y-space-lg min-w-0">
+<!-- Breadcrumb & Top Bar Meta -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav class="flex flex-wrap items-center gap-space-xs text-on-surface-variant font-label-md text-label-md min-w-0" aria-label="Breadcrumb">
+<a class="hover:text-primary transition-colors" href="/learn">Learn &amp; Explore</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold break-words">{{ module.title }}</span>
+</nav>
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+<span>Lesson</span> <span>{{ module.position }}</span> <span>of</span> <span>{{ module.count }}</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>{{ module.reading_minutes }}</span> <span>min read</span>
+</span>
+</div>
+</div>
+<!-- Title & Mode Controller Strip -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-md sm:p-space-lg shadow-sm space-y-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-1 max-w-3xl min-w-0">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight break-words">{{ module.title }}</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ module.summary }}</p>
+</div>
+<!-- Language Pill Selector -->
+<div class="flex items-center p-1.5 bg-surface-container-low rounded-2xl self-start lg:self-center" aria-label="Language">
+{% for code, label in [("en", "English"), ("ta", "தமிழ்"), ("hi", "हिन्दी")] %}
+{% if code == lang_code %}
+<a aria-current="true" class="px-4 py-1.5 rounded-xl font-label-md text-label-md bg-primary text-on-primary shadow-sm font-bold flex items-center gap-1.5" href="?lang={{ code }}" lang="{{ code }}">
+<span class="material-symbols-outlined text-[16px]">check</span>
+{{ label }}
+</a>
+{% else %}
+<a class="px-3.5 py-1.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="?lang={{ code }}" lang="{{ code }}">{{ label }}</a>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+<!-- Mode Tabs (Simple, Detailed, Example, Analogy) -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm pt-2">
+<div class="flex flex-wrap items-center gap-2" id="mode-tabs" role="tablist" aria-label="Explanation mode">
+{% for key, icon, label, _heading in mode_meta %}
+<button class="mode-tab px-4 py-2 rounded-xl font-label-lg text-label-lg flex items-center gap-2 transition-all {{ 'bg-primary text-on-primary shadow-sm' if key == initial_mode else 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface' }}" data-mode="{{ key }}" id="tab-{{ key }}" role="tab" aria-controls="panel-{{ key }}" aria-selected="{{ 'true' if key == initial_mode else 'false' }}" type="button">
+<span class="material-symbols-outlined text-[18px]">{{ icon }}</span>
+<span>{{ label }}</span>
+</button>
+{% endfor %}
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/10 hover:bg-secondary/20 text-secondary font-label-md text-label-md font-semibold transition-all" id="listen-btn" type="button" aria-pressed="false">
+<span class="material-symbols-outlined text-[18px]" id="listen-icon">volume_up</span>
+<span id="listen-label">Listen</span>
+</button>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="listen-status" role="status" aria-live="polite" hidden></p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Lesson content -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-space-md sm:p-space-lg lg:p-space-xl shadow-sm relative overflow-hidden min-w-0">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary/5 pointer-events-none"></div>
+{% for key, icon, _label, heading in mode_meta %}
+<section class="mode-panel relative space-y-space-sm" data-mode-panel="{{ key }}" id="panel-{{ key }}" role="tabpanel" aria-labelledby="tab-{{ key }}" lang="{{ lang_code }}" {% if key != initial_mode %}hidden{% endif %}>
+<div class="flex items-center gap-space-sm mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">{{ icon }}</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">{{ heading }}</h2>
+</div>
+<div class="mode-text space-y-space-sm">
+{% for para in module.modes[key] %}
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed break-words">{% for line in para.split('\n') %}{% if not loop.first %}<br>{% endif %}{{ line }}{% endfor %}</p>
+{% endfor %}
+</div>
+</section>
+{% endfor %}
+</div>
+<!-- Progress & resources -->
+<aside class="lg:col-span-4 space-y-space-lg min-w-0">
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Your progress</span>
+<span class="font-label-md text-label-md font-bold text-on-surface"><span id="progress-percent">{{ module_progress.percent }}</span>%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full rounded-full bg-primary transition-all duration-500" id="progress-bar" style="width: {{ module_progress.percent }}%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="progress-hint">Progress grows as you read each mode. Mark the lesson complete when you are done.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl font-label-lg text-label-lg font-bold shadow-md transition-all active:scale-[0.99] {{ 'bg-tertiary-container/20 text-tertiary cursor-default' if module_progress.complete else 'bg-gradient-to-r from-primary to-primary-container hover:opacity-95 text-on-primary' }}" id="complete-btn" type="button" {% if module_progress.complete %}disabled{% endif %}>
+<span class="material-symbols-outlined text-[18px]" id="complete-icon">{{ 'task_alt' if module_progress.complete else 'check_circle' }}</span>
+<span id="complete-label">{{ 'Completed' if module_progress.complete else 'Mark as complete' }}</span>
+</button>
+<button class="w-full flex items-center justify-center gap-2 py-2.5 px-space-md rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-colors" id="bookmark-btn" type="button" aria-pressed="{{ 'true' if module_progress.bookmarked else 'false' }}">
+<span class="material-symbols-outlined text-[18px] text-tertiary" id="bookmark-icon">{{ 'bookmark_added' if module_progress.bookmarked else 'bookmark_add' }}</span>
+<span id="bookmark-label">{{ 'Bookmarked' if module_progress.bookmarked else 'Bookmark this lesson' }}</span>
+</button>
+<p class="font-body-sm text-body-sm text-error" id="progress-error" role="alert" hidden></p>
+</div>
+{% if module.resources %}
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Trusted resources</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Official websites. These open in a new tab and are not part of NIRVAAN.</p>
+</div>
+<ul class="space-y-2" id="resource-list">
+{% for res in module.resources %}
+<li>
+<a class="w-full py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-start justify-between gap-2 transition-colors" href="{{ res.url }}" target="_blank" rel="noopener noreferrer external">
+<span class="min-w-0">
+<span class="block font-semibold">{{ res.name }}</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant" lang="{{ lang_code }}">{{ res.about }}</span>
+<span class="block text-[11px] text-primary mt-0.5 break-all"><span>External site</span> · {{ res.domain }}</span>
+</span>
+<span class="material-symbols-outlined text-[18px] flex-shrink-0">open_in_new</span>
+</a>
+</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+</aside>
+</div>
+<!-- Previous / next lesson -->
+<nav class="grid grid-cols-1 sm:grid-cols-2 gap-space-md" aria-label="More lessons">
+{% if prev_module %}
+<a class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center gap-space-sm hover:bg-surface-container-low transition-colors min-w-0" href="{{ prev_module.url }}">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+<span class="min-w-0"><span class="block font-label-sm text-label-sm text-on-surface-variant">Previous lesson</span><span class="block font-label-lg text-label-lg text-on-surface font-semibold break-words">{{ prev_module.title }}</span></span>
+</a>
+{% else %}
+<a class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center gap-space-sm hover:bg-surface-container-low transition-colors" href="/learn">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">All lessons</span>
+</a>
+{% endif %}
+{% if next_module %}
+<a class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center justify-end text-right gap-space-sm hover:bg-surface-container-low transition-colors min-w-0" href="{{ next_module.url }}">
+<span class="min-w-0"><span class="block font-label-sm text-label-sm text-on-surface-variant">Next lesson</span><span class="block font-label-lg text-label-lg text-on-surface font-semibold break-words">{{ next_module.title }}</span></span>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</a>
+{% else %}
+<a class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center justify-end gap-space-sm hover:bg-surface-container-low transition-colors" href="/learn">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">All lessons</span>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</a>
+{% endif %}
+</nav>
+<!-- Educational Non-Commercial Disclaimer -->
+<div class="text-center py-space-sm space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium">NIRVAAN is a public-good education companion. We do not sell financial products, take commissions, or recommend any investment.</p>
+<p class="font-body-sm text-body-sm text-outline-variant">This lesson is general education, not personal financial advice.</p>
+</div>
+</div>
+</div>
+<!-- Interface strings for learn.js. Kept as markup so the page translator
+     renders them in the page language. -->
+<div hidden id="learn-strings">
+<span data-k="listen">Listen</span>
+<span data-k="stop">Stop</span>
+<span data-k="speaking">Reading aloud…</span>
+<span data-k="unsupported">Listening is not supported in this browser.</span>
+<span data-k="no_voice">No voice for this language is installed on this device, so this lesson cannot be read aloud here.</span>
+<span data-k="speech_error">Reading aloud stopped because of a problem with this device's speech voice.</span>
+<span data-k="completed">Completed</span>
+<span data-k="bookmarked">Bookmarked</span>
+<span data-k="bookmark">Bookmark this lesson</span>
+<span data-k="save_error">Could not save your progress. Please check your connection and try again.</span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/learn.js" defer></script>
+{% endblock %}

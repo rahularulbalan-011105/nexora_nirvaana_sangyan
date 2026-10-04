@@ -1,0 +1,104 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_batch_analysis_results/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   The results region lives in pages/_batch_results.html so the
+   batch API can re-render it for live progress.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Batch Analysis{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-space-md lg:px-space-xl py-space-lg max-w-7xl mx-auto w-full space-y-space-xl">
+<div class="space-y-space-xl" id="batch-results" data-job-id="{{ batch_job.id if batch_job else '' }}" data-running="{{ '1' if batch_running else '0' }}">
+{% include "pages/_batch_results.html" %}
+</div>
+<!-- New batch form & past batches -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<form class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-space-md lg:p-space-lg shadow-sm space-y-space-md scroll-mt-24 min-w-0" id="new-batch" data-max-items="{{ batch_max_items }}" data-max-bytes="{{ batch_max_mb * 1024 * 1024 }}" novalidate>
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">stacks</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Start a New Batch</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Check up to {{ batch_max_items }} items at once: pasted messages, links, screenshots and PDFs. Each item is checked the same way as on Check a Message.</p>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="batch-label">Batch name (optional)</label>
+<input class="w-full rounded-xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary px-3 py-2.5 font-body-md text-body-md text-on-surface" id="batch-label" maxlength="160" name="label" placeholder="For example: Family WhatsApp forwards" type="text">
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="batch-messages">Messages</label>
+<textarea class="w-full rounded-xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary px-3 py-2.5 font-body-md text-body-md text-on-surface" id="batch-messages" name="messages" placeholder="Paste a message here.&#10;---&#10;Paste the next message after a line with only three dashes." rows="7"></textarea>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Put a line with only <code class="px-1 rounded bg-surface-container">---</code> between messages. Up to {{ '{:,}'.format(batch_max_chars) }} characters each.</p>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="batch-links">Links</label>
+<textarea class="w-full rounded-xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary px-3 py-2.5 font-body-md text-body-md text-on-surface" id="batch-links" name="links" placeholder="https://example.com/offer" rows="3"></textarea>
+<p class="font-body-sm text-body-sm text-on-surface-variant">One link per line. Only the address is checked; the page is never opened.</p>
+</div>
+<div class="space-y-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold block">Images and PDFs</span>
+<label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-all cursor-pointer focus-within:ring-2 focus-within:ring-primary" for="batch-files">
+<span class="material-symbols-outlined text-[18px] text-primary">upload_file</span>
+<span>Add Images or PDFs</span>
+</label>
+<input accept="image/jpeg,image/png,image/webp,application/pdf,.pdf" class="sr-only" id="batch-files" multiple type="file">
+<p class="font-body-sm text-body-sm text-on-surface-variant">JPG, PNG, WebP or PDF, up to {{ batch_max_mb }} MB each.
+{% if batch_ocr_available %}Text in images is read automatically; you can correct it below each image.{% else %}Automatic text reading is not available, so please type the text you see in each image.{% endif %}</p>
+<ul class="space-y-2" id="batch-file-list" data-ocr="{{ '1' if batch_ocr_available else '0' }}"></ul>
+</div>
+<div class="hidden p-3 rounded-xl bg-error-container text-on-error-container font-body-sm text-body-sm" id="batch-error" role="alert"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-1">
+<p class="font-label-md text-label-md text-on-surface-variant" aria-live="polite"><span id="batch-count">0</span> <span>of</span> <span>{{ batch_max_items }}</span> <span>items</span></p>
+<button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed" id="batch-submit" type="submit">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Check All Items</span>
+</button>
+</div>
+</form>
+<!-- Past batches -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-space-md lg:p-space-lg shadow-sm space-y-space-sm min-w-0">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">history</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Your Batches</h2>
+</div>
+{% if batch_jobs %}
+<ul class="space-y-1.5" id="batch-job-list">
+{% for job in batch_jobs %}
+<li>
+<button class="batch-job w-full text-left flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl hover:bg-surface-container transition-all{% if batch_job and job.id == batch_job.id %} bg-surface-container-low ring-1 ring-primary/30{% endif %}" data-job-id="{{ job.id }}" type="button"{% if batch_job and job.id == batch_job.id %} aria-current="true"{% endif %}>
+<span class="min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-semibold truncate">{{ job.label or 'Batch of ' ~ job.total_items ~ ' items' }}</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">{{ job.created_at.strftime('%d %b %Y, %I:%M %p') if job.created_at else '' }}</span>
+</span>
+<span class="flex-shrink-0 px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">{{ job.status|capitalize }}</span>
+</button>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your batch checks will be listed here.</p>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+<div hidden id="batch-strings">
+<span data-k="empty">Please add at least one message, link, image or PDF.</span>
+<span data-k="too_many">A batch can hold up to {{ batch_max_items }} items.</span>
+<span data-k="too_big">This file is larger than the upload limit.</span>
+<span data-k="bad_type">Please choose JPG, PNG or WebP images, or PDFs.</span>
+<span data-k="need_typed">Please type the text you see in each image.</span>
+<span data-k="typed_label">Text in this image</span>
+<span data-k="typed_optional">Correct or add the text in this image (optional)</span>
+<span data-k="remove">Remove</span>
+<span data-k="submitting">Starting…</span>
+<span data-k="network">Could not reach NIRVAAN. Please check your connection and try again.</span>
+<span data-k="failed">Something went wrong. Please try again.</span>
+<span data-k="not_found">That batch could not be found.</span>
+<span data-k="saving">Saving…</span>
+<span data-k="saved">Saved to your journal</span>
+<span data-k="save_failed">Could not save. Please try again.</span>
+</div>
+<script src="/static/js/batch.js" defer></script>
+{% endblock %}

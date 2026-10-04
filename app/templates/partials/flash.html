@@ -1,0 +1,26 @@
+{# Server-rendered form feedback. Errors are phrased as guidance, not blame. #}
+{% if errors %}
+<div class="rounded-2xl bg-error-container px-space-md py-space-md mb-space-md
+            border border-error/20" role="alert">
+  <div class="flex items-start gap-space-sm">
+    <span class="material-symbols-outlined text-[20px] text-on-error-container">error</span>
+    <div class="flex-1">
+      <p class="font-label-lg text-label-lg text-on-error-container mb-1">
+        {{ errors_title or "Please check the following" }}
+      </p>
+      <ul class="font-body-md text-body-md text-on-error-container space-y-1">
+        {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if notice %}
+<div class="rounded-2xl bg-tertiary-fixed px-space-md py-space-md mb-space-md
+            border border-tertiary/20" role="status">
+  <div class="flex items-start gap-space-sm">
+    <span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed">check_circle</span>
+    <p class="font-body-md text-body-md text-on-tertiary-fixed flex-1">{{ notice }}</p>
+  </div>
+</div>
+{% endif %}

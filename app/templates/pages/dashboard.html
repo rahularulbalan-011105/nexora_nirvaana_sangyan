@@ -1,0 +1,385 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_dashboard/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-[1440px] mx-auto px-space-lg py-space-lg"><div class="flex flex-col w-full gap-space-lg pb-12">
+<!-- Top Welcome Card with 3D Companion Avatar -->
+<section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-variant p-6 sm:p-8 shadow-[0_4px_24px_-4px_rgba(37,99,235,0.06)]">
+<div class="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-secondary-fixed/30 blur-3xl pointer-events-none"></div>
+<div class="absolute right-36 bottom-0 w-48 h-48 rounded-full bg-primary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="max-w-2xl space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">NIRVAAN Resilience Shield Active</span>
+</div>
+<h1 class="font-display-lg text-headline-lg sm:text-display-lg text-on-surface font-extrabold tracking-tight">
+          {{ greeting }} 👋
+        </h1>
+{% if welcome %}
+<p class="font-label-md text-label-md text-primary font-semibold">Welcome to NIRVAAN. Your space is fresh — everything below fills in as you use it.</p>
+{% endif %}
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Let’s understand the information, pause, and help you decide for yourself.
+        </p>
+</div>
+<!-- Avatar & Quick Voice Hook -->
+<div class="flex-shrink-0 flex items-center gap-4 self-end md:self-center">
+<div class="relative group cursor-pointer" onclick="document.getElementById('voice-modal-preview').classList.toggle('hidden')">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-40 group-hover:opacity-75 transition duration-300"></div>
+<img class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg ring-4 ring-surface-container-lowest bg-surface-container-lowest" data-alt="3D friendly Pixar style Indian female AI companion avatar smiling warmly wearing contemporary indigo attire with gentle soft studio lighting, ultra detailed digital art, warm soothing expression, cyan and royal blue accents, transparent gradient background" src="{{ user.avatar_url if user else '/static/img/avatar-female.jpg' }}" alt="NIRVAAN companion">
+<span class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[14px]">mic</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4 Primary Action Quick-Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Talk to NIRVAAN -->
+<a href="/talk" class="block group relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_2px_12px_rgba(15,23,42,0.03)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col justify-between">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[26px]">mic</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold px-2 py-0.5 rounded-full bg-secondary-container/40">Voice / Audio</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+          Talk to NIRVAAN
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Get instant voice help in your regional language.
+        </p>
+</div>
+<div class="mt-4 pt-3 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>Start conversation</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 2: Check a Message -->
+<a href="/check" class="block group relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_2px_12px_rgba(15,23,42,0.03)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col justify-between">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[26px]">document_scanner</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold px-2 py-0.5 rounded-full bg-primary-fixed/60">Scam Shield</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+          Check a Message
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Scan screenshots, links, forward texts or files.
+        </p>
+</div>
+<div class="mt-4 pt-3 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>Upload &amp; inspect</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 3: Pause & Reflect -->
+<a href="/reflect" class="block group relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_2px_12px_rgba(15,23,42,0.03)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col justify-between">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[26px]">self_improvement</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold px-2 py-0.5 rounded-full bg-tertiary-container/20">Mindful</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+          Pause &amp; Reflect
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Take a moment and clear pressure before deciding.
+        </p>
+</div>
+<div class="mt-4 pt-3 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>Begin 2-min pause</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 4: Learn & Explore -->
+<a href="/learn" class="block group relative overflow-hidden rounded-2xl bg-surface-container-lowest p-5 shadow-[0_2px_12px_rgba(15,23,42,0.03)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col justify-between">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[26px]">explore</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold px-2 py-0.5 rounded-full bg-surface-container">Knowledge</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+          Learn &amp; Explore
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Demystify mutual funds, volatility &amp; SEBI rights.
+        </p>
+</div>
+<div class="mt-4 pt-3 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>Explore topics</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</a>
+</section>
+<!-- Two-Column Core Insights & Daily Reflection Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Resilience Insights (7 cols) -->
+<div class="lg:col-span-12 rounded-3xl bg-surface-container-lowest p-6 sm:p-7 shadow-[0_2px_16px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Your Resilience Insights</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your journey of healthy, unhurried financial discernment</p>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span> <span>{{ dash.streak or 0 }}</span> <span>day streak</span>
+          </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+<!-- Circular Progress SVG: share of reflection checks rated Good -->
+<div class="sm:col-span-5 flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low">
+<div class="relative w-36 h-36 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+<!-- Track -->
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+{% if dash.resilience_score is not none %}
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="{{ dash.resilience_score }}, 100" stroke-linecap="round" stroke-width="3.8"></path>
+{% endif %}
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-display-lg text-headline-lg font-extrabold text-on-surface leading-none">{% if dash.resilience_score is not none %}{{ dash.resilience_score }}%{% else %}—{% endif %}</span>
+<span class="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant tracking-wider mt-0.5">Resilience Score</span>
+</div>
+</div>
+{% if dash.resilience_score is not none %}
+<p class="font-body-sm text-[11px] text-on-surface-variant text-center mt-2 font-medium">Share of your reflection checks rated Good</p>
+{% else %}
+<p class="font-body-sm text-[11px] text-on-surface-variant text-center mt-2 font-medium">Complete a Pause &amp; Reflect to see your score</p>
+{% endif %}
+</div>
+<!-- Metric Breakdown Stack -->
+<div class="sm:col-span-7 grid grid-cols-2 gap-3">
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reasoning</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">{{ dash.reasoning_good or 0 }}</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Clear rationale logged</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pause Moments</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">{{ metrics.pause_moments or 0 }}</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Pauses completed</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Risks Caught</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">{{ dash.signals_flagged or 0 }}</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Messages with warning signals</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Concepts</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">{{ metrics.concepts_learned or 0 }}</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Modules mastered</span>
+</div>
+</div>
+</div>
+<!-- Badges Earned Strip -->
+<div class="mt-5 pt-4 flex flex-wrap items-center justify-between gap-3 bg-surface rounded-2xl p-3.5">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Badges Achieved:</span>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">shield</span> <span>Badges earned:</span> <span>{{ dash.badges_earned or 0 }}</span>
+              </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">edit_note</span> <span>Journal entries:</span> <span>{{ metrics.journal_entries or 0 }}</span>
+              </span>
+</div>
+</div>
+<a class="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-0.5" href="/journey">
+<span>View Detailed Insights</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity Stream / Journal Preview -->
+<section class="rounded-3xl bg-surface-container-lowest p-6 sm:p-7 shadow-[0_2px_16px_rgba(15,23,42,0.04)]">
+<div class="flex items-center justify-between mb-5">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Recent Activity &amp; Protections</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Track analyzed communications and mindful reflections</p>
+</div>
+<a class="px-4 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-bold transition flex items-center gap-1" href="/journey">
+<span>Full Journal</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<div class="space-y-3">
+{% for item in recent_activity %}
+<div role="button" tabindex="0" data-activity-open="activity-{{ loop.index }}" class="p-4 rounded-2xl bg-surface-container-low/70 hover:bg-surface-container-low hover:shadow-sm cursor-pointer transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl {{ item.icon_class }} flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
+</div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">{{ item.title }}</span>
+{% if item.quote %}<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">“{{ item.quote }}”</span>{% endif %}
+{% if item.badge %}<span class="px-2 py-0.5 rounded-full {{ item.badge_class }} font-label-sm text-[11px] font-bold">{{ item.badge }}</span>{% endif %}
+</div>
+{% if item.detail %}
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">{{ item.detail }}</p>
+{% endif %}
+</div>
+</div>
+<div class="flex items-center gap-3 self-end md:self-center flex-shrink-0">
+<span class="font-body-sm text-body-sm text-on-surface-variant">{{ item.ago }}</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface hover:text-primary font-label-sm text-label-sm font-bold shadow-sm transition inline-flex items-center gap-1"><span>View summary</span><span class="material-symbols-outlined text-[16px]">open_in_new</span></span>
+</div>
+</div>
+{% else %}
+<div class="p-6 rounded-2xl bg-surface-container-low/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">No activity yet</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Check a message, take a pause, or learn a concept — your activity will appear here.</p>
+</div>
+</div>
+<a class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm transition flex-shrink-0" href="/check">Check a Message</a>
+</div>
+{% endfor %}
+</div>
+</section>
+{% for item in recent_activity %}
+{% set sm = item.summary or {} %}
+<div id="activity-{{ loop.index }}" data-activity-modal class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="activity-{{ loop.index }}-title">
+<div class="w-full max-w-xl max-h-[88vh] flex flex-col rounded-3xl bg-surface-container-lowest shadow-2xl overflow-hidden">
+<div class="flex items-start justify-between gap-3 p-5 border-b border-outline-variant/30">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl {{ item.icon_class }} flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span></div>
+<div>
+<h4 id="activity-{{ loop.index }}-title" class="font-headline-sm text-headline-sm text-on-surface font-bold">{{ item.title }}</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ item.ago }}</p>
+</div>
+</div>
+<button type="button" data-activity-close aria-label="Close" class="w-9 h-9 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined text-[20px]">close</span></button>
+</div>
+<div class="p-5 overflow-y-auto space-y-4">
+{% if sm.status_label %}
+{% set tone_cls = {"error": "bg-error-container text-on-error-container", "secondary": "bg-secondary-fixed text-on-secondary-fixed", "tertiary": "bg-tertiary-fixed text-on-tertiary-fixed"}[sm.tone] %}
+<div class="rounded-2xl p-4 {{ tone_cls }}">
+<p class="font-label-lg text-label-lg font-bold">{{ sm.status_label }}</p>
+<p class="font-body-sm text-body-sm mt-1">{{ sm.status_summary }}</p>
+</div>
+{% endif %}
+{% if sm.text %}
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1.5">{% if item.kind == "check" %}Message you checked{% elif item.kind == "reflect" %}Your reflection{% elif item.kind == "learn" %}About this topic{% else %}What you wrote{% endif %}</p>
+<div class="rounded-2xl bg-surface-container-low p-4 font-body-md text-body-md text-on-surface whitespace-pre-line break-words">{{ sm.text }}</div>
+</div>
+{% endif %}
+{% if sm.signals %}
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1.5">Warning signals found</p>
+<ul class="space-y-2">
+{% for sig in sm.signals %}
+<li class="rounded-xl border border-outline-variant/40 p-3">
+<p class="font-label-md text-label-md text-on-surface font-semibold">{{ sig.label }}</p>
+{% if sig.evidence %}<p class="font-body-sm text-body-sm text-error mt-0.5">“{{ sig.evidence }}”</p>{% endif %}
+{% if sig.explanation %}<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">{{ sig.explanation }}</p>{% endif %}
+</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% for title, body in sm.sections or [] %}
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">{{ title }}</p>
+<p class="font-body-md text-body-md text-on-surface whitespace-pre-line">{{ body }}</p>
+</div>
+{% endfor %}
+{% if sm.facts %}
+<dl class="grid grid-cols-2 gap-2">
+{% for name, value in sm.facts %}
+<div class="rounded-xl bg-surface-container-low px-3 py-2">
+<dt class="font-label-sm text-label-sm text-on-surface-variant">{{ name }}</dt>
+<dd class="font-label-md text-label-md text-on-surface font-semibold">{{ value }}</dd>
+</div>
+{% endfor %}
+</dl>
+{% endif %}
+</div>
+<div class="p-4 border-t border-outline-variant/30 flex items-center gap-3">
+<button type="button" data-activity-close class="flex-1 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition">Close</button>
+<a href="{{ item.href }}" class="flex-1 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-md transition inline-flex items-center justify-center gap-1.5">
+{% if item.kind == "check" %}<span class="material-symbols-outlined text-[18px]">document_scanner</span>{% endif %}<span>{{ item.action }}</span></a>
+</div>
+</div>
+</div>
+{% endfor %}
+<script>
+  // Recent activity: open the matching summary pop-up; close on X, backdrop or Escape.
+  (function () {
+    const open = (id) => { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } };
+    const closeAll = () => { document.querySelectorAll('[data-activity-modal]').forEach((m) => m.classList.add('hidden')); document.body.style.overflow = ''; };
+    document.querySelectorAll('[data-activity-open]').forEach((row) => {
+      row.addEventListener('click', () => open(row.dataset.activityOpen));
+      row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(row.dataset.activityOpen); } });
+    });
+    document.querySelectorAll('[data-activity-modal]').forEach((m) => m.addEventListener('click', (e) => {
+      if (e.target === m || e.target.closest('[data-activity-close]')) closeAll();
+    }));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  })();
+</script>
+<!-- Voice Assistant Quick-Trigger Modal Preview (Toggleable) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm p-4" id="voice-modal-preview">
+<div class="w-full max-w-lg rounded-3xl bg-surface-container-lowest p-6 shadow-2xl flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined text-[32px] animate-pulse">mic</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">NIRVAAN Voice Companion</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Speak naturally in English, हिन्दी, or தமிழ். Ask anything.</p>
+</div>
+<div class="w-full py-4 px-6 rounded-2xl bg-surface-container-low flex items-center justify-center gap-1.5">
+<span class="w-1.5 h-6 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-10 bg-secondary rounded-full animate-bounce [animation-delay:0.15s]"></span>
+<span class="w-1.5 h-14 bg-primary-container rounded-full animate-bounce [animation-delay:0.3s]"></span>
+<span class="w-1.5 h-8 bg-secondary-fixed-dim rounded-full animate-bounce [animation-delay:0.45s]"></span>
+<span class="w-1.5 h-4 bg-primary rounded-full animate-bounce [animation-delay:0.6s]"></span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant font-medium">Try asking: “Is this investment promise real or fake?”</p>
+<div class="flex items-center gap-3 pt-2 w-full">
+<button class="flex-1 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition" onclick="document.getElementById('voice-modal-preview').classList.add('hidden')">
+          Close
+        </button>
+<a class="flex-1 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-md transition" href="/talk">
+          Talk to NIRVAAN
+        </a>
+</div>
+</div>
+</div>
+</div></div>
+{% endblock %}

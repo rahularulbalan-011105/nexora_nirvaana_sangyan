@@ -1,0 +1,327 @@
+{# ---------------------------------------------------------------
+   Public landing page. Standalone (does not extend auth_base) so the
+   illustrated hero can run edge to edge with its own navigation.
+   Artwork: /static/img/hero-scene.svg (backdrop) and
+            /static/img/hero-character.svg (figure) - swap either file
+   for final illustrations without touching this template.
+   --------------------------------------------------------------- #}
+<!DOCTYPE html>
+<html lang="{{ lang_code or 'en' }}" data-lang="{{ lang_code or 'en' }}" class="scroll-smooth">
+<head>
+<title>NIRVAAN · Your Financial Resilience Companion</title>
+{% include "partials/head.html" %}
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="/static/css/nirvaan.css" rel="stylesheet">
+<link href="/static/manifest.webmanifest" rel="manifest">
+<link href="/static/img/favicon.svg" rel="icon" type="image/svg+xml">
+<style>
+  .hero-scene {
+    background-image: url("/static/img/hero-scene.svg");
+    background-size: cover;
+    background-position: center bottom;
+  }
+  /* keeps the headline readable over the illustration */
+  .hero-veil {
+    background:
+      linear-gradient(90deg, rgba(250,248,255,0.92) 0%, rgba(250,248,255,0.75) 38%, rgba(250,248,255,0) 62%),
+      linear-gradient(180deg, rgba(250,248,255,0.55) 0%, rgba(250,248,255,0) 30%);
+  }
+  @media (max-width: 1023px) {
+    .hero-veil {
+      background: linear-gradient(180deg, rgba(250,248,255,0.92) 0%, rgba(250,248,255,0.8) 55%, rgba(250,248,255,0.2) 100%);
+    }
+  }
+  .brand-gradient-text {
+    background: linear-gradient(100deg, #1e3a8a 0%, #1d4ed8 45%, #0ea5e9 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .font-hand { font-family: "Caveat", cursive; }
+  @keyframes float-soft { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  .float-soft { animation: float-soft 6s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .float-soft { animation: none } }
+</style>
+</head>
+<body class="bg-[#faf8ff] text-slate-800 font-body-md antialiased overflow-x-hidden">
+
+<!-- ============================ HERO ============================ -->
+<section class="relative overflow-hidden hero-scene" id="home">
+  <div class="absolute inset-0 hero-veil pointer-events-none"></div>
+
+  <!-- Navigation -->
+  <header class="relative z-20 px-4 sm:px-6 pt-4">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 py-3
+                rounded-2xl bg-white/80 backdrop-blur-md border border-white shadow-[0_8px_30px_-10px_rgba(30,64,175,0.25)]">
+      <a href="/" class="flex items-center gap-2 shrink-0">
+        <svg class="w-8 h-8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#38bdf8" fill-opacity="0.35" stroke="#0284c7"></path>
+          <path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#1d4ed8"></path>
+        </svg>
+        <span class="font-headline-md text-[22px] font-extrabold tracking-tight text-blue-900">NIRVAAN</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-1 text-sm font-semibold text-slate-600">
+        {% for item in [("Home", "#home"), ("Features", "#features"), ("For Bharat", "#bharat"),
+                         ("About", "#about"), ("Help", "#help")] %}
+        <a href="{{ item[1] }}"
+           class="px-3 py-2 rounded-xl hover:text-blue-700 hover:bg-blue-50 transition-colors">{{ item[0] }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <button type="button" data-action="open-language"
+                  class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-slate-200
+                         bg-white text-sm font-semibold text-slate-700 hover:border-blue-300 shadow-sm">
+            <span class="material-symbols-outlined text-[18px] text-blue-600">language</span>
+            <span>{{ language_label or "English" }}</span>
+            <span class="material-symbols-outlined text-[18px] text-slate-400">expand_more</span>
+          </button>
+        </div>
+        <a href="/login" class="hidden sm:inline-flex px-4 py-2 rounded-full text-sm font-semibold
+                                text-blue-700 hover:bg-blue-50 transition-colors">Sign in</a>
+      </div>
+    </nav>
+  </header>
+
+  {% if notice %}
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 mt-4">
+    <div class="flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-50/95 border border-amber-200 text-sm text-amber-900 shadow-sm">
+      <span class="material-symbols-outlined text-[20px]">info</span>{{ notice }}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Hero body -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-10 lg:pt-14 pb-28 lg:pb-36
+              grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-2">
+        <svg class="w-12 h-12 sm:w-14 sm:h-14 drop-shadow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#38bdf8" fill-opacity="0.35" stroke="#0284c7"></path>
+          <path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#1d4ed8"></path>
+        </svg>
+        <h1 class="brand-gradient-text font-display-lg text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">
+          NIRVAAN
+        </h1>
+      </div>
+      <p class="font-display-lg text-3xl sm:text-4xl lg:text-[44px] font-extrabold leading-tight text-blue-950 mb-5">
+        Your Financial<br>Resilience Companion
+      </p>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium mb-8">
+        Understand financial information.<br>
+        Spot warning signals.<br>
+        Pause before acting.<br>
+        Decide for yourself.
+      </p>
+
+      <!-- Four pillars -->
+      <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mb-9">
+        {% for f in [
+            {"icon": "diversity_3", "label": "Understand Simply", "ring": "bg-blue-100 text-blue-600"},
+            {"icon": "warning", "label": "Detect Warnings", "ring": "bg-rose-100 text-rose-600"},
+            {"icon": "local_florist", "label": "Pause & Reflect", "ring": "bg-amber-100 text-amber-600"},
+            {"icon": "sentiment_satisfied", "label": "Build Better Habits", "ring": "bg-violet-100 text-violet-600"}
+        ] %}
+        <a href="#features" class="group flex flex-col items-center text-center gap-2">
+          <span class="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full bg-white shadow-[0_10px_25px_-8px_rgba(30,64,175,0.3)]
+                       flex items-center justify-center group-hover:-translate-y-1 transition-transform">
+            <span class="w-11 h-11 sm:w-12 sm:h-12 rounded-full {{ f.ring }} flex items-center justify-center">
+              <span class="material-symbols-outlined text-[26px]" style="font-variation-settings:'FILL' 1">{{ f.icon }}</span>
+            </span>
+          </span>
+          <span class="text-[11px] sm:text-sm font-bold text-slate-800 leading-tight">{{ f.label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+        <a href="/register"
+           class="inline-flex items-center gap-3 pl-8 pr-6 py-4 rounded-2xl text-base font-bold text-white
+                  bg-gradient-to-r from-blue-700 via-indigo-600 to-violet-600
+                  shadow-[0_14px_30px_-10px_rgba(79,70,229,0.7)] hover:brightness-110 active:scale-[0.98] transition-all">
+          Get Started
+          <span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+        </a>
+        {% if demo_video_url %}
+        <a href="/demo" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl text-base font-bold text-slate-800
+                  bg-white/95 border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+          <span class="w-7 h-7 rounded-full border-2 border-blue-600 text-blue-600 flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1">play_arrow</span>
+          </span>
+          Watch Demo
+        </a>
+        {% endif %}
+      </div>
+      <p class="mt-4 text-sm text-slate-600">
+        Already have an account?
+        <a class="font-semibold text-blue-700 hover:underline" href="/login">Sign in</a>
+      </p>
+    </div>
+
+    <!-- Illustration -->
+    <div class="relative flex justify-center lg:justify-end">
+      <p class="font-hand absolute -top-6 right-0 lg:-right-4 z-10 text-blue-800 text-2xl sm:text-3xl leading-7 sm:leading-8 -rotate-6 text-right">
+        A safer financial<br>tomorrow for<br><span class="text-blue-600">Every Indian.</span>
+      </p>
+      <img src="/static/img/hero-character.svg" alt="Smiling young woman in a blue saree"
+           class="float-soft relative w-[280px] sm:w-[360px] lg:w-[440px] mt-16 drop-shadow-[0_25px_35px_rgba(30,64,175,0.25)]">
+    </div>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="absolute bottom-0 inset-x-0 z-20 bg-white/90 backdrop-blur border-t border-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-2
+                text-xs sm:text-sm font-semibold text-slate-700">
+      {% for badge in [
+          ("smart_toy", "AI Powered"),
+          ("translate", "Multilingual (EN | हिंदी | தமிழ்)"),
+          ("lock", "Privacy First"),
+          ("volunteer_activism", "Public Good"),
+          ("diversity_1", "For Every Indian")
+      ] %}
+      <span class="inline-flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px] text-emerald-600">{{ badge[0] }}</span>{{ badge[1] }}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================== FEATURES ========================== -->
+<section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 mb-2">What NIRVAAN does</p>
+    <h2 class="font-display-lg text-3xl sm:text-4xl font-extrabold text-blue-950 mb-3">Clarity before any money decision</h2>
+    <p class="text-slate-600">NIRVAAN explains, points out what is worth verifying, and says plainly what remains uncertain. The decision is always yours.</p>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    {% for f in [
+        {"icon": "diversity_3", "tint": "blue", "title": "Understand Simply",
+         "body": "Plain-language explanations of financial terms, in English, Hindi or Tamil."},
+        {"icon": "warning", "tint": "rose", "title": "Detect Warning Signals",
+         "body": "Paste a message or upload a screenshot. See what was detected, and why."},
+        {"icon": "local_florist", "tint": "amber", "title": "Pause & Reflect",
+         "body": "Structured questions and a five-minute pause before any decision."},
+        {"icon": "sentiment_satisfied", "tint": "violet", "title": "Build Better Habits",
+         "body": "Track reflections and verification habits over time, at your pace."}
+    ] %}
+    <div class="relative bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_15px_40px_-18px_rgba(30,64,175,0.25)]
+                hover:-translate-y-1 hover:shadow-[0_25px_50px_-20px_rgba(30,64,175,0.35)] transition-all">
+      <div class="w-14 h-14 rounded-2xl bg-{{ f.tint }}-100 text-{{ f.tint }}-600 flex items-center justify-center mb-4">
+        <span class="material-symbols-outlined text-[30px]" style="font-variation-settings:'FILL' 1">{{ f.icon }}</span>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-2">{{ f.title }}</h3>
+      <p class="text-sm text-slate-600 leading-relaxed">{{ f.body }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ========================== FOR BHARAT ========================= -->
+<section id="bharat" class="relative overflow-hidden bg-gradient-to-br from-blue-700 via-indigo-700 to-violet-700 text-white">
+  <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-white/10"></div>
+  <div class="absolute -left-16 -bottom-32 w-80 h-80 rounded-full bg-sky-300/10"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-sky-200 mb-2">Built for Bharat</p>
+      <h2 class="font-display-lg text-3xl sm:text-4xl font-extrabold mb-4">Speaks your language. Works on your phone.</h2>
+      <p class="text-blue-100 leading-relaxed mb-6">
+        Ask in your own words, by voice or text. NIRVAAN answers in English, हिंदी or தமிழ்,
+        keeps working when the network drops, and uses a locally hosted language model,
+        so your messages are not sent to outside AI services.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {% for lang in ["English", "हिंदी", "தமிழ்"] %}
+        <span class="px-4 py-2 rounded-full bg-white/15 border border-white/25 text-sm font-semibold">{{ lang }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {% for item in [
+          ("mic", "Voice first", "Talk instead of typing."),
+          ("wifi_off", "Offline ready", "Core guidance without internet."),
+          ("shield_lock", "Private by default", "No memory unless you turn it on."),
+          ("family_restroom", "Family mode", "Help elders, with their consent.")
+      ] %}
+      <div class="rounded-2xl bg-white/10 border border-white/20 p-5 backdrop-blur-sm">
+        <span class="material-symbols-outlined text-[28px] text-sky-200 mb-2">{{ item[0] }}</span>
+        <h3 class="font-bold mb-1">{{ item[1] }}</h3>
+        <p class="text-sm text-blue-100">{{ item[2] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 py-20 grid lg:grid-cols-2 gap-10 items-start">
+  <div>
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 mb-2">About</p>
+    <h2 class="font-display-lg text-3xl sm:text-4xl font-extrabold text-blue-950 mb-4">A public good, not a product</h2>
+    <p class="text-slate-600 leading-relaxed mb-4">
+      NIRVAAN is non-commercial. It has nothing to sell, takes no commission and promotes no
+      financial product. It exists to help people slow down, understand, and protect themselves
+      from pressure and fraud.
+    </p>
+    <p class="font-hand text-3xl text-blue-700 -rotate-1">Pause. Understand. Reflect. Decide for yourself.</p>
+  </div>
+  <!-- What NIRVAAN will not do: stated up front, not buried -->
+  <div class="bg-white rounded-3xl p-7 border border-slate-100 shadow-[0_15px_40px_-18px_rgba(30,64,175,0.25)]">
+    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+      <span class="material-symbols-outlined text-[24px] text-blue-600">balance</span>
+      What NIRVAAN will never do
+    </h3>
+    <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+      {% for item in [
+          "Tell you what to buy, sell or hold",
+          "Predict prices or returns",
+          "Rank investments for you",
+          "Recommend a broker or product",
+          "Earn commission on anything",
+          "Ask for your OTP, PIN or password"
+      ] %}
+      <div class="flex items-start gap-2">
+        <span class="material-symbols-outlined text-[18px] text-rose-500 mt-0.5">block</span>
+        <span class="text-sm text-slate-700 leading-relaxed">{{ item }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HELP / CTA ============================ -->
+<section id="help" class="px-4 sm:px-6 pb-20">
+  <div class="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-sky-50 via-white to-violet-50 border border-blue-100
+              p-8 sm:p-12 text-center shadow-[0_15px_40px_-20px_rgba(30,64,175,0.3)]">
+    <h2 class="font-display-lg text-2xl sm:text-3xl font-extrabold text-blue-950 mb-3">Got a suspicious message right now?</h2>
+    <p class="text-slate-600 max-w-xl mx-auto mb-7">
+      Create a free account and paste it into <strong>Check a Message</strong>. If money has already
+      been lost, call the national cyber-crime helpline <strong>1930</strong> or report at
+      <a class="text-blue-700 font-semibold hover:underline" href="https://cybercrime.gov.in" rel="noopener" target="_blank">cybercrime.gov.in</a>.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/register" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-white
+                                 bg-gradient-to-r from-blue-700 via-indigo-600 to-violet-600 shadow-lg hover:brightness-110">
+        Get Started <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+      </a>
+      <a href="/login" class="inline-flex items-center px-7 py-3.5 rounded-2xl font-bold text-slate-800 bg-white border border-slate-200 hover:border-blue-300">
+        Sign in
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-slate-200/70 py-6 px-4 text-center text-xs text-slate-500">
+  <span class="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+    <span>🛡️ SEBI-neutral</span><span class="text-slate-300">•</span>
+    <span>No product selling</span><span class="text-slate-300">•</span>
+    <span>Educational only</span><span class="text-slate-300">•</span>
+    <span>© NIRVAAN</span>
+  </span>
+</footer>
+
+<script>window.NIRVAAN = { lang: "{{ lang_code or 'en' }}", csrf: "{{ csrf_token }}", authenticated: false };</script>
+<script src="/static/js/nirvaan.js" defer></script>
+</body>
+</html>

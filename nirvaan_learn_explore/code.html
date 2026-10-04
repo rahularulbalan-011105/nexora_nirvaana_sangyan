@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Interactive Top Action / Quick Bar -->
+<div class="px-margin-desktop pt-space-lg pb-space-md">
+<!-- Breadcrumb & Resilience Pulse -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="text-primary font-bold tracking-wider uppercase text-[11px]">Empowerment Hub</span>
+<span>•</span>
+<span class="text-on-surface font-medium">Bilingual Investor Education</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[15px] text-tertiary">verified</span>
+          Verified Public Good Curriculum
+        </span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 hover:bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm transition-colors" id="toggle-audio-guide">
+<span class="material-symbols-outlined text-[15px]">volume_up</span>
+<span>Audio Narration Active</span>
+</button>
+</div>
+</div>
+<!-- Page Header & Stats Banner -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-on-surface font-extrabold tracking-tight">Learn &amp; Explore</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs">
+          Jargon-free financial literacy, scam defense modules, and investor rights designed for everyday citizens across Bharat.
+        </p>
+</div>
+<!-- Stats Pill Bar -->
+<div class="flex flex-wrap items-center gap-space-sm p-1.5 rounded-2xl bg-surface-container shadow-sm">
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container/15 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">school</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">18 Concepts</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mastered</p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">route</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">3 Learning Paths</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active in Progress</p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">shield</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Level 2 Shield</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Achieved Safe Status</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Horizontal Filter Chips / Search Taxonomy -->
+<div class="px-margin-desktop py-space-sm overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-2.5 min-w-max pb-1" id="category-filter-chips">
+<button class="filter-chip active flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg font-semibold shadow-sm transition-all" data-category="all">
+<span>All Topics</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-white/20 rounded-full">24</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="basics">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology_alt</span>
+<span>Basics</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="mutual-funds">
+<span class="material-symbols-outlined text-[16px] text-tertiary">pie_chart</span>
+<span>Mutual Funds &amp; SIP</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="scams">
+<span class="material-symbols-outlined text-[16px] text-error">gpp_maybe</span>
+<span>Scams &amp; Red Flags</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="rights">
+<span class="material-symbols-outlined text-[16px] text-secondary">balance</span>
+<span>Your Rights (SEBI)</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="upi">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">phonelink_lock</span>
+<span>Digital &amp; UPI Safety</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="volatility">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">show_chart</span>
+<span>Market Volatility</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="budget">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">savings</span>
+<span>Budgeting &amp; Emergency Fund</span>
+</button>
+</div>
+</div>
+<!-- SECTION 1: Structured Learning Paths -->
+<section class="px-margin-desktop pt-space-lg pb-space-md">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-6 rounded-full bg-primary inline-block"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Structured Learning Paths</h2>
+<span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Bite-sized Steps</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pause anytime • Progress saves locally</span>
+</div>
+<!-- Path Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter-desktop">
+<!-- Path 1 -->
+<div class="flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-[0_10px_24px_-4px_rgba(37,99,235,0.08)] transition-all group">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">rocket_launch</span>
+</div>
+<!-- Progress Ring 75% -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90" viewBox="0 0 48 48">
+<circle class="text-surface-container-high" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary transition-all duration-700" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="31.4" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-label-md text-label-md font-bold text-on-surface">75%</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider mb-1">
+<span>Stage 1</span>
+<span>•</span>
+<span>Foundation</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">Start Your Investor Journey</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            Demystify inflation, compounding, and risk. Learn how index funds work with zero confusing terminology.
+          </p>
+</div>
+<div class="pt-space-lg mt-space-md border-t border-surface-container-high/60">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Progress: 6 of 8 modules</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-container/10 px-2 py-0.5 rounded-full">On Track</span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-gradient-to-r from-primary to-primary-container hover:opacity-95 text-on-primary font-label-lg text-label-lg font-bold shadow-md transition-all active:scale-[0.99]">
+<span>Resume Learning</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Path 2 -->
+<div class="flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-[0_10px_24px_-4px_rgba(186,26,26,0.08)] transition-all group">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error-container/40 flex items-center justify-center text-error group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">gpp_bad</span>
+</div>
+<!-- Progress Ring 83% -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90" viewBox="0 0 48 48">
+<circle class="text-surface-container-high" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-error transition-all duration-700" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="21.35" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-label-md text-label-md font-bold text-on-surface">83%</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-error font-bold uppercase tracking-wider mb-1">
+<span>Essential Defense</span>
+<span>•</span>
+<span>Scam Shield</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">Stay Safe from Scams</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            Recognize Telegram tip traps, fake SEBI certificates, guaranteed return lures, and coercive urgency scripts.
+          </p>
+</div>
+<div class="pt-space-lg mt-space-md border-t border-surface-container-high/60">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Progress: 5 of 6 modules</span>
+<span class="font-label-sm text-label-sm text-error font-bold bg-error-container/30 px-2 py-0.5 rounded-full">1 Left</span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg font-bold shadow-sm transition-all active:scale-[0.99]">
+<span>Resume Learning</span>
+<span class="material-symbols-outlined text-[18px] text-error">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Path 3 -->
+<div class="flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-[0_10px_24px_-4px_rgba(0,125,85,0.08)] transition-all group">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">self_improvement</span>
+</div>
+<!-- Progress Ring 80% -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90" viewBox="0 0 48 48">
+<circle class="text-surface-container-high" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-tertiary transition-all duration-700" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="25.12" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-label-md text-label-md font-bold text-on-surface">80%</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider mb-1">
+<span>Mindset &amp; Routine</span>
+<span>•</span>
+<span>Behavioral</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">Build Healthy Financial Habits</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            Practice cooling-off rules for large purchases, defeat FOMO rallies, and automate quiet emergency reserves.
+          </p>
+</div>
+<div class="pt-space-lg mt-space-md border-t border-surface-container-high/60">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Progress: 4 of 5 modules</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-container/10 px-2 py-0.5 rounded-full">Almost Done</span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg font-bold shadow-sm transition-all active:scale-[0.99]">
+<span>Resume Learning</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Illustrated Concept Spotlight (Tamil / Multilingual Feature from Wireframe) -->
+<section class="px-margin-desktop py-space-md">
+<div class="rounded-3xl bg-surface-container p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<div class="max-w-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider mb-space-sm">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+            Featured Multi-language Explainer
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold leading-tight">
+            What is a Mutual Fund?
+            <span class="block text-primary text-headline-md font-semibold mt-1">மியூச்சுவல் ஃபண்ட் என்றால் என்ன? • म्यूचुअल फंड क्या है?</span>
+</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+            Imagine many people pooling small amounts of money together to hire a professional gardener who plants varied fruit trees. Even if one crop fails, the entire harvest is protected.
+          </p>
+<div class="flex flex-wrap items-center gap-space-sm mt-space-md">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Listen in Tamil (தமிழ்)</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-bright transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Read Simple Analogy</span>
+</button>
+</div>
+</div>
+<!-- Illustrated diagram representation from design prototype -->
+<div class="w-full lg:w-96 p-space-md bg-surface-container-lowest rounded-2xl shadow-sm flex flex-col items-center">
+<div class="flex items-center justify-between w-full pb-space-sm border-b border-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Visual Representation</span>
+<span class="text-tertiary font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> 3-Part Flow
+            </span>
+</div>
+<div class="grid grid-cols-3 gap-2 w-full my-space-md text-center items-center">
+<div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[28px]">group</span>
+<span class="font-label-sm text-label-sm font-bold mt-1 text-on-surface">Investors</span>
+<span class="text-[10px] text-on-surface-variant">Small Pools</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">arrow_forward</span>
+</div>
+<div class="flex flex-col items-center p-2 rounded-xl bg-secondary-fixed/50">
+<span class="material-symbols-outlined text-secondary text-[28px]">account_balance</span>
+<span class="font-label-sm text-label-sm font-bold mt-1 text-on-surface">Mutual Fund</span>
+<span class="text-[10px] text-on-surface-variant">Diversified</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low p-2.5 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Regulated by SEBI (Securities &amp; Exchange Board of India).
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Popular Topic Modules Grid -->
+<section class="px-margin-desktop pt-space-lg pb-space-xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-6 rounded-full bg-secondary inline-block"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Popular Topic Modules</h2>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span>Displaying 6 high-impact micro-modules</span>
+</div>
+</div>
+<!-- Cards 2x3 or 3x2 Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop">
+<!-- Card 1 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 4 min read
+            </span>
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">Beginner</span>
+</div>
+<div class="w-full h-36 rounded-2xl overflow-hidden mb-space-md relative bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A warm, reassuring illustration of diverse Indian citizens casually reviewing a clear, transparent glass jar containing blooming plants with colorful coins, clean flat vector minimalist style, royal blue and soft cyan accents, modern corporate clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXYdp_FcN7EL6loiCwBescTQUe5N8OIGjBCTVW7wn_6PSTPO0JzSgXi0Kx9irDnyyv9s9TnK77c-n1mmpzuHom95oEJeUnOGOAN-ouzV0ruqhIzFGeZfopSBh6uAE8rrcpZbFlS0ywtZ4332dThsiiq0mVL4LfNzfuxltGH6jZpddfiFbJm4dvW2HCzjAQ00c0F3smpFeXXThlNanN01BOa6STYCvp8VTweNA8Cdo4mlM7OdQJdLTO">
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-surface/90 backdrop-blur-sm text-[11px] font-bold text-on-surface">
+              En • தமிழ் • हिन्दी
+            </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            What is a Mutual Fund? <span class="text-on-surface-variant font-normal text-body-md block">(மியூச்சுவல் ஃபண்ட்)</span>
+</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            Why you do not need to pick single stocks. Understand basket diversification and fund manager duties.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/40 text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">bolt</span> 5 min interactive
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-error bg-error-container/20 px-2 py-0.5 rounded-full">Safety Essential</span>
+</div>
+<div class="w-full h-36 rounded-2xl overflow-hidden mb-space-md relative bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A smartphone showing simulated WhatsApp chat message with glowing crimson warning badges highlighting suspicious links and countdown timers, clean modern safety dashboard UI aesthetic, vivid deep navy background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwNvlQq_oTRWTHwdVRQpBI3yIVJ_k7WZzgPsF6n3snx4x7jBhBOmbQ4x5SoaKGj7JT452bVaRuGTh70xu7u22IVuIU8Auzy0g0wG82Z8GyhIK0gIrkx2BbiCsinfJq5zt4oz3n2yytfI15qDidY4DzwSINnoQs6qg73EF9TH5JglS7GyNwABaN1g7LPXieYbbvJG1ZyjIqbxfnxEtd6LcChyfCqAJ0w2HWtvFQjXKw9zyFo9D7ERnQ">
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-surface/90 backdrop-blur-sm text-[11px] font-bold text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span> Scam Shield
+            </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            How to Spot Investment Scams &amp; Urgency Traps
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            Decode psychological tactics used by fraudsters: guaranteed 30% monthly gains, fake screenshots, and VIP rooms.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-error hover:text-on-error font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 6 min read
+            </span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full">Intermediate</span>
+</div>
+<!-- Minimalist trend chart visual -->
+<div class="w-full h-36 rounded-2xl bg-surface-container-low p-3 flex flex-col justify-between mb-space-md relative overflow-hidden">
+<div class="flex justify-between items-center text-[11px] font-semibold text-on-surface-variant">
+<span>Nifty 10-Yr Wave Simulation</span>
+<span class="text-tertiary">+12.4% CAGR</span>
+</div>
+<!-- Trend SVG -->
+<div class="w-full h-20 flex items-center">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 200 60">
+<path class="text-primary" d="M0,45 Q25,10 50,30 T100,20 T150,38 T200,8" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<path class="text-primary/10" d="M0,45 Q25,10 50,30 T100,20 T150,38 T200,8 L200,60 L0,60 Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="text-[10px] text-on-surface-variant font-medium text-center">
+              Normal ups and downs do not mean loss until you sell in panic.
+            </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Understanding Market Volatility (Without Panic)
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            Why market corrections happen, how compounding works through red cycles, and why staying calm protects your savings.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 4 min read
+            </span>
+<span class="font-label-sm text-label-sm font-semibold text-tertiary bg-tertiary-fixed px-2 py-0.5 rounded-full">Legal Protections</span>
+</div>
+<div class="w-full h-36 rounded-2xl overflow-hidden mb-space-md relative bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="An official institutional shield emblem with balanced scale of justice icon, surrounded by bilingual Hindi and English parchment certificates, subtle deep blue and emerald green hues, corporate regulatory aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG68PVl5j2aSmS89z6skblIvC7rzBVMwyVsDTakh4eD6du1m6MHbdl_BwXqhFJNorEwbTXMF5JCaxExfOt5-EOXoBwm6_ZU3xdEcKirsbxIwbxiK5eHHwJ6T3bct6-eZIVDZUTsEaEAdOEgbvkkFBqEzlcuYbCKOieSp74sJmU980ASAFX5wUDSiYbzeh_1h-tPBFLem6FLQbICiZTg0kT0-fFFdxH_P0lCJQrli3V-M-wb8CveLhF">
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-surface/90 backdrop-blur-sm text-[11px] font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-tertiary">check_circle</span> SEBI Investor Charter
+            </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Your Legal Rights as an Indian Retail Investor
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            The SCORES portal, how to file official complaints against brokers, and mandated resolution timeframes.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 3 min read
+            </span>
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">Habit Building</span>
+</div>
+<div class="w-full h-36 rounded-2xl bg-surface-container-low p-4 flex flex-col justify-center mb-space-md relative overflow-hidden">
+<div class="flex items-center justify-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold text-headline-sm">
+                ₹500
+              </div>
+<span class="material-symbols-outlined text-primary">add</span>
+<div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold text-headline-sm">
+                Every
+              </div>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<div class="w-10 h-10 rounded-xl bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-headline-sm">
+                10 Yrs
+              </div>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface-variant mt-3">
+              Small automated deposits beat trying to time the market every single time.
+            </p>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            What is a SIP (Systematic Investment Plan)?
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            Rupee-cost averaging explained using local everyday examples like buying monthly groceries.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 5 min read
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary bg-secondary-fixed/60 px-2 py-0.5 rounded-full">Cyber Safety</span>
+</div>
+<div class="w-full h-36 rounded-2xl overflow-hidden mb-space-md relative bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A graphic illustration depicting UPI QR code safety with a protective cyan and navy shield blocking unauthorized collect request notifications, calm and modern civic design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABucIJQtOGnFfvWUtGPC6dCe0YkPGwm6pSj7G81UObwxnmQvCgEDkqr8PJE8jREiryXhrQWzw8VGeQSNczcC14L6uf0tNiLM21jsR9wM_Lt_FVwK4k1gOjTwFQxjRQjI-aNpTRCIcJKBj_oN3yfhQ4mfKNJKQATr0ptUax98oQj8seIYNdJqQ8Atg_Gm2Xi0QeYRnVGtOLbt-c0jk4NDt7eH1SaoliimqgI8FgiyIAk1BydAqFoqu8">
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-surface/90 backdrop-blur-sm text-[11px] font-bold text-on-surface">
+              Golden Rule: PIN is ONLY to send money
+            </div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Digital Payment &amp; UPI Fraud Protection
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2">
+            The #1 misconception: You NEVER enter your UPI PIN to receive funds, lottery gifts, or buyer payments.
+          </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group">
+<span class="font-semibold">Start Concept</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Interactive Community Voice Question Prompt -->
+<section class="px-margin-desktop pb-space-lg">
+<div class="p-space-lg rounded-3xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-on-primary flex-shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[30px]">interpreter_mode</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Have a question that is not covered here?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            Ask NIRVAAN in your own mother tongue (Tamil, Hindi, Marathi, Telugu, English). We break down any jargon in 30 seconds.
+          </p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold shadow-md hover:brightness-110 transition-all flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+<span>Ask in Regional Voice</span>
+</button>
+</div>
+</section>
+<!-- Educational Non-Commercial Disclaimer Banner -->
+<footer class="px-margin-desktop pb-space-xl">
+<div class="p-space-md rounded-2xl bg-surface-container flex items-start gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5 flex-shrink-0">shield_with_heart</span>
+<div class="font-body-sm text-body-sm">
+<strong class="font-label-md text-label-md text-on-surface block mb-0.5">Civic Public Good Notice</strong>
+        All NIRVAAN educational modules are strictly non-commercial, non-promotional, and public-good focused. NIRVAAN does not sell financial products, take distributor commissions, manage funds, or provide stock trading recommendations. Our sole purpose is your autonomous financial resilience.
+      </div>
+</div>
+</footer>
+</div>
+<script>
+  // Simple interactive filter chip behavior
+  document.querySelectorAll('#category-filter-chips .filter-chip').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#category-filter-chips .filter-chip').forEach(btn => {
+        btn.classList.remove('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      });
+      button.classList.add('active', 'bg-primary-container', 'text-on-primary-container', 'font-semibold');
+      button.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+    });
+  });
+
+  // Audio Guide Toggle Micro-interaction
+  const audioBtn = document.getElementById('toggle-audio-guide');
+  if (audioBtn) {
+    let isNarrationActive = true;
+    audioBtn.addEventListener('click', () => {
+      isNarrationActive = !isNarrationActive;
+      if (isNarrationActive) {
+        audioBtn.classList.remove('opacity-60');
+        audioBtn.innerHTML = '<span class="material-symbols-outlined text-[15px]">volume_up</span><span>Audio Narration Active</span>';
+      } else {
+        audioBtn.classList.add('opacity-60');
+        audioBtn.innerHTML = '<span class="material-symbols-outlined text-[15px]">volume_off</span><span>Audio Muted</span>';
+      }
+    });
+  }
+</script></main></div></body></html>

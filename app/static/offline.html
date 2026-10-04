@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Offline · NIRVAAN</title>
+<link href="/static/css/nirvaan.css" rel="stylesheet">
+<style>
+  /* Self-contained: this page must render with no network at all, so it
+     cannot rely on the Tailwind CDN the rest of the app uses. */
+  :root { --navy:#131b2e; --muted:#434655; --brand:#2563eb; --surface:#faf8ff; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center;
+    justify-content: center; padding: 24px;
+    background: radial-gradient(circle at top center,#ffffff 0%,#f6f3ff 50%,#faf8ff 100%);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--navy);
+  }
+  .card {
+    max-width: 460px; width: 100%; background:#fff; border:1px solid #f1f5f9;
+    border-radius: 24px; padding: 36px 28px; text-align:center;
+    box-shadow: 0 10px 30px -4px rgba(79,70,229,.08);
+  }
+  .badge {
+    width:48px; height:48px; margin:0 auto 12px; border-radius:16px;
+    background:#eff6ff; border:1px solid #dbeafe; color:var(--brand);
+    display:flex; align-items:center; justify-content:center; font-size:24px;
+  }
+  .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+             font-weight:700; color:var(--brand); margin:0 0 6px; }
+  h1 { font-size:22px; margin:0 0 8px; letter-spacing:-.01em; }
+  p { font-size:14px; line-height:1.65; color:var(--muted); margin:0 0 18px; }
+  ul { text-align:left; margin:0 0 20px; padding:0; list-style:none; }
+  li { font-size:13px; line-height:1.6; color:var(--muted);
+       padding:8px 0 8px 26px; position:relative; }
+  li::before { content:"✓"; position:absolute; left:4px; color:#059669;
+               font-weight:700; }
+  .actions { display:flex; flex-direction:column; gap:10px; }
+  a.btn, button.btn {
+    display:block; width:100%; padding:13px 16px; border-radius:12px;
+    font-size:14px; font-weight:600; text-decoration:none; cursor:pointer;
+    border:none; font-family:inherit;
+  }
+  .primary { background:var(--brand); color:#fff; }
+  .secondary { background:#fff; color:var(--navy); border:1.5px solid #cbd5e1; }
+  .note { font-size:11px; color:#94a3b8; margin:18px 0 0; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge" aria-hidden="true">&#9729;</div>
+    <p class="eyebrow">NIRVAAN</p>
+    <h1>You are offline</h1>
+    <p>
+      This part of NIRVAAN needs an internet connection. Nothing was lost -
+      your journal and reflections are saved on this device.
+    </p>
+
+    <ul>
+      <li>Saved lessons you have already opened</li>
+      <li>Your journal and reflection answers</li>
+      <li>The five-minute pause timer</li>
+      <li>Basic safety rules and warning-signal checks</li>
+    </ul>
+
+    <div class="actions">
+      <button class="btn primary" onclick="location.reload()" type="button">
+        Try again
+      </button>
+      <a class="btn secondary" href="/learn">Open saved lessons</a>
+    </div>
+
+    <p class="note">
+      The full assistant, live verification and market data return automatically
+      once you reconnect.
+    </p>
+  </div>
+
+  <script>
+    // Return to the app the moment connectivity comes back.
+    window.addEventListener("online", function () { location.reload(); });
+  </script>
+</body>
+</html>

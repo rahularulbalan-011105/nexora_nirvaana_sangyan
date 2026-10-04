@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="flex flex-col w-full">
+<div class="px-space-md lg:px-margin-desktop py-space-lg space-y-space-xl max-w-7xl mx-auto w-full">
+<!-- Top Breadcrumb & Neutral Regulatory Badge -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-wrap">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-outline-variant font-medium">/</span>
+<a class="hover:text-primary transition-colors" href="#">Learn &amp; Explore</a>
+<span class="text-outline-variant font-medium">/</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Market Education</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm w-fit shadow-sm">
+<span class="material-symbols-outlined text-[15px] text-tertiary">verified</span>
+<span>EDUCATIONAL ONLY • ZERO BUY/SELL ADVICE</span>
+</div>
+</div>
+<!-- Page Title & Reassuring Intro Header -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-secondary-fixed/30 to-primary-fixed/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl space-y-space-sm">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>Core Concept Module #04</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-on-surface tracking-tight">
+          Market Education &amp; Risk Literacy
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Jargon-free, factual breakdowns of how financial markets work historically. NIRVAAN never predicts prices or provides trading signals.
+        </p>
+</div>
+<!-- Interactive Sub-Tabs -->
+<div class="relative z-10 mt-space-lg flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+<button class="px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex-shrink-0">
+          Overview
+        </button>
+<button class="px-5 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary font-bold shadow-md shadow-primary/20 flex-shrink-0 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">waves</span>
+<span>Volatility</span>
+</button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex-shrink-0">
+          Drawdown
+        </button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex-shrink-0">
+          Volume &amp; Liquidity
+        </button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex-shrink-0">
+          Market Cycles &amp; Horizons
+        </button>
+</div>
+</div>
+<!-- Primary Featured Definition Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Factual Concept Primer</span>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm bg-surface-container-low px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]">history_edu</span>
+<span>SEBI Awareness Aligned</span>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">
+            What is Volatility?
+          </h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant mb-space-md">
+            சந்தை ஏற்ற இறக்கம் • बाजार में उतार-चढ़ाव
+          </p>
+<div class="bg-surface-container-low rounded-2xl p-space-md mb-space-md">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+              Volatility simply measures <strong class="text-primary font-semibold">how much and how quickly an asset price moves up and down</strong> over a given timeframe. High volatility indicates sharper swings in brief windows; low volatility indicates steadier, gradual shifts.
+            </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span>Historical oscillations</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span>Long-term baseline growth</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span>Temporary correction dips</span>
+</div>
+</div>
+</div>
+<!-- Right Visual Feature / Companion Voice Snippet -->
+<div class="lg:col-span-4 bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-[26px]">psychology_alt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">The Emotional Shortcut Trap</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            When short-term prices fluctuate, our brains interpret negative red bars as imminent danger. Recognising this natural cognitive reflex is your first line of defense.
+          </p>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-lowest rounded-2xl p-space-md space-y-2">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Audio Summary</span>
+<span class="text-primary font-semibold">1 min 45 sec</span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Play Concept Audio" class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</button>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-1/3 h-full bg-primary-container rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant cursor-pointer hover:text-primary">volume_up</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Educational Historical Simulation Chart Card -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Historical Trajectory Simulation</h3>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm">Simulated 10-Yr Benchmark</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Illustrating short-term market noise versus long-term economic compounding.
+          </p>
+</div>
+<!-- Timeframe Selectors -->
+<div class="inline-flex p-1 rounded-2xl bg-surface-container text-on-surface-variant font-label-md text-label-md self-start md:self-auto">
+<button class="px-3.5 py-1.5 rounded-xl hover:text-on-surface transition-colors" onclick="setActiveTimeframe(this)">1Y</button>
+<button class="px-3.5 py-1.5 rounded-xl hover:text-on-surface transition-colors" onclick="setActiveTimeframe(this)">3Y</button>
+<button class="px-3.5 py-1.5 rounded-xl hover:text-on-surface transition-colors" onclick="setActiveTimeframe(this)">5Y</button>
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-primary font-bold shadow-sm" onclick="setActiveTimeframe(this)">10Y</button>
+<button class="px-3.5 py-1.5 rounded-xl hover:text-on-surface transition-colors" onclick="setActiveTimeframe(this)">All</button>
+</div>
+</div>
+<!-- Responsive SVG Chart -->
+<div class="relative w-full bg-surface-container-low rounded-2xl p-space-md overflow-hidden">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pb-2">
+<span>₹10,000 Base Simulation</span>
+<span>10-Year Horizon (+12.4% Annualized CAGR)</span>
+</div>
+<!-- Inline Visual Chart (SVG Vector) -->
+<svg aria-label="Educational Stock Market 10-Year Simulation Wave Chart" class="w-full h-56 lg:h-72 overflow-visible" preserveAspectRatio="none" role="img" viewBox="0 0 900 280">
+<defs>
+<linearGradient id="volatilityGlow" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#2563eb" stop-opacity="0.28"></stop>
+<stop offset="60%" stop-color="#57dffe" stop-opacity="0.10"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"></stop>
+</linearGradient>
+<linearGradient id="correctionGlow" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.18"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0.01"></stop>
+</linearGradient>
+</defs>
+<!-- Horizontal Grid Lines -->
+<line stroke="#dae2fd" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="900" y1="40" y2="40"></line>
+<line stroke="#dae2fd" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="900" y1="100" y2="100"></line>
+<line stroke="#dae2fd" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="900" y1="160" y2="160"></line>
+<line stroke="#dae2fd" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="900" y1="220" y2="220"></line>
+<!-- Correction Area Callout 1 (Shaded Drawdown) -->
+<polygon fill="url(#correctionGlow)" points="260,165 340,215 390,195 440,225 440,260 260,260"></polygon>
+<!-- Main Shaded Growth Area -->
+<polygon fill="url(#volatilityGlow)" points="0,250 80,220 150,235 220,180 280,165 340,215 390,195 440,225 510,150 580,135 640,160 720,100 800,85 900,45 900,280 0,280"></polygon>
+<!-- Long-Term Trend Benchmark Line (Dashed Navy) -->
+<line stroke="#737686" stroke-dasharray="6,6" stroke-width="1.5" x1="0" x2="900" y1="250" y2="48"></line>
+<!-- Oscillating Realistic Value Path -->
+<path d="M 0,250 Q 40,230 80,220 T 150,235 T 220,180 T 280,165 T 340,215 T 390,195 T 440,225 T 510,150 T 580,135 T 640,160 T 720,100 T 800,85 T 900,45" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="3"></path>
+<!-- Temporary Panic Correction Marker Point -->
+<circle cx="340" cy="215" fill="#ba1a1a" r="5"></circle>
+<circle cx="440" cy="225" fill="#ba1a1a" r="5"></circle>
+<!-- Compounding Milestone Points -->
+<circle cx="220" cy="180" fill="#006242" r="4.5"></circle>
+<circle cx="720" cy="100" fill="#006242" r="4.5"></circle>
+<circle cx="900" cy="45" fill="#004ac6" r="6"></circle>
+</svg>
+<!-- Chart Overlaid Badge Annotations -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-space-sm">
+<div class="flex items-start gap-2 bg-surface-container-lowest/90 backdrop-blur-md p-3 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">warning</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Short-Term Panic Windows (-15% to -24%)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Notice how deep sharp dips resolved into resumption of the longer trend over 3-5 years.</p>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-surface-container-lowest/90 backdrop-blur-md p-3 rounded-xl shadow-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">trending_up</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">+12.4% 10-Yr CAGR Historical Benchmark</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Capital preservation was achieved simply through patience, disciplined diversification, and zero impulsive selling.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Calming Insight Anchor Box -->
+<div class="flex items-center gap-space-md p-space-md rounded-2xl bg-tertiary-container/10 text-on-surface">
+<div class="w-10 h-10 rounded-xl bg-tertiary text-on-tertiary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">self_improvement</span>
+</div>
+<p class="font-label-lg text-label-lg leading-snug">
+<strong class="font-bold text-tertiary">Key Insight:</strong> Volatility is the price of admission for long-term compounding, not a reason to panic-sell.
+        </p>
+</div>
+</div>
+<!-- Key Educational Takeaways: 3 Column Card Mosaic -->
+<div>
+<div class="mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Resilience Foundations</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">3 Truths Every Prudent Citizen Must Know</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">water_drop</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Principle 01</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Prices Fluctuate Constantly</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Normal market ebb and flow is driven by collective human expectations, seasonal corporate balance sheets, and global macroeconomic indicators. Daily price drift is expected.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center gap-1.5 text-primary font-label-md text-label-md font-semibold">
+<span>Historical Cycle: Ebb &amp; Flow</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[26px]">shield</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Principle 02</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Volatility ≠ Permanent Loss</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Paper fluctuations only become actual realized capital losses when an investor sells in panic during a correction. An adequate time horizon neutralizes emotional turbulence.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center gap-1.5 text-secondary font-label-md text-label-md font-semibold">
+<span>Paper Value vs Real Loss</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-2xl bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[26px]">history</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Principle 03</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Past Data Does Not Guarantee Returns</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Educational benchmarks reflect long-term historical context across Indian capital history, not future certainties, guarantees, or specific product endorsements.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md font-semibold">
+<span>Regulatory Truth Standard</span>
+<span class="material-symbols-outlined text-[16px]">info</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Photographic Anchor Section: Civic Literacy & Clarity -->
+<div class="relative bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<div class="lg:col-span-7 p-space-lg lg:p-space-xl flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">family_restroom</span>
+<span>Generational Wealth Literacy</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">
+              De-escalating the Noise at the Family Kitchen Table
+            </h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              When WhatsApp groups scream panic during market pullbacks or push "get rich overnight" stock tips, having clear historical perspective protects entire families from life-altering savings traps.
+            </p>
+</div>
+<div class="grid grid-cols-2 gap-space-md pt-space-sm">
+<div class="p-space-md rounded-2xl bg-surface-container-low">
+<p class="font-display-lg text-headline-lg text-primary font-bold">87%</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Of retail day-traders lose capital when trading volatility without systematic training.</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low">
+<p class="font-display-lg text-headline-lg text-tertiary font-bold">&gt;7 Years</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Historical rolling periods over which broad index equities have held positive real returns.</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative min-h-[280px] lg:min-h-full">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A serene multi-generational South Asian family in Bangalore calmly sitting on a sunlit living room veranda with tea and tablets, discussing thoughtful plans in an atmosphere of warmth and calm reassurance, styled in soft natural tones with gentle daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP0bGu4HgYYrXO06m3jiFL2VspmVvBYxfm_tkGzAZg6ksjdtTAqHf2cqkIBZ1EjoznzEzjjVIkNPumxMDCynKpj-zpdgwomt62r4m8Y4BUxpKHyZdo2ABjjamqE0r5XKE5ChslwE0QPCWv2G_cqxn8Vfq_LI16h4SXFYKjh2AnlwZUcqLg4_AsvXpeGNKfRmjHtALaE6-KQaIFu3nmHSpo4Ik2Xb3dKLIAleuNlulmG7tsJWm9Yj3y">
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/50 via-transparent to-transparent lg:hidden"></div>
+</div>
+</div>
+</div>
+<!-- Interactive Simulator / Stress Check Widget -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">balance</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">The 3-Year Calm Test</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Test your horizon: Practice your instinctive mental response before real volatility occurs.
+          </p>
+</div>
+<span class="inline-flex px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm self-start sm:self-auto font-semibold">
+          Self-Reflection Scenario
+        </span>
+</div>
+<!-- Scenario Prompt Box -->
+<div class="p-space-md lg:p-space-lg rounded-2xl bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Hypothetical Scenario</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">
+            "Your balanced long-term mutual fund drops by 15% next month due to geopolitical tensions. What is your immediate reaction?"
+          </p>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md flex-shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">psychology</span>
+<span>No Wrong Answers</span>
+</div>
+</div>
+<!-- Interactive Option Cards -->
+<div class="space-y-space-sm" id="calmTestOptions">
+<!-- Option 1 -->
+<button class="w-full text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container-low transition-all cursor-pointer group flex items-start gap-space-md" id="opt-panic" onclick="handleResponse('panic')">
+<div class="w-6 h-6 rounded-full bg-surface-container-high group-hover:bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Option A: Panic, exit everything immediately, and convert to cash.</span>
+<span class="font-label-sm text-label-sm text-outline-variant">Impulse Action</span>
+</div>
+<div class="hidden mt-space-sm p-space-md rounded-xl bg-error-container/40 text-on-surface" id="feedback-panic">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">sentiment_stressed</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-error-container">Reflective Insight: High Emotional Friction</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Selling during rapid drops transforms temporary paper declines into permanent realized loss. For money needed within 1–2 years, keep funds in secure high-interest liquid savings rather than volatile equities.</p>
+</div>
+</div>
+</div>
+</div>
+</button>
+<!-- Option 2 -->
+<button class="w-full text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container-low transition-all cursor-pointer group flex items-start gap-space-md" id="opt-calm" onclick="handleResponse('calm')">
+<div class="w-6 h-6 rounded-full bg-surface-container-high group-hover:bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Option B: Do nothing, pause, and verify when this money is actually needed.</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">Resilient Posture</span>
+</div>
+<div class="hidden mt-space-sm p-space-md rounded-xl bg-tertiary-container/15 text-on-surface" id="feedback-calm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-tertiary">Commended: Calm &amp; Grounded Horizon</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Excellent discernment. If this investment was earmarked for goals 5+ years away, market oscillations are completely routine seasons. Pausing protects your compounding journey.</p>
+</div>
+</div>
+</div>
+</div>
+</button>
+<!-- Option 3 -->
+<button class="w-full text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container-low transition-all cursor-pointer group flex items-start gap-space-md" id="opt-evaluate" onclick="handleResponse('evaluate')">
+<div class="w-6 h-6 rounded-full bg-surface-container-high group-hover:bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Option C: Calmly audit underlying fundamentals &amp; consult factual data.</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Analytical Stance</span>
+</div>
+<div class="hidden mt-space-sm p-space-md rounded-xl bg-primary-fixed/30 text-on-surface" id="feedback-evaluate">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] flex-shrink-0 mt-0.5">psychology</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">Commended: Rational Non-Emotional Evaluation</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Separating market-wide macroeconomic noise from structural individual fund flaws is the hallmark of resilient wealth literacy.</p>
+</div>
+</div>
+</div>
+</div>
+</button>
+</div>
+</div>
+<!-- Bottom Companion Advice & Multi-Language Audio Banner -->
+<div class="bg-gradient-to-r from-surface-container-low via-surface-container-lowest to-surface-container-low rounded-3xl p-space-lg lg:p-space-xl shadow-sm">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-[28px]">spa</span>
+</div>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">Priya from NIRVAAN</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Companion</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
+              "Remember: Real wealth building is quiet, unhurried, and disciplined. Market corrections are normal seasons in an investor's decade."
+            </p>
+</div>
+</div>
+<!-- Action Pill Group -->
+<div class="flex flex-wrap items-center gap-space-sm w-full lg:w-auto justify-end">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-xs transition-all">
+<span class="material-symbols-outlined text-primary text-[18px]">record_voice_over</span>
+<span>Listen in தமிழ் / हिन्दी</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-xs transition-all">
+<span class="material-symbols-outlined text-secondary text-[18px]">bookmark_add</span>
+<span>Save to Journal</span>
+</button>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md shadow-primary/20 hover:scale-102 transition-transform">
+<span>Ask NIRVAAN a Question</span>
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function setActiveTimeframe(btn) {
+      const parent = btn.parentElement;
+      const buttons = parent.querySelectorAll('button');
+      buttons.forEach(b => {
+        b.className = 'px-3.5 py-1.5 rounded-xl hover:text-on-surface transition-colors';
+      });
+      btn.className = 'px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-primary font-bold shadow-sm';
+    }
+
+    function handleResponse(type) {
+      const panicFb = document.getElementById('feedback-panic');
+      const calmFb = document.getElementById('feedback-calm');
+      const evalFb = document.getElementById('feedback-evaluate');
+
+      panicFb.classList.add('hidden');
+      calmFb.classList.add('hidden');
+      evalFb.classList.add('hidden');
+
+      const optPanic = document.getElementById('opt-panic');
+      const optCalm = document.getElementById('opt-calm');
+      const optEvaluate = document.getElementById('opt-evaluate');
+
+      [optPanic, optCalm, optEvaluate].forEach(el => {
+        el.classList.remove('bg-surface-container-low');
+      });
+
+      if (type === 'panic') {
+        panicFb.classList.remove('hidden');
+        optPanic.classList.add('bg-surface-container-low');
+      } else if (type === 'calm') {
+        calmFb.classList.remove('hidden');
+        optCalm.classList.add('bg-surface-container-low');
+      } else if (type === 'evaluate') {
+        evalFb.classList.remove('hidden');
+        optEvaluate.classList.add('bg-surface-container-low');
+      }
+    }
+  </script>
+</div></main></div></body></html>

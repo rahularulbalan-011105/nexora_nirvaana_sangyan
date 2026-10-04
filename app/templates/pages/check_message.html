@@ -1,0 +1,314 @@
+{# ---------------------------------------------------------------
+   Based on check_a_message_safety_analysis/code.html (Stitch export).
+   Behaviour lives in /static/js/check.js; the result card and past-check
+   rows come from pages/_check_result.html so fresh and reopened results
+   share one design.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% from "pages/_check_result.html" import result_card, empty_card, history_row with context %}
+{% block title %}Check a Message{% endblock %}
+
+{% block content %}
+{% set store_history = (privacy.store_analysis_history if privacy else true) %}
+{% set store_files = (privacy.store_uploaded_files if privacy else false) %}
+<div class="w-full max-w-[1440px] mx-auto px-space-lg py-space-lg" id="check-root" data-ocr="{{ '1' if ocr_available else '0' }}" data-max-mb="{{ max_upload_mb }}"><div class="flex flex-col w-full">
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-16 right-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-48 left-12 w-80 h-80 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Top Action / Title Header -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
+<div class="flex items-start gap-space-md">
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+</div>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Check a Message</h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            Understand what a financial message is saying before you act. Calm, evidence-first verification.
+          </p>
+</div>
+</div>
+<!-- Quick Utility Bar -->
+<div class="flex flex-wrap items-center gap-space-sm self-start lg:self-auto">
+<button type="button" aria-label="Listen to the result" class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed" id="btn-audio-guide" disabled>
+<span class="material-symbols-outlined text-[18px] text-primary">volume_up</span>
+<span>Listen to result</span>
+</button>
+<a href="#past-checks" class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md shadow-sm transition-all" id="btn-history">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">history</span>
+<span>Recent Scans</span>
+<span class="px-1.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-bold" id="scan-count">{{ scan_count or 0 }}</span>
+</a>
+</div>
+</div>
+<!-- Media Input Switcher Tabs -->
+<div class="bg-surface-container-lowest p-2 rounded-2xl shadow-sm mb-space-lg flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 overflow-x-auto py-0.5 max-w-full min-w-0" id="input-tabs" role="tablist" aria-label="What do you want to check?">
+<button type="button" role="tab" aria-selected="true" class="tab-btn flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all" data-type="text">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Text Snippet</span>
+</button>
+<button type="button" role="tab" aria-selected="false" class="tab-btn flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-all" data-type="link">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span>Link (URL)</span>
+</button>
+<button type="button" role="tab" aria-selected="false" class="tab-btn flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-all" data-type="image">
+<span class="material-symbols-outlined text-[18px]">image</span>
+<span>Image (Screenshot)</span>
+</button>
+<button type="button" role="tab" aria-selected="false" class="tab-btn flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-all" data-type="pdf">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>File (PDF)</span>
+</button>
+<a class="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-all" href="/batch">
+<span class="material-symbols-outlined text-[18px]">stacks</span>
+<span>Batch Upload</span>
+</a>
+</div>
+<div class="flex items-center gap-2 px-3 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+<span>{% if store_history %}Results saved to your history{% else %}History is off. Results are not saved{% endif %}</span>
+<span aria-hidden="true">•</span>
+<span>{% if store_files %}Uploaded files are kept{% else %}Uploaded files are not kept{% endif %}</span>
+</div>
+</div>
+<!-- Main Dual-Column Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: input -->
+<div class="lg:col-span-5 flex flex-col gap-space-md min-w-0">
+<form class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col transition-all relative overflow-hidden group" id="check-form" novalidate>
+<!-- Text mode -->
+<div data-mode-panel="text">
+<div class="flex items-center justify-between gap-2 mb-space-md">
+<label for="check-text" class="font-headline-sm text-headline-sm text-on-surface">Paste the message</label>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm"><span id="text-count">0</span> / 10000</span>
+</div>
+<textarea id="check-text" name="text" rows="7" maxlength="10000" class="w-full rounded-2xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary p-space-md font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant resize-y" placeholder="Paste a WhatsApp, SMS, Telegram or email message here..."></textarea>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2">Never paste your own OTP, PIN or card number. If the message contains them, they are masked before checking.</p>
+</div>
+<!-- Link mode -->
+<div data-mode-panel="link" hidden>
+<div class="flex items-center justify-between gap-2 mb-space-md">
+<label for="check-url" class="font-headline-sm text-headline-sm text-on-surface">Paste a link</label>
+</div>
+<input id="check-url" name="url" type="text" inputmode="url" autocomplete="off" spellcheck="false" maxlength="2048" class="w-full rounded-2xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary px-space-md py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="https://example.com/offer">
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2 flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary flex-shrink-0">info</span><span>We check the link address only. The page is not opened.</span></p>
+</div>
+<!-- Image mode -->
+<div data-mode-panel="image" hidden>
+<div class="flex items-center justify-between gap-2 mb-space-md flex-wrap">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Upload Evidence</span>
+<span class="material-symbols-outlined text-[18px] text-primary" title="Supports WhatsApp forwards, Telegram alerts, SMS, Instagram ads">info</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm"><span>JPG, PNG, WebP up to</span> <span>{{ max_upload_mb }} MB</span></span>
+</div>
+<input type="file" id="image-input" accept="image/jpeg,image/png,image/webp" class="sr-only" tabindex="-1">
+<div role="button" tabindex="0" aria-label="Choose an image" class="bg-surface-container-low hover:bg-surface-container transition-all rounded-2xl p-space-lg text-center cursor-pointer flex flex-col items-center justify-center relative" id="image-drop" data-dropzone="image">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed mb-space-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[28px]">cloud_upload</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Drag &amp; drop an image here</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xs">
+              or <span class="text-primary font-semibold underline decoration-2">browse your files</span>. Supports WhatsApp messages, Telegram posts, and documents.
+            </p>
+<div class="mt-space-md flex flex-wrap justify-center items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface text-label-sm font-label-sm shadow-xs">
+{% if ocr_available %}<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span> <span>Auto OCR</span>{% else %}<span class="material-symbols-outlined text-[14px] text-secondary">keyboard</span> <span>Type the text you see</span>{% endif %}
+              </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface text-label-sm font-label-sm shadow-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary">language</span> <span>English, Hindi &amp; Tamil</span>
+              </span>
+</div>
+</div>
+<div class="hidden mt-space-md rounded-2xl bg-surface-container-low p-3 flex-col sm:flex-row gap-3 items-start" id="image-preview">
+<img id="image-preview-img" alt="Preview of the selected image" class="w-full sm:w-32 max-h-64 sm:max-h-40 object-contain rounded-xl bg-surface-container-lowest">
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface font-semibold break-all" id="image-name"></p>
+<p class="font-body-sm text-[12px] text-on-surface-variant" id="image-size"></p>
+<div class="flex flex-wrap gap-2 mt-2">
+<button type="button" class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold shadow-xs inline-flex items-center gap-1" data-replace="image"><span class="material-symbols-outlined text-[16px]">swap_horiz</span><span>Replace</span></button>
+<button type="button" class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold shadow-xs inline-flex items-center gap-1" data-remove="image"><span class="material-symbols-outlined text-[16px]">delete</span><span>Remove</span></button>
+</div>
+</div>
+</div>
+<div class="mt-space-md">
+<label for="image-typed" class="font-label-md text-label-md text-on-surface-variant">{% if ocr_available %}Text in the image (optional, to correct the automatic reading){% else %}Type the text you see in the image{% endif %}</label>
+<textarea id="image-typed" rows="4" maxlength="10000" class="mt-1 w-full rounded-2xl bg-surface-container-low border-0 focus:ring-2 focus:ring-primary p-space-md font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant resize-y" placeholder="Type the message text from the screenshot..."></textarea>
+{% if not ocr_available %}
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1 flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-secondary flex-shrink-0">info</span><span>Automatic text reading (OCR) is not available on this server, so the text you type is what gets checked.</span></p>
+{% endif %}
+</div>
+</div>
+<!-- PDF mode -->
+<div data-mode-panel="pdf" hidden>
+<div class="flex items-center justify-between gap-2 mb-space-md flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Upload a PDF</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm"><span>PDF up to</span> <span>{{ max_upload_mb }} MB</span></span>
+</div>
+<input type="file" id="pdf-input" accept="application/pdf,.pdf" class="sr-only" tabindex="-1">
+<div role="button" tabindex="0" aria-label="Choose a PDF" class="bg-surface-container-low hover:bg-surface-container transition-all rounded-2xl p-space-lg text-center cursor-pointer flex flex-col items-center justify-center relative" id="pdf-drop" data-dropzone="pdf">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed mb-space-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[28px]">upload_file</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Drag &amp; drop a PDF here</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xs">or <span class="text-primary font-semibold underline decoration-2">browse your files</span>. Brochures, offer letters and statements with selectable text work best.</p>
+</div>
+<div class="hidden mt-space-md rounded-2xl bg-surface-container-low p-3 items-center gap-3" id="pdf-preview">
+<div class="w-11 h-11 rounded-xl bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[22px]">picture_as_pdf</span></div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface font-semibold break-all" id="pdf-name"></p>
+<p class="font-body-sm text-[12px] text-on-surface-variant" id="pdf-size"></p>
+</div>
+<div class="flex flex-wrap gap-2 flex-shrink-0">
+<button type="button" aria-label="Replace" title="Replace" class="w-9 h-9 rounded-full bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface shadow-xs" data-replace="pdf"><span class="material-symbols-outlined text-[18px]">swap_horiz</span></button>
+<button type="button" aria-label="Remove" title="Remove" class="w-9 h-9 rounded-full bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface shadow-xs" data-remove="pdf"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2">Text is read from the PDF. Scanned PDFs without a text layer cannot be read.</p>
+</div>
+<!-- Message under review -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Message Under Review</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-space-md shadow-inner relative overflow-hidden">
+<div class="hidden" id="review-filled">
+<div class="flex items-center justify-between gap-2 pb-2 mb-2 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-medium text-on-surface" id="review-kind"></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm relative">
+<div class="font-body-md text-body-md text-on-surface whitespace-pre-line break-words max-h-72 overflow-y-auto" id="review-text"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col items-center text-center gap-2" id="review-empty">
+<span class="material-symbols-outlined text-[28px] text-outline">inbox</span>
+<p class="font-body-md text-body-md text-on-surface font-medium">Ready for a new message</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Upload a screenshot or paste a message above to get started.</p>
+</div>
+<p class="hidden mt-space-sm p-3 rounded-xl bg-error-container text-on-error-container font-body-sm text-body-sm" id="check-error" role="alert"></p>
+<!-- Action Bar -->
+<div class="mt-space-md flex items-center gap-space-sm">
+<button type="submit" class="flex-1 min-w-0 py-3 px-space-md rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-wait" id="btn-analyse">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-45 transition-transform" id="btn-analyse-icon">bolt</span>
+<span id="btn-analyse-label">Analyse Message</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button type="button" id="btn-clear" class="w-11 h-11 flex-shrink-0 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors" title="Clear" aria-label="Clear">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Humanized Reassurance Note -->
+<div class="mt-space-md p-3.5 rounded-2xl bg-secondary-container/20 flex items-start gap-space-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary flex-shrink-0 mt-0.5">psychology</span>
+<p class="font-body-sm text-body-sm">
+<strong class="font-bold">Pause. Reflect.</strong> Scammers engineer urgency so you don’t verify. NIRVAAN gives you space to think clearly.
+            </p>
+</div>
+</form>
+<!-- Common Risk Patterns -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Common Risk Patterns</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">format_image_left</span>
+</div>
+<div class="space-y-2">
+<div class="p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-error flex-shrink-0"></span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Fake IPO Allotment WhatsApp Groups</span>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-error flex-shrink-0"></span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Telegram Stock Tip Double Money Scheme</span>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-secondary flex-shrink-0"></span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Phishing URLs with .in / .org Spoofing</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: result -->
+<div class="lg:col-span-7 flex flex-col gap-space-md min-w-0">
+<div id="result-slot" aria-live="polite">
+{{ empty_card() }}
+</div>
+<!-- Past checks -->
+<div class="bg-surface-container-lowest rounded-3xl shadow-sm p-space-lg scroll-mt-24" id="past-checks">
+<div class="flex items-center justify-between gap-2 mb-3">
+<div class="min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Your past checks</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select a check to see its result again.</p>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm flex-shrink-0" id="past-count">{{ past_checks|length }}</span>
+</div>
+<ul class="space-y-3 max-h-[32rem] overflow-y-auto" id="past-list">
+{% for pc in past_checks %}{{ history_row(pc) }}{% endfor %}
+</ul>
+<p class="font-body-sm text-body-sm text-on-surface-variant {{ 'hidden' if past_checks }}" id="past-empty">{% if store_history %}Messages you check will be listed here.{% else %}Analysis history is turned off in Privacy Center, so new checks are not listed here.{% endif %}</p>
+</div>
+<!-- Companion Encouragement Micro-Card -->
+<div class="bg-gradient-to-r from-surface-container to-surface-container-low rounded-2xl p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-md shadow-xs">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-primary/10">
+<img class="w-full h-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe5M6TUlI1FgH9Ze5ccGWlyq3E5v8cQcr2AkiRZEpZmhSM0PE_8oUEqyiRyisI5BBsyF932eW169fVidR-ObJnwuAY42e4sPqNyZupAsiCeBhlNPA7BNDHWSSB3RFh626mSMIzIopu_oYCRfXlUQxT1hXgQfQW38JOo9Nv38AjE0wm25jShpQhtmgvXRZFTtVQrR223wzwTR10FMQOeoFD7RUVZMf6jqRy_fmJ4ML6Xd56vo3kydMn">
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface">Feeling pressured to invest right now?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Step through our 2-minute decision helper before making any bank transfer.</p>
+</div>
+</div>
+<a href="/reflect" class="px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold transition-all flex-shrink-0 shadow-xs self-start sm:self-auto">
+            Open Pause &amp; Reflect
+          </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interface strings for check.js, kept as markup so the page translator covers them. -->
+<div hidden id="check-strings">
+<span data-k="analyse">Analyse Message</span>
+<span data-k="analysing">Analysing…</span>
+<span data-k="kind_text">Text Snippet</span>
+<span data-k="kind_link">Link (URL)</span>
+<span data-k="kind_image">Image (Screenshot)</span>
+<span data-k="kind_pdf">File (PDF)</span>
+<span data-k="empty_text">Please paste or type the message you want to check.</span>
+<span data-k="too_long">That message is too long. Please check up to 10,000 characters at a time.</span>
+<span data-k="bad_url">Please enter a valid web link, for example https://example.com</span>
+<span data-k="no_file">Please choose a file to check.</span>
+<span data-k="need_typed">Automatic text reading is not available. Please type the text you see in the image.</span>
+<span data-k="no_image_text">No text could be read from this image. Please type the text you see in it.</span>
+<span data-k="pdf_no_text">We could not find any text in this PDF. It may be a scanned image. You can type the important lines in the Text Snippet tab instead.</span>
+<span data-k="wrong_image">Please choose a JPG, PNG or WebP image.</span>
+<span data-k="wrong_pdf">Please choose a PDF file.</span>
+<span data-k="too_big">The file is larger than the upload limit.</span>
+<span data-k="network">Could not reach NIRVAAN. Please check your connection and try again.</span>
+<span data-k="server">Something went wrong while checking. Please try again.</span>
+<span data-k="load_failed">This check could not be opened. Please try again.</span>
+<span data-k="journal_saved">Saved to your journal in My Journey.</span>
+<span data-k="journal_failed">Could not save to your journal. Please try again.</span>
+<span data-k="saved">Saved</span>
+<span data-k="no_voice">Reading aloud is not supported in this browser.</span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/check.js" defer></script>
+{% endblock %}

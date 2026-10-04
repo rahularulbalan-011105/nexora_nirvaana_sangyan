@@ -1,0 +1,452 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_admin_dashboard/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Admin Console{% endblock %}
+
+{% block content %}
+{% set admin = admin or {} %}
+{% set health = provider_health or [] %}
+{% set healthy_count = health | selectattr("healthy") | list | length %}
+<div class="flex flex-col w-full">
+<div class="p-space-lg max-w-7xl mx-auto w-full space-y-space-lg">
+<!-- Top Administrative Status Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-[22px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-[0_8px_20px_-4px_rgba(0,74,198,0.3)]">
+<span class="material-symbols-outlined text-[26px]">admin_panel_settings</span>
+</div>
+<div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-md text-headline-md text-on-surface font-extrabold tracking-tight">Admin Operations Console</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider font-bold">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+              Restricted Access
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            <span>Database:</span> <span class="font-semibold text-on-surface">{{ admin.db_backend or "Unknown" }}</span> • <span>Aggregate counts and system events only</span>
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap self-end md:self-center">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-container font-label-md text-label-md text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-full {{ 'bg-tertiary' if admin.rules_enabled else 'bg-error' }} animate-pulse"></span>
+<span>Safety rules enabled:</span> <span class="font-semibold text-on-surface">{{ admin.rules_enabled or 0 }}</span>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all" id="refreshMetricsBtn">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Sync Node</span>
+</button>
+</div>
+</div>
+<!-- Layout Grid: Sub-navigation & Admin Content Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Sub-Navigation Dedicated Admin Drawer / Rail -->
+<div class="lg:col-span-3 bg-surface-container-lowest p-space-md rounded-[24px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] space-y-1">
+<div class="px-3 py-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          Management Rails
+        </div>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg shadow-[0_4px_16px_-2px_rgba(0,74,198,0.3)] transition-all" href="#overview">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Overview</span>
+</div>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#users">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span>Users &amp; Registrations</span>
+</div>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ admin.users_total or 0 }}</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#cms">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+<span>Learning Content CMS</span>
+</div>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ admin.lessons_published or 0 }}</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#safety-engine">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+<span>Scam Rules Engine</span>
+</div>
+<span class="px-1.5 py-0.2 rounded-md bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">{{ admin.rules_enabled or 0 }}/{{ admin.rules_total or 0 }}</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#flags">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">toggle_on</span>
+<span>Feature Flags</span>
+</div>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ admin.flags_enabled or 0 }}/{{ admin.flags_total or 0 }}</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#health">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">vital_signs</span>
+<span>Service Health</span>
+</div>
+<span class="{{ 'text-tertiary' if healthy_count == health|length else 'text-error' }} font-label-sm text-label-sm font-semibold">{{ healthy_count }}/{{ health|length }}</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#latency">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+<span>AI Latency &amp; Tokens</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-lg text-label-lg transition-colors" href="#audit">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span>Audit &amp; Governance</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span>
+</a>
+<div class="py-2">
+<div class="h-px bg-surface-container-high w-full"></div>
+</div>
+<a class="flex items-center gap-space-sm px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" href="/">
+<span class="material-symbols-outlined text-[20px]">public</span>
+<span>Back to Public Portal</span>
+</a>
+<form method="POST" action="/logout" class="m-0">{% include "partials/csrf.html" %}
+<button type="submit" class="w-full flex items-center gap-space-sm px-3.5 py-2.5 rounded-xl text-error hover:bg-error-container/30 font-label-md text-label-md transition-colors text-left">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Admin Sign Out</span>
+</button></form>
+</div>
+<!-- Main Operational Console -->
+<div class="lg:col-span-9 space-y-space-lg">
+<!-- KPI Ribbon: 4 High-Impact Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-[22px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Registered Citizens</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface tracking-tight font-black">{{ "{:,}".format(admin.users_total or 0) }}</div>
+<div class="flex items-center gap-1.5 mt-1 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span class="font-bold">{{ admin.users_new_30d or 0 }}</span>
+<span class="text-on-surface-variant font-normal">new in the last 30 days</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container-low px-2.5 py-1 rounded-lg">
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-tight"><span>{{ admin.users_verified or 0 }}</span> <span>with a verified email</span></span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-[22px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Active in the Last 24 Hours</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface tracking-tight font-black">{{ "{:,}".format(admin.active_24h or 0) }}</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span>Accounts that signed in</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container-low px-2.5 py-1 rounded-lg">
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-tight"><span>{{ admin.active_sessions or 0 }}</span> <span>active sessions</span></span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-[22px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Analyses Today</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface tracking-tight font-black">{{ "{:,}".format(admin.analyses_today or 0) }}</div>
+<div class="flex items-center gap-1.5 mt-1 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">security</span>
+<span class="font-semibold">{{ "{:,}".format(admin.analyses_total or 0) }}</span>
+<span class="text-on-surface-variant font-normal">in total</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container-low px-2.5 py-1 rounded-lg">
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-tight"><span>{{ admin.batch_jobs or 0 }}</span> <span>batch jobs</span></span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-[22px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Supported Languages</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface tracking-tight font-black">{{ admin.language_count or 0 }}</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>{% for lang in admin.languages or [] %}{{ lang.native }}{% if not loop.last %} • {% endif %}{% endfor %}</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container-low px-2.5 py-1 rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-primary font-medium"><span>{{ admin.lessons_published or 0 }}</span> <span>lessons published</span></span>
+<span class="px-1.5 py-0.2 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">CMS</span>
+</div>
+</div>
+</div>
+<!-- System & Microservice Health Status Monitor -->
+<div class="bg-surface-container-lowest p-space-lg rounded-[24px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">System &amp; Microservice Health Matrix</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live status of the database and each configured AI provider</p>
+</div>
+{% if health and healthy_count == health|length %}
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed-dim/30 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>All Providers Healthy</span>
+</span>
+{% else %}
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Providers unavailable:</span> <span>{{ health|length - healthy_count }}</span>
+</span>
+{% endif %}
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Database: reachable, since this page was just rendered from it -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Database</span>
+</div>
+<span class="text-tertiary font-label-sm text-label-sm font-bold">Connected</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant my-2.5">{{ admin.db_backend or "Unknown" }}</p>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2">
+<span>Errors in the last 24 hours:</span>
+<span class="font-mono font-semibold {{ 'text-error' if admin.system_errors_24h else 'text-on-surface' }}">{{ admin.system_errors_24h or 0 }}</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1.5">
+<div class="bg-tertiary h-full rounded-full w-full"></div>
+</div>
+</div>
+{% for provider in health %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full {{ 'bg-tertiary' if provider.healthy else 'bg-error' }}"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">{{ provider.name }}</span>
+</div>
+<span class="{{ 'text-tertiary' if provider.healthy else 'text-error' }} font-label-sm text-label-sm font-bold">{% if provider.healthy %}Healthy{% else %}Unavailable{% endif %}</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant my-2.5">{{ provider.detail or "" }}</p>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2">
+<span>Type:</span>
+<span class="font-mono font-semibold text-on-surface">{% if provider.generative %}Generative{% else %}Deterministic{% endif %}{% if provider.requires_network %} • Network{% else %} • Local{% endif %}</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1.5">
+<div class="{{ 'bg-tertiary' if provider.healthy else 'bg-error' }} h-full rounded-full w-full"></div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<!-- AI usage: aggregate provider counts and latency only, no content -->
+{% set usage = admin.ai_usage or {} %}
+<div class="bg-surface-container-lowest p-space-lg rounded-[24px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] space-y-space-md" id="ai-usage">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">AI usage</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Calls by provider over the last 7 days (Talk turns and message checks). Counts and timings only, no conversation or message text.</p>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold self-start sm:self-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+<span>Cache:</span> <span class="text-on-surface">{{ "Redis (shared)" if usage.cache_backend == "redis" else "In-process" }}</span>
+</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-2xl bg-surface-container-low min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Last 7 days</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">{{ usage.week_total or 0 }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ usage.today_total or 0 }} today</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Offline share</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">{{ usage.offline_pct or 0 }}%</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No language model used</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Avg latency</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">{% if usage.avg_ms is not none %}{{ usage.avg_ms }} ms{% else %}&mdash;{% endif %}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ usage.guardrail_week or 0 }} guardrail answers</p>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Answer cache</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">{% if usage.cache_hit_pct is not none %}{{ usage.cache_hit_pct }}%{% else %}&mdash;{% endif %}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ usage.cache_hits or 0 }} hits &bull; {{ usage.cache_misses or 0 }} misses</p>
+</div>
+</div>
+{% if usage.providers %}
+<div class="space-y-2">
+{% for p in usage.providers %}
+<div class="p-space-md rounded-2xl bg-surface-container-low">
+<div class="flex items-center justify-between gap-space-sm flex-wrap">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-3 h-3 rounded-full shrink-0 {{ 'bg-secondary' if p.offline else 'bg-primary' }}"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate">{{ p.label }}</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant"><span class="font-mono font-semibold text-on-surface">{{ p.week }}</span> this week &bull; <span class="font-mono font-semibold text-on-surface">{{ p.today }}</span> today{% if p.avg_ms is not none %} &bull; {{ p.avg_ms }} ms avg{% endif %}</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-2">
+<div class="{{ 'bg-secondary' if p.offline else 'bg-primary' }} h-full rounded-full" style="width: {{ p.share_pct }}%"></div>
+</div>
+</div>
+{% endfor %}
+</div>
+{% else %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col items-center justify-center text-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[28px]">insights</span>
+<p class="font-label-md text-label-md text-on-surface font-semibold">No AI calls in the last 7 days</p>
+</div>
+{% endif %}
+</div>
+<!-- Real-Time Telemetry & Scam Detection Trend Visualization -->
+<div class="bg-surface-container-lowest p-space-lg rounded-[24px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Daily Verification Throughput &amp; Scam Interceptions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Message checks per day over the last 7 days (counts only, no message content)</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded-sm bg-primary inline-block"></span> <span>Total Scans</span>
+</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant ml-2">
+<span class="w-3 h-3 rounded-sm bg-secondary inline-block"></span> <span>Multiple Signals Detected</span>
+</span>
+</div>
+</div>
+{% set chart = admin.chart or {} %}
+<div class="w-full bg-surface-container-low p-space-md rounded-2xl">
+{% if chart.has_data %}
+<svg class="w-full h-40 overflow-visible" fill="none" preserveAspectRatio="none" viewBox="0 0 760 140">
+<!-- Grid lines -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="760" y1="20" y2="20"></line>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="760" y1="60" y2="60"></line>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="760" y1="100" y2="100"></line>
+{% for bar in chart.bars %}
+<rect fill="#004ac6" height="{{ bar.total_h }}" rx="4" width="16" x="{{ bar.x }}" y="{{ bar.total_y }}"><title>{{ bar.label }}: {{ bar.total }}</title></rect>
+<rect fill="#00687a" height="{{ bar.flagged_h }}" rx="4" width="16" x="{{ bar.x + 20 }}" y="{{ bar.flagged_y }}"><title>{{ bar.label }}: {{ bar.flagged }}</title></rect>
+{% endfor %}
+</svg>
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm pt-2 px-6">
+{% for bar in chart.bars %}
+<span>{{ bar.label }}</span>
+{% endfor %}
+</div>
+{% else %}
+<div class="h-40 flex flex-col items-center justify-center text-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[28px]">bar_chart</span>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Not enough data yet</p>
+<p class="font-body-sm text-body-sm">No messages have been checked in the last 7 days.</p>
+</div>
+{% endif %}
+</div>
+</div>
+<!-- Recent System Governance & Operational Activity Table -->
+<div class="bg-surface-container-lowest p-space-lg rounded-[24px] shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Recent System Governance &amp; Operational Activity</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latest audit and system events. User identities, IP addresses and private content are not shown.</p>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+              Export Signed Audit Log
+            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+<th class="py-3 px-4 rounded-l-xl">Operation / Event</th>
+<th class="py-3 px-3">Category</th>
+<th class="py-3 px-4">Technical Details</th>
+<th class="py-3 px-3">Timestamp</th>
+<th class="py-3 px-4 rounded-r-xl">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y-0">
+{% for row in admin.activity or [] %}
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined {{ 'text-primary' if row.ok else 'text-error' }} text-[20px]">{{ row.icon }}</span>
+<span>{{ row.title }}</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">{{ row.category }}</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant max-w-xs truncate font-mono">{{ row.detail }}</td>
+<td class="py-3.5 px-3 text-on-surface-variant whitespace-nowrap">{{ row.at.strftime("%d %b %Y, %H:%M UTC") if row.at else "-" }}</td>
+<td class="py-3.5 px-4">
+{% if row.ok %}
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> <span>{{ row.status }}</span>
+</span>
+{% else %}
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> <span>{{ row.status }}</span>
+</span>
+{% endif %}
+</td>
+</tr>
+{% else %}
+<tr>
+<td class="py-6 px-4 text-center text-on-surface-variant" colspan="5">No system or audit events recorded yet.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+<!-- Security & Privacy Governance Notice Footer -->
+<div class="bg-surface-container-low p-space-md rounded-[20px] flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-tertiary/20 flex-shrink-0 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold">NIRVAAN Governance Charter</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Administrators have no access to private journals, memories, voice conversations or message analyses. This console shows aggregate counts and system events only.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    const refreshBtn = document.getElementById('refreshMetricsBtn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', function () {
+        const icon = refreshBtn.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.add('animate-spin');
+          setTimeout(() => {
+            icon.classList.remove('animate-spin');
+          }, 800);
+        }
+      });
+    }
+  })();
+</script>
+{% endblock %}

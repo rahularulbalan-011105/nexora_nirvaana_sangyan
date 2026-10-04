@@ -1,0 +1,168 @@
+/* ---------------------------------------------------------------------------
+   NIRVAAN supplementary styles.
+
+   The Stitch Tailwind config stays the source of truth for colour, type and
+   spacing. This file only adds what Tailwind utilities cannot express:
+   accessibility modes, motion preferences, data-saver behaviour and print.
+   Nothing here overrides a Stitch design token.
+   ------------------------------------------------------------------------- */
+
+/* --- Larger text mode -----------------------------------------------------
+   Driven by the `large_text` preference, which sets text-[18px] on <html>.
+   Tailwind's rem-based sizes scale from the root, so touch targets grow too. */
+html.text-\[18px\] {
+  font-size: 18px;
+}
+
+/* --- Elderly-friendly / high contrast ------------------------------------
+   Applied when the `high_contrast` preference is on. Strengthens borders and
+   removes the soft tints that reduce legibility for low-vision users. */
+[data-contrast="high"] {
+  --nirvaan-border: rgba(19, 27, 46, 0.55);
+}
+[data-contrast="high"] .shadow-soft-card,
+[data-contrast="high"] [class*="shadow-["] {
+  box-shadow: none !important;
+  border: 1.5px solid var(--nirvaan-border) !important;
+}
+[data-contrast="high"] [class*="text-on-surface-variant"] {
+  color: #2a2d3a !important;
+}
+[data-contrast="high"] [class*="/30"],
+[data-contrast="high"] [class*="/40"],
+[data-contrast="high"] [class*="/15"] {
+  /* Translucent tint layers lose too much contrast; make them solid. */
+  --tw-bg-opacity: 1 !important;
+}
+
+/* --- Minimum touch targets -----------------------------------------------
+   The spec calls for large touch targets. 44px is the WCAG 2.5.5 floor. */
+button,
+[role="button"],
+a[href].inline-flex,
+input[type="submit"] {
+  min-height: 44px;
+}
+/* Icon-only controls still need the full target even when visually small. */
+button:has(> .material-symbols-outlined:only-child) {
+  min-width: 44px;
+}
+
+/* --- Focus visibility -----------------------------------------------------
+   Keyboard focus must never be invisible, including over gradient surfaces. */
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* --- Reduced motion -------------------------------------------------------
+   The design uses pulse/ping animations on live indicators. Honour the OS
+   setting rather than animating regardless. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Data saver mode ------------------------------------------------------
+   Set via data-data-saver="1" on <html>. Suppresses decorative blur layers
+   (expensive to composite on low-end devices) and stops autoplaying media. */
+[data-data-saver="1"] [class*="blur-"] {
+  filter: none !important;
+  background: transparent !important;
+}
+[data-data-saver="1"] [class*="animate-"] {
+  animation: none !important;
+}
+[data-data-saver="1"] img[loading="lazy"]:not([src]) {
+  background: #eaedff;
+}
+[data-data-saver="1"] video,
+[data-data-saver="1"] audio {
+  /* Playback stays available on tap; it just never starts by itself. */
+  autoplay: none;
+}
+
+/* --- Offline state --------------------------------------------------------
+   Controls that need the network are visibly disabled rather than failing
+   silently when tapped. */
+body.is-offline [data-requires-network] {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+body.is-offline [data-offline-hide] {
+  display: none !important;
+}
+
+/* --- Screen-reader only --------------------------------------------------- */
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Indic script rendering ----------------------------------------------
+   Devanagari and Tamil have taller glyphs than Latin; the Stitch line heights
+   are tuned for Latin and clip diacritics without a little extra room. */
+html[lang="hi"],
+html[lang="ta"] {
+  line-height: 1.7;
+}
+html[lang="hi"] [class*="text-display"],
+html[lang="ta"] [class*="text-display"],
+html[lang="hi"] [class*="text-headline"],
+html[lang="ta"] [class*="text-headline"] {
+  line-height: 1.4;
+}
+
+/* --- Evidence highlighting ----------------------------------------------
+   Marks the literal span of a message that triggered a safety signal. */
+mark.nirvaan-evidence {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.1em 0.25em;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+/* --- Pause timer ring ---------------------------------------------------- */
+.nirvaan-timer-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* --- Print --------------------------------------------------------------
+   Users print an analysis to take to a bank or family member, so drop the
+   navigation chrome and keep the findings. */
+@media print {
+  aside,
+  header,
+  [data-toast-host],
+  [data-offline-banner],
+  button {
+    display: none !important;
+  }
+  .pl-72 {
+    padding-left: 0 !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  * {
+    box-shadow: none !important;
+  }
+}

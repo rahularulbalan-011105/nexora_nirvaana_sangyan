@@ -1,0 +1,326 @@
+{# Batch results region. Rendered inside pages/batch.html and by GET /api/batch/{id}
+   (live progress and switching between past batches). Context: page_context.batch.job_view. #}
+<!-- Top Meta & Title Banner -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<a class="text-primary font-semibold hover:underline" href="/check">Check a Message</a>
+<span class="text-outline-variant">/</span>
+{% if batch_job %}
+<span class="text-on-surface font-semibold">Batch Analysis Report</span>
+<span class="text-on-surface-variant">{{ batch_job.label or (batch_job.created_at.strftime('%d %b %Y, %I:%M %p') if batch_job.created_at else '') }}</span>
+<span class="ml-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm uppercase tracking-wider font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary{% if batch_job.status in ('QUEUED', 'PROCESSING') %} animate-pulse{% endif %}"></span>
+<span>{{ batch_job.status|capitalize }}</span>
+</span>
+{% else %}
+<span class="text-on-surface font-semibold">Batch Analysis Report</span>
+{% endif %}
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">Batch Analysis Results</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Behavioral &amp; safety analysis across the messages, forwards, and investment promotion files in this batch.
+        </p>
+{% if batch_job %}
+<p class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">folder</span>
+<span>Files in this batch:</span>
+<span class="font-bold text-on-surface">{{ batch_counts.total }}</span>
+</p>
+{% endif %}
+</div>
+<!-- Quick Action Controls -->
+{% set batch_finished = batch_job is not none and not batch_running %}
+<div class="flex items-center gap-space-sm flex-wrap">
+<a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-all" href="#new-batch">
+<span class="material-symbols-outlined text-[18px] text-primary">add</span>
+<span>New Batch</span>
+</a>
+{% if batch_finished %}
+<a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-all" href="/reports/batch/{{ batch_job.id }}" id="btn-export-pdf" target="_blank" rel="noopener">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>Export Summary</span>
+</a>
+<a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-all" href="/reports/batch/{{ batch_job.id }}.csv" id="btn-export-csv">
+<span class="material-symbols-outlined text-[18px] text-primary">table_view</span>
+<span>CSV</span>
+</a>
+{% else %}
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm opacity-50 cursor-not-allowed" disabled id="btn-export-pdf" type="button" title="{{ 'Available when the batch has finished' if batch_job else 'Run a batch check first' }}">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>Export Summary</span>
+</button>
+{% endif %}
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary font-label-md text-label-md shadow-md hover:shadow-lg transition-all{% if not batch_finished %} opacity-50 cursor-not-allowed{% endif %}" id="btn-save-journal" type="button"{% if batch_finished %} data-job-id="{{ batch_job.id }}"{% else %} disabled{% endif %}>
+<span class="material-symbols-outlined text-[18px]">bookmark_added</span>
+<span>Save All to Journal</span>
+</button>
+</div>
+</div>
+{% if batch_running %}
+<!-- Live progress while the batch is analysed -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm space-y-2" id="batch-progress" role="status" aria-live="polite">
+<div class="flex flex-wrap items-center justify-between gap-2 font-label-md text-label-md">
+<span class="flex items-center gap-1.5 text-on-surface font-semibold"><span class="material-symbols-outlined text-[18px] text-primary animate-spin">progress_activity</span><span>Analysing your batch</span></span>
+<span class="text-on-surface-variant"><span>{{ batch_done }}</span> <span>of</span> <span>{{ batch_counts.total }}</span> <span>items done</span></span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: {{ batch_job.progress_percent }}%"></div>
+</div>
+</div>
+{% elif batch_job and batch_job.status == 'FAILED' and batch_job.error %}
+<div class="bg-error-container text-on-error-container rounded-2xl p-space-md font-body-sm text-body-sm flex items-start gap-2" role="alert">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span>{{ batch_job.error }}</span>
+</div>
+{% endif %}
+<!-- Top Summary Statistics Ribbon (3 Visual Stat Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md lg:gap-space-lg">
+<!-- Clean Green Card -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/15 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">verified</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-bold">
+<span>{{ batch_pct.clean }}%</span> <span>Clean</span>
+          </span>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">{{ batch_counts.clean }}</span>
+<span class="font-headline-sm text-headline-sm text-tertiary">Clean / No Obvious Signals</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Genuine informative updates, standard bank alerts, or benign statutory market news disclosures.
+          </p>
+</div>
+<div class="mt-space-md pt-space-sm">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: {{ batch_pct.clean }}%"></div>
+</div>
+</div>
+</div>
+<!-- Warning Amber Card -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed/50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">rule</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+<span>{{ batch_pct.verify }}%</span> <span>Incomplete</span>
+          </span>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">{{ batch_counts.verify }}</span>
+<span class="font-headline-sm text-headline-sm text-secondary">Needs Verification</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Ambiguous claims, unverified distributor credentials, or non-matching statutory SEBI registration codes.
+          </p>
+</div>
+<div class="mt-space-md pt-space-sm">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full rounded-full" style="width: {{ batch_pct.verify }}%"></div>
+</div>
+</div>
+</div>
+<!-- Urgent Coral/Error Card -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-error-container text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">gpp_maybe</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span>{{ batch_pct.multiple }}%</span> <span>Critical</span>
+          </span>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">{{ batch_counts.multiple }}</span>
+<span class="font-headline-sm text-headline-sm text-error">Multiple Safety Signals</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Several warning signals together, such as guaranteed returns, artificial pressure, or unverified payment requests.
+          </p>
+</div>
+<div class="mt-space-md pt-space-sm">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: {{ batch_pct.multiple }}%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Workspace: Bento Table & Tactical Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Detailed Analysis Table / List (8 cols) -->
+<div class="lg:col-span-8 space-y-space-md">
+<!-- Table Control Toolbar -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl">
+<button class="filter-tab px-3.5 py-1.5 rounded-lg bg-surface-container-lowest font-label-md text-label-md text-primary font-bold shadow-sm transition-all" id="filter-all">
+<span>All</span> <span>({{ batch_counts.total }})</span>
+            </button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="filter-flagged">
+<span>Flagged Only</span> <span>({{ batch_counts.flagged }})</span>
+            </button>
+<button class="filter-tab px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="filter-clean">
+<span>Clean</span> <span>({{ batch_counts.clean }})</span>
+            </button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+<span>Checked by NIRVAAN's rule-based engine. Links are never opened.</span>
+</div>
+</div>
+<!-- Files List Card Stack -->
+<div class="space-y-space-sm" id="batch-items-container">
+{% set item_styles = {
+  "error": {"tile": "bg-error-container text-error", "pill": "bg-error-container text-on-error-container", "accent": "text-error", "finding_icon": "report_problem"},
+  "secondary": {"tile": "bg-secondary-fixed/50 text-secondary", "pill": "bg-secondary-fixed text-on-secondary-fixed-variant", "accent": "text-secondary", "finding_icon": "verified_user"},
+  "tertiary": {"tile": "bg-tertiary-container/15 text-tertiary", "pill": "bg-tertiary-container/15 text-tertiary", "accent": "text-tertiary", "finding_icon": "task_alt"},
+  "pending": {"tile": "bg-surface-container text-on-surface-variant", "pill": "bg-surface-container text-on-surface-variant", "accent": "text-on-surface-variant", "finding_icon": "hourglass_empty"}
+} %}
+{% for item in batch_items %}
+{% set st = item_styles[item.meta.tone if item.meta else "pending"] %}
+<div class="batch-card group bg-surface-container-lowest rounded-2xl p-space-md lg:p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md" data-category="{{ item.category }}">
+<div class="flex items-start gap-space-md min-w-0 flex-1 w-full">
+<div class="w-12 h-12 rounded-xl {{ st.tile }} flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">{{ item.icon }}</span>
+</div>
+<div class="min-w-0 flex-1 space-y-1">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">{{ item.name }}</h3>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full {{ st.pill }} font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">{{ item.meta.icon if item.meta else ('error' if item.obj.status == 'FAILED' else 'timer') }}</span>
+<span>{% if item.meta %}{{ item.meta.label }}{% elif item.obj.status == 'FAILED' %}Could not be analysed{% else %}Waiting for analysis{% endif %}</span>
+</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span>{{ item.when.strftime('%d %b %Y, %I:%M %p') if item.when else '' }}</span>
+</div>
+{% if item.finding or item.error %}
+<div class="p-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm flex items-start gap-2 mt-2">
+<span class="material-symbols-outlined {{ st.accent }} text-[18px] flex-shrink-0 mt-0.5">{{ st.finding_icon }}</span>
+<span class="min-w-0 break-words"><strong>Key Finding:</strong> {{ item.finding or item.error }}</span>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% else %}
+<!-- Empty state: no batch yet -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col items-center text-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">stacks</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">No batch analyses yet</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Check several messages at once and the results will appear here.</p>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary/90 transition-all shadow-sm" href="#new-batch">
+<span>Start a Batch</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+{% endfor %}
+</div>
+{% if batch_job %}
+<!-- Batch Count Footnote -->
+<div class="bg-surface-container-low rounded-2xl p-space-md flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<span class="flex items-center gap-1"><span>Files in this batch:</span> <span class="font-semibold text-on-surface">{{ batch_counts.total }}</span></span>
+<span class="flex items-center gap-1"><span>Started:</span> <span>{{ batch_job.created_at.strftime('%d %b %Y, %I:%M %p') if batch_job.created_at else '' }}</span></span>
+</div>
+{% endif %}
+</div>
+<!-- Right-Hand Tactical Insights & Behavior Panel (4 cols) -->
+<div class="lg:col-span-4 space-y-space-md">
+<!-- Aggregate Behavioral Risk Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Aggregate Behavioral Risk</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Patterns observed across the flagged or unverified files in this batch:
+          </p>
+<p class="font-label-md text-label-md text-on-surface flex items-center gap-1.5"><span>Flagged or unverified files:</span> <span class="font-bold">{{ batch_counts.flagged }}</span></p>
+<!-- Behavioral Meter 1 -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                Engineered Urgency
+              </span>
+<span class="font-bold text-on-surface">{{ batch_behaviour.urgency }}%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full transition-all duration-700" style="width: {{ batch_behaviour.urgency }}%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+              Countdown timers, closing slot threats, and panic-inducing language.
+            </p>
+</div>
+<!-- Behavioral Meter 2 -->
+<div class="space-y-1.5 pt-2">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Unrealistic Certainty
+              </span>
+<span class="font-bold text-on-surface">{{ batch_behaviour.certainty }}%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-700" style="width: {{ batch_behaviour.certainty }}%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+              Zero loss promises, guaranteed doubling, and unbacked risk-free claims.
+            </p>
+</div>
+<!-- Inline Data SVG Infographic -->
+<div class="pt-space-sm bg-surface-container-low p-space-md rounded-xl flex items-center gap-3">
+<svg class="w-14 h-14 flex-shrink-0 text-primary" viewBox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-error" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="{{ batch_pct.multiple }}, 100" stroke-linecap="round" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="{{ batch_pct.verify }}, 100" stroke-dashoffset="-{{ batch_pct.multiple }}" stroke-linecap="round" stroke-width="3.5"></path>
+<text class="font-label-sm text-[8px] font-bold text-on-surface" fill="currentColor" text-anchor="middle" x="18" y="20.5">{{ batch_counts.total }}</text>
+</svg>
+<div class="text-[11px] leading-normal font-body-sm text-on-surface-variant">
+<p class="flex items-center gap-1"><span class="font-semibold text-on-surface">No obvious signals:</span> <span>{{ batch_counts.clean }}</span></p>
+<p class="flex items-center gap-1"><span class="font-semibold text-on-surface">Need your scrutiny before any transfer:</span> <span>{{ batch_counts.flagged }}</span></p>
+            </div>
+</div>
+</div>
+<!-- NIRVAAN Batch Safety Recommendation Banner -->
+<div class="bg-gradient-to-br from-primary/10 via-surface-container-lowest to-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center gap-2 text-primary font-label-lg text-label-lg font-bold">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+<span>NIRVAAN Safety Protocol</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Do not click links or send UPI payments to flagged contacts. Share your concerns with family before acting on any of these messages.
+          </p>
+<div class="space-y-space-xs pt-1">
+<a class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary/95 transition-all shadow-sm" href="/family" id="btn-family-alert">
+<span class="material-symbols-outlined text-[18px]">family_restroom</span>
+<span>Open Family Mode</span>
+</a>
+<a class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-all" href="/reflect" id="btn-reflection">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+<span>Take a 5-Min Reflection</span>
+</a>
+</div>
+</div>
+<!-- Contextual Support Card with Avatar Image Placeholder -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-cover bg-center flex-shrink-0" data-alt="A comforting, professional digital financial counselor portrait smiling warmly with soft ambient daylight, dressed in crisp navy blue attire, representing the calm, trusted spirit of NIRVAAN guidance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1nIOAma7JJPdyh4U7esaQKV6zjabI2m8A9QkouibQyhdusCMaWu59wKmhGmUK6BqW5pkjLcZ97nPBQfhfYM23JAPSNu1vYvvDxAdYPY83V-7sl7b-G5p2Qno6i_efRHjMcCEXf8j_78f1KiBXDN6nkn5b0rJNmNBib-4B0aMJGfNc5I0ak2-Nl-Dtf0y43o4iiXaOeHr5bemlYRefgNnoP6g-ZLXrRBS9Durgo9yp9v3p4LW2rq0B')">
+</div>
+<div class="min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface font-bold truncate">Confused by a signal?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Talk directly to NIRVAAN voice companion in Hindi, Tamil, or English.</p>
+</div>
+<a aria-label="Open Voice Helper" class="w-9 h-9 rounded-full bg-surface-container text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all flex-shrink-0" href="/talk">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</a>
+</div>
+</div>
+</div>

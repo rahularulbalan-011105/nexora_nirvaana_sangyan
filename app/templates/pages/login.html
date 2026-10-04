@@ -1,0 +1,33 @@
+{% extends "auth_base.html" %}
+{% from "partials/auth_macros.html" import auth_card, field, password_field, submit with context %}
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+{% call auth_card(
+    title=t("auth.sign_in"),
+    subtitle="Welcome back. Let us pick up where you left off.",
+    footer_prompt="New to NIRVAAN?",
+    footer_link="/register",
+    footer_link_text="Create an account") %}
+
+  <form action="/login" class="space-y-4" method="POST">
+    {% include "partials/csrf.html" %}
+    <input name="next" type="hidden" value="{{ next_url or '/dashboard' }}">
+
+    {{ field("email", t("auth.email"), type="email",
+             value=email_value or "", placeholder="name@example.com",
+             autocomplete="email") }}
+
+    {{ password_field("password", t("auth.password"),
+                      placeholder="Your password",
+                      autocomplete="current-password") }}
+
+    <div class="flex items-center justify-end">
+      <a class="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+         href="/forgot-password">{{ t("auth.forgot") }}</a>
+    </div>
+
+    {{ submit(t("auth.sign_in")) }}
+  </form>
+{% endcall %}
+{% endblock %}

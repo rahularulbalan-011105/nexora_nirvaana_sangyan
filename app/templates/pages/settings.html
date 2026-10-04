@@ -1,0 +1,728 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_profile_settings/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Profile & Settings{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-space-md sm:px-margin-desktop py-space-lg max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Top Header Area -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-wider mb-space-xs">
+<span class="material-symbols-outlined text-[15px]">tune</span>
+          Autonomous Preferences
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          Profile &amp; Settings
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">
+          Manage your personal preferences, multilingual companion settings, reflection habits, and security controls.
+        </p>
+</div>
+<!-- Quick Status Strip -->
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2.5 rounded-full shadow-sm flex-shrink-0">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>
+<span class="font-label-md text-label-md text-on-surface">Changes save instantly</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Zero Ad Tracking</span>
+</div>
+</div>
+<!-- Profile Hero Card (Level 1 Elevation) -->
+<div id="profile" class="relative overflow-hidden rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-secondary-fixed/30 via-primary-fixed/20 to-transparent blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<!-- User Metadata Left -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-lg">
+<div class="relative">
+<div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-primary to-secondary p-1 shadow-md">
+<div class="w-full h-full rounded-[14px] bg-surface-container-highest overflow-hidden relative flex items-center justify-center">
+<img src="{{ user.avatar_url }}" alt="Your companion avatar" class="w-full h-full object-cover">
+</div>
+</div>
+{% if profile.verified %}
+<div class="absolute -bottom-2 -right-2 bg-tertiary text-on-tertiary p-1 rounded-xl shadow-sm flex items-center justify-center" title="Email verified">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</div>
+{% endif %}
+</div>
+<div class="space-y-1.5">
+<div class="flex flex-wrap items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">{{ profile.name }}</h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">{{ 'verified' if profile.verified else 'mark_email_unread' }}</span>
+<span>{% if profile.verified %}Email Verified{% else %}Email Not Verified Yet{% endif %}</span>
+</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 font-body-md text-body-md text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+<span>{{ profile.email }}</span>
+</span>
+</div>
+<form method="POST" action="/api/profile/gender" class="flex flex-wrap items-center gap-2 pt-1">{% include "partials/csrf.html" %}
+<label for="profile-gender" class="font-label-md text-label-md text-on-surface-variant">Gender</label>
+<select id="profile-gender" name="gender" class="rounded-xl border-outline-variant/50 bg-surface-container-low text-body-sm font-body-sm py-1.5 pl-3 pr-8 focus:ring-primary focus:border-primary">
+{% for value, label in [("", "Prefer not to say"), ("female", "Female"), ("male", "Male"), ("other", "Other")] %}
+<option value="{{ value }}" {% if (user.gender or "") == value %}selected{% endif %}>{{ label }}</option>
+{% endfor %}
+</select>
+<button type="submit" class="px-3 py-1.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors">Save</button>
+</form>
+<!-- Quick Badges -->
+<div class="pt-2 flex flex-wrap gap-2">
+{% if profile.member_since %}
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+<span>Member since</span> <span>{{ profile.member_since }}</span>
+</div>
+{% endif %}
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span>{{ profile.reflections_completed }}</span> <span>Reflections Completed</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">language</span>
+<span>{{ profile.language_name }}</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right CTA Button -->
+<div class="flex sm:flex-col items-center lg:items-end gap-space-sm pt-2 lg:pt-0">
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-surface-container-high text-on-surface-variant font-label-lg text-label-lg shadow-sm opacity-60 cursor-not-allowed" disabled id="editProfileBtn" title="Changing your name or email is not available yet">
+<span class="material-symbols-outlined text-[18px]">edit_off</span>
+<span>Edit Name &amp; Email: Not Available Yet</span>
+</button>
+{% if profile.last_login %}<p class="font-label-sm text-label-sm text-on-surface-variant"><span>Last sign-in:</span> <span>{{ profile.last_login }}</span></p>{% endif %}
+</div>
+</div>
+</div>
+{% set pv = privacy %}
+{% macro switch(kind, field, on, label) -%}
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input aria-label="{{ label }}" class="sr-only peer" data-{{ kind }}="{{ field }}" type="checkbox"{% if on %} checked{% endif %}>
+<div class="w-12 h-6 bg-surface-container-highest rounded-full peer peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+{%- endmacro %}
+{% macro dead_switch(label) -%}
+<label class="relative inline-flex items-center cursor-not-allowed flex-shrink-0 opacity-50" title="Not available yet">
+<input aria-label="{{ label }}" class="sr-only peer" disabled type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest rounded-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5"></div>
+</label>
+{%- endmacro %}
+{% macro soon() -%}
+<span class="inline-flex px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold">Not available yet</span>
+{%- endmacro %}
+<!-- Main Two-Column Settings Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- LEFT COLUMN: Behavioral, Linguistic, & Accessibility Configuration (7 Cols) -->
+<div class="lg:col-span-7 space-y-space-lg min-w-0">
+<!-- Category 1: Language & Regional Preferences -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="language">
+<div class="flex items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">translate</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Language &amp; Voice</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Interface language, spoken replies and speaking speed</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-bold flex-shrink-0">Multilingual</span>
+</div>
+<div class="space-y-space-md">
+<!-- Default Interface Language -->
+<form action="/api/language" class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low" data-autosubmit method="POST">{% include "partials/csrf.html" %}
+<input name="next" type="hidden" value="/settings#language">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface block" for="ui-lang">Interface Language</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Menus, answers and voice. Applies as soon as you choose.</p>
+</div>
+<div class="relative sm:min-w-[190px]">
+<select class="w-full py-2.5 pl-3.5 pr-8 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md appearance-none focus:outline-none focus:bg-surface-container-highest cursor-pointer" id="ui-lang" name="language">
+<option value="en"{% if lang_code == 'en' %} selected{% endif %}>English</option>
+<option value="ta"{% if lang_code == 'ta' %} selected{% endif %}>தமிழ் (Tamil)</option>
+<option value="hi"{% if lang_code == 'hi' %} selected{% endif %}>हिन्दी (Hindi)</option>
+<option disabled>తెలుగు (Telugu) - coming later</option>
+<option disabled>ಕನ್ನಡ (Kannada) - coming later</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">unfold_more</span>
+</div>
+<noscript><button class="px-3 py-1.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md" type="submit">Apply</button></noscript>
+</form>
+<!-- Voice language follows the interface language -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Voice Companion Language</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Talk to NIRVAAN listens and speaks in your interface language.</p>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-surface-container-lowest font-label-md text-label-md text-on-surface flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary">link</span>
+<span>{{ language_label }}</span>
+</span>
+</div>
+<!-- Secondary Fallback Language -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<label class="font-label-lg text-label-lg text-on-surface block" for="voice-secondary">Secondary Fallback Language</label>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">When technical terminology lacks direct vernacular phrasing</p>
+</div>
+<div class="relative sm:min-w-[190px]">
+<select class="w-full py-2.5 pl-3.5 pr-8 rounded-xl bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md appearance-none opacity-60 cursor-not-allowed" disabled id="voice-secondary">
+<option selected>English</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">unfold_more</span>
+</div>
+</div>
+<!-- Spoken replies -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface block">Read Answers Aloud</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Talk to NIRVAAN speaks each answer automatically. You can still type and read.</p>
+</div>
+{{ switch("pref", "voice_enabled", prefs.voice_enabled if prefs else true, "Read Answers Aloud") }}
+</div>
+<!-- Voice Speed Slider -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between gap-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="voiceSpeedRange">Voice Speed</label>
+<span class="font-label-md text-label-md text-primary font-bold bg-surface-container-lowest px-2.5 py-0.5 rounded-full" id="speedValueLabel">{{ voice_speed_label }}</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How fast Talk to NIRVAAN speaks. A slower pace can feel calmer.</p>
+<div class="pt-2">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="voiceSpeedRange" max="1.3" min="0.7" step="0.05" type="range" value="{{ voice_speed }}">
+<div class="flex justify-between font-label-sm text-label-sm text-outline-variant pt-1">
+<span>0.7x Gentle</span>
+<span>1.0x Normal</span>
+<span>1.3x Brisk</span>
+</div>
+</div>
+</div>
+<!-- Regional Financial Analogies Toggle -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-0.5">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface block">Regional Financial Analogies</span>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Uses cultural comparisons like chit funds (சீட்டு), village grain banks, and bachat mandals to explain compound risk.</p>
+</div>
+{{ dead_switch("Regional Financial Analogies") }}
+</div>
+</div>
+</div>
+<!-- Category 2: Reflection & Cooldown Preferences -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-tertiary-container/20 flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">self_improvement</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Reflection &amp; Cooldown Preferences</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protective behavioral interventions against impulsive financial moves</p>
+</div>
+</div>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">These options cannot be changed yet. Pause &amp; Reflect lets you choose the pause length each time.</p>
+<div class="space-y-space-md opacity-60">
+<!-- Default Tactical Pause Duration -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Default Tactical Pause Duration</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The mindful breathing interval initiated before finalizing unverified transactions.</p>
+</div>
+<div class="grid grid-cols-3 gap-space-sm pt-1">
+<button class="py-2.5 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest text-center cursor-not-allowed" disabled type="button">2 min</button>
+<button class="py-2.5 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest text-center cursor-not-allowed" disabled type="button">5 min</button>
+<button class="py-2.5 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest text-center cursor-not-allowed" disabled type="button">10 min</button>
+</div>
+</div>
+<!-- High-Urgency Auto-Cooldown Toggle -->
+<div class="flex items-start justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg text-on-surface">High-Urgency Auto-Cooldown</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock_clock</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">A cooling-off reminder for unknown transfers or speculative investments.</p>
+</div>
+{{ dead_switch("High-Urgency Auto-Cooldown") }}
+</div>
+<!-- Prompt Frequency Selector -->
+<fieldset class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm" disabled>
+<legend class="sr-only">Prompt Frequency</legend>
+<span class="font-label-lg text-label-lg text-on-surface block">Prompt Frequency</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How often NIRVAAN invites you to record post-investment sentiments.</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-1">
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest cursor-not-allowed">
+<input class="text-primary focus:ring-0" name="prompt_freq" type="radio" value="gentle">
+<span class="font-label-md text-label-md text-on-surface">Gentle</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest cursor-not-allowed">
+<input class="text-primary focus:ring-0" name="prompt_freq" type="radio" value="regular">
+<span class="font-label-md text-label-md text-on-surface">Regular</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest cursor-not-allowed">
+<input class="text-primary focus:ring-0" name="prompt_freq" type="radio" value="demand">
+<span class="font-label-md text-label-md text-on-surface">On-Demand</span>
+</label>
+</div>
+</fieldset>
+</div>
+</div>
+<!-- Category 3: Accessibility & Display -->
+{% set hc = prefs is not none and prefs.high_contrast %}
+{% set lt = prefs is not none and prefs.large_text %}
+{% set seg_on = "bg-surface-container text-on-surface font-semibold" %}
+{% set seg_off = "text-on-surface-variant hover:text-on-surface" %}
+{% set pill_on = "bg-primary text-on-primary font-bold" %}
+{% set pill_off = "bg-surface-container-lowest text-on-surface hover:bg-surface-container" %}
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="accessibility">
+<div class="flex items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">visibility</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Accessibility &amp; Display</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Text size, contrast and plain language</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-bold flex-shrink-0">Universal Design</span>
+</div>
+<div class="space-y-space-md">
+<!-- Contrast Mode -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface block">Contrast Mode</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Stronger text and borders for easier reading. Applies across the app.</p>
+</div>
+<div class="flex bg-surface-container-lowest p-1 rounded-xl self-start sm:self-auto flex-shrink-0" role="group" aria-label="Contrast Mode">
+<button aria-pressed="{{ 'false' if hc else 'true' }}" class="px-3 py-1.5 rounded-lg font-label-md text-label-md {{ seg_off if hc else seg_on }}" data-off-class="{{ seg_off }}" data-on-class="{{ seg_on }}" data-pref-choice="high_contrast" data-value="false" type="button">Normal</button>
+<button aria-pressed="{{ 'true' if hc else 'false' }}" class="px-3 py-1.5 rounded-lg font-label-md text-label-md {{ seg_on if hc else seg_off }}" data-off-class="{{ seg_off }}" data-on-class="{{ seg_on }}" data-pref-choice="high_contrast" data-value="true" type="button">High Contrast</button>
+</div>
+</div>
+<!-- Font Scale -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">Font Scale</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Applies across the app</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm" role="group" aria-label="Font Scale">
+<button aria-pressed="{{ 'false' if lt else 'true' }}" class="py-2 rounded-xl {{ pill_off if lt else pill_on }} font-label-md text-label-md text-center" data-off-class="{{ pill_off }}" data-on-class="{{ pill_on }}" data-pref-choice="large_text" data-value="false" type="button">Standard (100%)</button>
+<button aria-pressed="{{ 'true' if lt else 'false' }}" class="py-2 rounded-xl {{ pill_on if lt else pill_off }} font-label-md text-label-md text-center" data-off-class="{{ pill_off }}" data-on-class="{{ pill_on }}" data-pref-choice="large_text" data-value="true" type="button">Large (112%)</button>
+</div>
+</div>
+<!-- Simple Language -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Simpler Language</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Saves your preference for shorter, jargon-free explanations. Answers do not change with it yet.</p>
+</div>
+{{ switch("pref", "simple_language", prefs.simple_language if prefs else false, "Simpler Language") }}
+</div>
+<!-- Reduced Motion -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Reduced Motion</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">NIRVAAN follows the reduce-motion setting on your phone or computer.</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">devices</span>
+<span>Device setting</span>
+</span>
+</div>
+<!-- Screen Reader Optimizations -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface block">Screen Reader Optimizations</span>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Expands spoken semantic ARIA landmarks for risk matrices and financial charts.</p>
+</div>
+{{ dead_switch("Screen Reader Optimizations") }}
+</div>
+</div>
+</div>
+<!-- Category 4: Offline & Data Saver -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="offline">
+<div class="flex items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">cloud_off</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Offline &amp; Data Saver</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">For slow or patchy connections</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold flex-shrink-0" href="/offline"><span>Offline Mode</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="space-y-space-md">
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Offline Lessons</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Keep saved lessons available on the Offline Mode page.</p>
+</div>
+{{ switch("pref", "offline_cache_enabled", prefs.offline_cache_enabled if prefs else true, "Offline Lessons") }}
+</div>
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Data Saver</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Turns off decorative effects and animations to use less data and battery.</p>
+</div>
+{{ switch("pref", "data_saver", prefs.data_saver if prefs else false, "Data Saver") }}
+</div>
+</div>
+</div>
+<!-- Category 5: Notifications & Family -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="family">
+<div class="flex items-center gap-space-sm pb-space-sm">
+<div class="w-10 h-10 rounded-2xl bg-tertiary-container/20 flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Notifications &amp; Family</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">What reaches you, and what family may see</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">In-App Notifications</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">When off, NIRVAAN does not create new notifications for you. NIRVAAN never sends SMS or marketing.</p>
+</div>
+{{ switch("pref", "notifications_enabled", prefs.notifications_enabled if prefs else true, "In-App Notifications") }}
+</div>
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Allow Family Access</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your consent for linked family members to see only the scopes you grant. Off by default.</p>
+</div>
+{{ switch("privacy", "allow_family_access", pv.allow_family_access if pv else false, "Allow Family Access") }}
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface block">Invite a Family Member</span>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sending invitations from NIRVAAN is not available yet.</p>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold flex-shrink-0" href="/family"><span>Family Mode</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Security, Device Sessions, Storage & Account Management (5 Cols) -->
+<div class="lg:col-span-5 space-y-space-lg min-w-0">
+<!-- Card 1: Account Security & Device Sessions -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="security">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">security</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Account Security</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sign-ins on your devices</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- 2FA Status -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary">key</span>
+<span class="font-label-lg text-label-lg text-on-surface">Two-Factor Authentication</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Not offered yet. Use a strong, unique password.</p>
+</div>
+{{ soon() }}
+</div>
+<!-- Active Sessions List -->
+{% set this_session = current_session_id(request) %}
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Active Device Sessions</span>
+<div class="space-y-2">
+{% set ordered = (sessions|selectattr("id", "equalto", this_session)|list) + (sessions|rejectattr("id", "equalto", this_session)|list) %}
+{% for sess in ordered[:6] %}
+{% set is_this = sess.id == this_session %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-wrap items-center justify-between gap-space-sm" data-session-row>
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center flex-shrink-0 {{ 'text-primary' if is_this else 'text-secondary' }}">
+<span class="material-symbols-outlined text-[18px]">{{ sess.icon }}</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-semibold">{{ sess.label }}{% if is_this %} <span class="ml-1 px-2 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm">This device</span>{% endif %}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex flex-wrap items-center gap-1" title="{{ sess.signed_in_at }}">
+<span>Signed in</span> <span>{{ sess.signed_in }}</span>{% if sess.ip %} <span class="text-outline-variant">•</span> <span>{{ sess.ip }}</span>{% endif %}
+</p>
+</div>
+</div>
+{% if not is_this %}
+<button class="px-3 py-1.5 rounded-xl bg-surface-container-lowest hover:bg-error-container text-error font-label-md text-label-md font-semibold transition-colors flex-shrink-0" data-confirm="session" data-remove-row="[data-session-row]" data-url="/api/account/sessions/{{ sess.id }}/revoke" type="button">End Session</button>
+{% endif %}
+</div>
+{% else %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">devices</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No active sessions found.</p>
+</div>
+{% endfor %}
+{% if sessions|length > 6 %}
+<p class="px-1 font-body-sm text-body-sm text-on-surface-variant"><span>{{ sessions|length - 6 }}</span> <span>older sessions not shown. Use Sign Out All to end every session.</span></p>
+{% endif %}
+</div>
+</div>
+<!-- Sign out of this device -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Sign Out</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sign out of NIRVAAN on this device only.</p>
+</div>
+<form action="/logout" class="m-0 flex-shrink-0" method="POST">{% include "partials/csrf.html" %}
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-primary font-semibold transition-colors" type="submit">Sign Out</button>
+</form>
+</div>
+<!-- Security PIN for Journal -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface block">Security PIN for Reflection Journal</span>
+{{ soon() }}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your journal is already private: family members never see it unless you share an entry.</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest font-label-md text-label-md text-on-surface-variant font-semibold opacity-60 cursor-not-allowed flex-shrink-0" disabled type="button">Change PIN</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Privacy & Memory -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg scroll-mt-24" id="privacy">
+<div class="flex items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">shield_person</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Privacy &amp; Data</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">What NIRVAAN keeps after you use it</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold flex-shrink-0" href="/privacy"><span>Privacy Center</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="space-y-space-sm">
+{% for field, label, desc, default in [
+  ("memory_enabled", "Personal Memory", "Let NIRVAAN remember things you choose to tell it. Off means nothing new is remembered.", false),
+  ("store_analysis_history", "Keep Message Check History", "Save your message checks so you can look back at them.", true),
+  ("store_voice_transcripts", "Keep Voice Transcripts", "Save what you and NIRVAAN said in Talk to NIRVAAN.", false),
+  ("store_uploaded_files", "Keep Uploaded Screenshots", "Keep screenshots after they are checked. Off means they are not kept.", false)
+] %}
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">{{ label }}</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ desc }}</p>
+</div>
+{{ switch("privacy", field, pv[field] if pv else default, label) }}
+</div>
+{% endfor %}
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Usage Analytics</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">NIRVAAN collects no usage analytics, so there is nothing to opt in to.</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant font-bold flex-shrink-0">None collected</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Manage Memory -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-md scroll-mt-24" id="memory">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Manage Memory</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant"><span data-memory-count>{{ memories|length }}</span> <span>remembered items</span></p>
+</div>
+</div>
+{% if memories %}
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-low hover:bg-error-container text-error font-label-md text-label-md font-semibold transition-colors flex-shrink-0" data-confirm="memories" data-url="/api/account/memories/delete-all" type="button">Delete All</button>
+{% endif %}
+</div>
+{% if memories %}
+<ul class="space-y-2">
+{% for m in memories %}
+<li class="p-space-md rounded-2xl bg-surface-container-low flex items-start justify-between gap-space-sm" data-memory-row>
+<div class="min-w-0">
+<p class="font-body-md text-body-md text-on-surface break-words">{{ m.content }}</p>
+{% if m.created %}<p class="font-body-sm text-body-sm text-on-surface-variant">{{ m.created }}</p>{% endif %}
+</div>
+<button aria-label="Delete this memory" class="p-1.5 rounded-xl hover:bg-error-container text-error flex-shrink-0" data-confirm="memory" data-remove-row="[data-memory-row]" data-url="/api/account/memories/{{ m.id }}/delete" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="p-space-md rounded-2xl bg-surface-container-low font-body-sm text-body-sm text-on-surface-variant">NIRVAAN is not remembering anything about you.</p>
+{% endif %}
+</div>
+<!-- Card 4: Data & Storage Management -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">database</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Data &amp; Storage</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Download or erase what is stored</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Storage Bar Gauge -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Your Stored Data</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">{{ storage.total }}</span>
+</div>
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary" style="width: {{ storage.uploads_pct }}%;" title="Uploaded Files ({{ storage.uploads }})"></div>
+<div class="h-full bg-secondary" style="width: {{ storage.reflections_pct }}%;" title="Reflections ({{ storage.reflections }})"></div>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Uploaded Files</span> <span>({{ storage.uploads }})</span>
+</span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Reflections</span> <span>({{ storage.reflections }})</span>
+</span>
+</div>
+{% if storage.is_empty %}<p class="font-body-sm text-body-sm text-on-surface-variant">Nothing stored yet.</p>{% endif %}
+</div>
+<!-- Storage Actions -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-space-sm">
+<a class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors" download href="/privacy/export.zip">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Download My Data</span>
+</a>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-low hover:bg-error-container text-error font-label-md text-label-md transition-colors" data-confirm="voice" data-url="/api/account/history/voice/delete" type="button">
+<span class="material-symbols-outlined text-[18px]">voice_over_off</span>
+<span>Delete Voice Transcripts</span> <span>({{ history_counts.voice_sessions }})</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-low hover:bg-error-container text-error font-label-md text-label-md transition-colors sm:col-span-2 lg:col-span-1 xl:col-span-2" data-confirm="analysis" data-url="/api/account/history/analysis/delete" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_delete</span>
+<span>Delete Message Check History</span> <span>({{ history_counts.analyses }})</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Danger Zone & Account Management -->
+<div class="bg-error-container/20 rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-md scroll-mt-24" id="danger">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-error/10 flex items-center justify-center text-error flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-error font-bold">Danger Zone</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Irreversible erasure &amp; session termination</p>
+</div>
+</div>
+<div class="space-y-space-sm pt-2">
+<!-- Reset Memory -->
+<div class="flex items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Erase Personal Memory</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Deletes everything NIRVAAN remembers about you.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-low hover:bg-error-container text-error font-label-md text-label-md font-semibold transition-colors flex-shrink-0" data-confirm="memories" data-url="/api/account/memories/delete-all" type="button">
+                Reset Memory
+              </button>
+</div>
+<!-- Sign Out All -->
+<div class="flex items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Sign Out of All Devices</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ends every session, including this one.</p>
+</div>
+<form method="POST" action="/logout" class="m-0 flex-shrink-0">{% include "partials/csrf.html" %}<input type="hidden" name="all" value="1">
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-colors flex-shrink-0" type="submit">
+                Sign Out All
+              </button></form>
+</div>
+<!-- Delete Account -->
+<div class="flex items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-error font-semibold">Delete Entire Account</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permanently erases your account and everything in it.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold transition-opacity hover:opacity-90 flex-shrink-0 shadow-sm" data-confirm="account" data-typed data-url="/api/account/delete" type="button">
+                Delete Account
+              </button>
+</div>
+</div>
+</div>
+<!-- Card 6: About NIRVAAN & Charter Compliance -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-sm text-center sm:text-left">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">spa</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">NIRVAAN Platform</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+              Public Good
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            NIRVAAN is a non-commercial investor-education and safety companion. No product recommendations, no commissions, no financial solicitations.
+          </p>
+<div class="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-4 font-label-sm text-label-sm text-primary">
+<a class="hover:underline flex items-center gap-1" href="https://investor.sebi.gov.in/" rel="noopener noreferrer" target="_blank">
+<span>SEBI Investor Website</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:underline flex items-center gap-1" href="/help">
+<span>Help &amp; Support</span>
+</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:underline flex items-center gap-1" href="/privacy">
+<span>Privacy Center</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom status strip: changes save as they are made -->
+<div class="flex items-center gap-space-sm p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+<span class="font-bold">Every change is saved to your account as you make it.</span> <span>You will see a confirmation each time.</span>
+</p>
+</div>
+</div>
+{% include "pages/_account_confirm.html" %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="/static/js/account.js"></script>
+{% endblock %}

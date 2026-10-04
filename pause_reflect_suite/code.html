@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="w-full max-w-[1440px] mx-auto px-space-lg py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Intro & Audio Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+          Cognitive Resilience Protocol
+        </span>
+<span class="font-label-sm text-label-sm text-outline">• Session #PR-4089</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Pause &amp; Reflect</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Let’s take a calm, structured moment before committing your hard-earned funds.</p>
+</div>
+<!-- Companion Listening / Multi-lingual Read Aloud -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest shadow-sm rounded-full p-1.5 pr-4 self-start md:self-auto">
+<button class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-90 transition-all shadow-sm" id="audio-toggle-btn">
+<span class="material-symbols-outlined text-[20px]" id="audio-icon">volume_up</span>
+</button>
+<div class="leading-tight">
+<p class="font-label-md text-label-md text-on-surface">Voice Narration</p>
+<p class="font-body-sm text-body-sm text-tertiary flex items-center gap-1 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container animate-pulse"></span>
+          Audio Guidance Active
+        </p>
+</div>
+<div class="h-6 w-px bg-surface-container-high mx-1"></div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">translate</span>
+<span>English</span>
+</div>
+</div>
+</div>
+<!-- 5-Step Process Stepper -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm mb-space-xl">
+<div class="relative flex items-center justify-between w-full max-w-4xl mx-auto">
+<!-- Continuous Background Track -->
+<div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-surface-container-high rounded-full -z-0"></div>
+<!-- Active Progress Track (Step 1 to Step 2) -->
+<div class="absolute left-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary to-secondary-container rounded-full -z-0 w-1/4"></div>
+<!-- Step 1: Reason (Current) -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center shadow-md ring-4 ring-primary-fixed/50">
+<span>1</span>
+</div>
+<span class="mt-2 font-label-md text-label-md text-primary font-bold">Reason</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Inquiry</span>
+</div>
+<!-- Step 2: Evidence -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center">
+<span>2</span>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant font-semibold">Evidence</span>
+<span class="font-label-sm text-label-sm text-outline">Verification</span>
+</div>
+<!-- Step 3: Horizon -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center">
+<span>3</span>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant font-semibold">Horizon</span>
+<span class="font-label-sm text-label-sm text-outline">Timeline</span>
+</div>
+<!-- Step 4: Emotions -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center">
+<span>4</span>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant font-semibold">Emotions</span>
+<span class="font-label-sm text-label-sm text-outline">Mindset</span>
+</div>
+<!-- Step 5: Review -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center">
+<span>5</span>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant font-semibold">Review</span>
+<span class="font-label-sm text-label-sm text-outline">Synthesis</span>
+</div>
+</div>
+</div>
+<!-- Main Bento Grid (Core Inquiry + 5-Minute Timer & Readiness) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- LEFT COLUMN: Core Inquiry Card (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-xl shadow-sm">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Step 1 of 5</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Self-Reflection Phase</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mb-space-sm">Why are you considering this decision?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+          Be honest with yourself. Identifying your true initial trigger exposes cognitive biases before they lead to irreversible financial commitment.
+        </p>
+<!-- Selectable Option Pills -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mb-space-lg" id="reason-options">
+<!-- Option 1 -->
+<button class="reason-pill text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-transparent dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">I independently researched it</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Self-directed analysis of reports</p>
+</div>
+</button>
+<!-- Option 2 -->
+<button class="reason-pill text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-transparent dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Someone recommended it</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Colleague, friend, or advisor suggestion</p>
+</div>
+</button>
+<!-- Option 3 (Selected State by default) -->
+<button class="reason-pill selected text-left p-space-md rounded-2xl bg-surface-container-high text-on-surface shadow-sm transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-on-primary dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-primary font-bold">Everyone seems to be doing it</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Trending on feeds, chat groups, social hype</p>
+</div>
+</button>
+<!-- Option 4 -->
+<button class="reason-pill text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-transparent dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">I don’t want to miss out (FOMO)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Perception of fast gains escaping you</p>
+</div>
+</button>
+<!-- Option 5 -->
+<button class="reason-pill text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-transparent dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">I want to recover a previous loss</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attempting to break even quickly</p>
+</div>
+</button>
+<!-- Option 6 -->
+<button class="reason-pill text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3" type="button">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 rounded-full bg-transparent dot"></div>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">I’m unsure</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Confused by conflicting details</p>
+</div>
+</button>
+</div>
+<!-- Contextual AI Behavioral Guidance Card -->
+<div class="bg-surface-container rounded-2xl p-space-md flex flex-col sm:flex-row gap-space-md items-start">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">spa</span>
+</div>
+<div class="flex-1">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-md text-label-md text-on-surface font-bold">Behavioral AI Observation</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold">Signal Detected</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-sm">
+              You seem to be influenced by social pressure. A short pause can help you examine the decision independently rather than echoing the momentum of Telegram or WhatsApp groups.
+            </p>
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+                Possible Behavioral Signals: Herd Influence
+              </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">
+                Social Proof Distortion
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Navigation Buttons -->
+<div class="flex items-center justify-between pt-space-lg mt-space-lg">
+<button class="px-space-lg py-2.5 rounded-full bg-surface hover:bg-surface-container font-label-lg text-label-lg text-on-surface transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back</span>
+</button>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2.5 rounded-full bg-surface hover:bg-surface-container text-on-surface-variant font-label-lg text-label-lg transition-colors">
+            Skip Step
+          </button>
+<button class="px-space-xl py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 5-Minute Pause Module & Readiness Matrix (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- 5-Minute Breathing Timer Card -->
+<div class="bg-gradient-to-b from-surface-container-lowest to-surface-container-low rounded-3xl p-space-lg shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+<div class="flex items-center justify-between w-full mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">self_improvement</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">5-Minute Tactical Pause</span>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">Calm State</span>
+</div>
+<!-- Animated Breathing Ring Graphic -->
+<div class="relative my-space-md flex items-center justify-center">
+<!-- Pulse Halo SVG -->
+<div class="w-48 h-48 rounded-full bg-primary-fixed/30 flex items-center justify-center animate-pulse">
+<div class="w-36 h-36 rounded-full bg-secondary-container/40 flex items-center justify-center">
+<div class="w-28 h-28 rounded-full bg-surface-container-lowest shadow-md flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg font-extrabold text-primary tracking-tight" id="timer-display">05:00</span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Breathe</span>
+</div>
+</div>
+</div>
+<!-- SVG Decorative Progress Arc -->
+<svg class="absolute inset-0 w-48 h-48 -rotate-90 pointer-events-none" viewBox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="transparent" r="44" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="50" cy="50" fill="transparent" id="timer-arc" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="35" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-space-md">
+          Use this intentional time to breathe, review your inner reasoning, and let emotional urgency dissolve.
+        </p>
+<!-- Timer Controls -->
+<div class="flex items-center gap-space-sm w-full">
+<button class="flex-1 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-sm transition-all flex items-center justify-center gap-2" id="start-timer-btn">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+<span>Start Pause</span>
+</button>
+<button class="px-space-md py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors flex items-center gap-1.5" title="Save snapshot to reflection journal">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+<span>Save to Journal</span>
+</button>
+</div>
+</div>
+<!-- Decision Readiness Grid (6 Metric Cards) -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Decision Readiness Matrix</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time holistic check across key vectors</p>
+</div>
+<span class="px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">Live Analysis</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm mt-space-sm">
+<!-- Metric 1: Reason Clarity -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reason Clarity</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+                Good
+              </span>
+</div>
+</div>
+<!-- Metric 2: Evidence Quality -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Evidence Quality</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">help</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+                Needs Review
+              </span>
+</div>
+</div>
+<!-- Metric 3: Time Horizon -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Time Horizon</span>
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Not Set
+              </span>
+</div>
+</div>
+<!-- Metric 4: Emotional State -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Emotional State</span>
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+                Possible FOMO
+              </span>
+</div>
+</div>
+<!-- Metric 5: External Influence -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Influence Trigger</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">groups</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+                Present (Herd)
+              </span>
+</div>
+</div>
+<!-- Metric 6: Financial Safety -->
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Safety Rating</span>
+<span class="material-symbols-outlined text-[16px] text-error">flip_camera_ios</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+                Needs Attention
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Counterfactual Inquiry & Companion Advice (Panel 12 Integration) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Counterfactual Reflection Interactive Section (8 Cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-space-xl shadow-sm">
+<div class="flex items-center gap-2 mb-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">swap_calls</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider">Counterfactual Test</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-sm">
+        Testing Your Core Conviction
+      </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+        To understand whether this financial action serves your personal long-term goals or simply someone else's viral enthusiasm, answer these brief counterfactual questions:
+      </p>
+<div class="space-y-space-lg">
+<!-- Question 1: If nobody recommended this -->
+<div class="bg-surface rounded-2xl p-space-md">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-sm">
+            1. If nobody else had recommended this or mentioned it on social feeds, would you still make the same decision?
+          </label>
+<div class="flex flex-wrap gap-space-sm" id="cf-options">
+<button class="cf-btn px- space-md px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all" type="button">
+              Yes, absolutely
+            </button>
+<button class="cf-btn px- space-md px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold transition-all" type="button">
+              No, probably not
+            </button>
+<button class="cf-btn px- space-md px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all" type="button">
+              Not sure
+            </button>
+</div>
+</div>
+<!-- Question 2: What would change your mind -->
+<div class="bg-surface rounded-2xl p-space-md">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs">
+            2. What verifiable information or disclosure would change your mind?
+          </label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+            E.g., Proof of unregulated scheme, high hidden exit fees, negative market historical drawdown.
+          </p>
+<div class="relative">
+<input class="w-full h-11 px-4 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="Type what could make you reconsider (or pick below)..." type="text" value="Finding out the promoter gets an unverified commission referral fee.">
+</div>
+<!-- Quick Suggestion Tags -->
+<div class="flex flex-wrap gap-1.5 mt-space-sm">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors">
+              + Verified SEBI registration missing
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors">
+              + Inability to withdraw for 12 months
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors">
+              + Guaranteed unrealistic 30% yield
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Companion Persona Wisdom Card (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col justify-between bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-surface-container-lowest rounded-3xl p-space-lg shadow-sm">
+<div>
+<div class="flex items-center gap-space-sm mb-space-md">
+<!-- Indian Female Companion Avatar Photo-rich placeholder -->
+<div class="relative">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-md" data-alt="Warm and encouraging portrait of an Indian woman companion with pleasant natural expression, neat hair, dressed in smart casual indigo clothing, soft diffused ambient daylight, cinematic soft portrait photography, calm resilience companion persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCngtwk1sHtfyvm1bzRo5g6XsHPs2A7l6yOH7rZdjjuQprnBMmT7lHP45_f6rM_Fn4yWCtudIKMDeCLbXe4Nea_qIIPQs5ZkO0PiyRsuWA546zLEGuU7kC_cMDP8svlljAk3mtfzSpagJrG4SrEDtkRjPEAgNjbcvA9WfJcasy0EPDBpQTmPdnKVDsKTCgQ31GQmVv5HqFwzLydj_nVEF96c6jiQI8o5bswoVoRffpUv3LUrAmvdEU3">
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center text-on-tertiary ring-2 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">NIRVAAN Guide</h4>
+<span class="px-1.5 py-0.5 rounded-full bg-primary text-on-primary text-[10px] font-bold">AI Companion</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Here to safeguard your peace</p>
+</div>
+</div>
+<blockquote class="bg-surface-container-lowest/80 backdrop-blur-sm rounded-2xl p-space-md shadow-sm mb-space-md">
+<span class="material-symbols-outlined text-primary text-[24px] mb-1">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface font-medium italic">
+            "True financial resilience comes from making decisions that fit your unique timeline and family commitments, not someone else's excitement."
+          </p>
+<div class="mt-3 pt-2 text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">— Companion Principle #4</span>
+</div>
+</blockquote>
+<div class="space-y-2">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5">check</span>
+<p class="font-body-sm text-body-sm"><strong class="text-on-surface">No rush:</strong> Good investments rarely vanish overnight.</p>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5">check</span>
+<p class="font-body-sm text-body-sm"><strong class="text-on-surface">Autonomy:</strong> Your decision should be yours alone.</p>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md">
+<a class="w-full py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-sm transition-all" data-path="talk-to-nirvaan" href="#">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span>Talk with Nirvaan about this</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Interactive Script for Micro-Interactions -->
+<script>
+  // Dynamic selection toggle for reason options
+  document.querySelectorAll('.reason-pill').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.reason-pill').forEach(el => {
+        el.classList.remove('selected', 'bg-surface-container-high');
+        el.classList.add('bg-surface');
+        const circle = el.querySelector('.check-circle');
+        const dot = el.querySelector('.dot');
+        const text = el.querySelector('.text-primary');
+        if (circle) circle.className = 'w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-transparent dot';
+        if (text) {
+          text.classList.remove('text-primary', 'font-bold');
+          text.classList.add('text-on-surface');
+        }
+      });
+
+      button.classList.add('selected', 'bg-surface-container-high');
+      button.classList.remove('bg-surface');
+      const circle = button.querySelector('.check-circle');
+      const dot = button.querySelector('.dot');
+      const title = button.querySelector('p');
+      if (circle) circle.className = 'w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-0.5 flex-shrink-0 check-circle';
+      if (dot) dot.className = 'w-2 h-2 rounded-full bg-on-primary dot';
+      if (title) {
+        title.classList.add('text-primary', 'font-bold');
+        title.classList.remove('text-on-surface');
+      }
+    });
+  });
+
+  // Counterfactual Button Toggle
+  document.querySelectorAll('.cf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cf-btn').forEach(b => {
+        b.className = 'cf-btn px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all';
+      });
+      btn.className = 'cf-btn px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold transition-all';
+    });
+  });
+
+  // 5-Minute Timer Countdown Simulation
+  let timerInterval = null;
+  let remainingSeconds = 300;
+  const timerDisplay = document.getElementById('timer-display');
+  const timerArc = document.getElementById('timer-arc');
+  const startBtn = document.getElementById('start-timer-btn');
+  const audioToggleBtn = document.getElementById('audio-toggle-btn');
+  const audioIcon = document.getElementById('audio-icon');
+
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        startBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">play_arrow</span><span>Resume Pause</span>';
+      } else {
+        startBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">pause</span><span>Pause Timer</span>';
+        timerInterval = setInterval(() => {
+          if (remainingSeconds > 0) {
+            remainingSeconds--;
+            const mins = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+            const secs = String(remainingSeconds % 60).padStart(2, '0');
+            timerDisplay.textContent = `${mins}:${secs}`;
+            const totalDash = 276;
+            const offset = (remainingSeconds / 300) * totalDash;
+            timerArc.style.strokeDashoffset = offset;
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            startBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Pause Complete</span>';
+          }
+        }, 1000);
+      }
+    });
+  }
+
+  // Audio Toggle Button Feedback
+  if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', () => {
+      if (audioIcon.textContent === 'volume_up') {
+        audioIcon.textContent = 'volume_off';
+      } else {
+        audioIcon.textContent = 'volume_up';
+      }
+    });
+  }
+</script></div></main></div></body></html>

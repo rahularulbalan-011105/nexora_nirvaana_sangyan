@@ -1,0 +1,256 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_decision_readiness/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Decision Readiness{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<!-- Content Canvas Area -->
+<div class="px-margin-desktop py-space-xl max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Top Progress Breadcrumb Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-1">
+<span class="text-primary font-bold">Step 2 of 5</span>
+<span class="text-outline-variant">•</span>
+<span>Emotional &amp; Safety Diagnostic</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Decision Readiness Assessment</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Review what internal and external forces may be influencing your financial decision before committing funds.</p>
+</div>
+<!-- Action Stepper Pills -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-2 rounded-2xl">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-surface-container-lowest shadow-sm text-on-surface font-label-md text-label-md">
+<span class="w-5 h-5 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed flex items-center justify-center text-[10px] font-bold">✓</span>
+<span>1. Reason</span>
+</div>
+<span class="text-outline-variant">→</span>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm">
+<span class="w-5 h-5 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center text-[10px] font-bold">2</span>
+<span>Readiness</span>
+</div>
+<span class="text-outline-variant">→</span>
+<div class="flex items-center gap-1.5 px-2 py-1 text-on-surface-variant font-label-md text-label-md opacity-60">
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center text-[10px]">3</span>
+<span>Reflect</span>
+</div>
+</div>
+</div>
+<!-- Active Assessment Target Banner -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+{% if readiness.session %}
+<div class="flex items-start sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">receipt_long</span>
+</div>
+<div class="space-y-1">
+<div class="flex flex-wrap items-center gap-2">
+{% if readiness.check %}
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full {% if readiness.check.flagged %}bg-error-container text-on-error-container{% else %}bg-tertiary-container/15 text-tertiary{% endif %} font-bold tracking-wide uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full {% if readiness.check.flagged %}bg-error{% else %}bg-tertiary{% endif %}"></span>
+              {{ readiness.check.status }}
+            </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked to a message you checked</span>
+{% else %}
+<span class="text-on-surface-variant font-body-sm text-body-sm">From your Pause &amp; Reflect</span>
+{% endif %}
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface"><span>Reviewing your reflection from</span> <span>{{ readiness.date }}</span></h2>
+{% if readiness.check and readiness.check.quote %}
+<p class="font-body-sm text-body-sm text-on-surface-variant"><span>Message:</span> <span class="font-medium text-on-surface">“{{ readiness.check.quote }}”</span></p>
+{% elif readiness.summary %}
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ readiness.summary }}</p>
+{% endif %}
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<a class="px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" href="/reflect">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span>Reflect Again</span>
+</a>
+<a class="px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" href="/journey">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span>My Journey</span>
+</a>
+</div>
+{% else %}
+<div class="flex items-start sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">receipt_long</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">No decision under review yet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Complete a Pause &amp; Reflect and your readiness scorecard will appear here.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<a class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-colors" href="/reflect">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+<span>Start Pause &amp; Reflect</span>
+</a>
+<a class="px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" href="/check">
+<span class="material-symbols-outlined text-[18px]">document_scanner</span>
+<span>Check a Message</span>
+</a>
+</div>
+{% endif %}
+</div>
+<!-- 6 Core Diagnostic Metric Cards (2x3 Bento Grid) -->
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span>Readiness Scorecard</span>
+{% if readiness.rated %}
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold"><span>{{ readiness.good }}</span> <span>of</span> <span>{{ readiness.cards|length }}</span> <span>rated Good</span></span>
+{% else %}
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Not assessed yet</span>
+{% endif %}
+</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Calibrated against SEBI Investor Guidelines</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop">
+{% for card in readiness.cards %}
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">{{ card.number }}. {{ card.name }}</span>
+<span class="px-2.5 py-1 rounded-full {{ card.chip }} font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">{{ card.icon[0] }}</span>
+<span>{{ card.label or "Not Set" }}</span>
+</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">{{ card.headline }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ card.question }}</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 rounded-xl px-3 py-2 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Your reflection</span>
+<span class="font-medium">{{ card.label or "Not assessed yet" }}</span>
+</div>
+</div>
+{% endfor %}
+<!-- Card 6: Linked message check -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">6. Message Check</span>
+{% if readiness.check %}
+<span class="px-2.5 py-1 rounded-full {% if readiness.check.flagged %}bg-error-container text-on-error-container{% else %}bg-tertiary-container/15 text-tertiary{% endif %} font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">{% if readiness.check.flagged %}gpp_maybe{% else %}verified_user{% endif %}</span>
+<span>{{ readiness.check.status }}</span>
+</span>
+{% else %}
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">link_off</span>
+<span>Not linked</span>
+</span>
+{% endif %}
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Warning Signals</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">If this decision started from a message, check it for urgency, guaranteed-return and impersonation signals before acting.</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 rounded-xl px-3 py-2 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+{% if readiness.check %}
+<span>Signals noticed</span>
+<span class="font-medium">{{ readiness.check.signals }}</span>
+{% else %}
+<span>No message linked</span>
+<a class="text-primary font-medium hover:underline" href="/check">Check a Message</a>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+<!-- Tactical Pause Centerpiece (Hero Calming Module) -->
+<div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high p-space-xl shadow-lg">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-secondary/10 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<!-- Left: Context & Guidance -->
+<div class="max-w-xl space-y-space-md text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-bold tracking-wide uppercase">
+<span class="material-symbols-outlined text-[16px]">self_improvement</span>
+<span>Neuroscience-Backed Reflection</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Take a Tactical Pause</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Give your brain emotional breathing room. Fraudulent schemes and high-risk speculative pumps rely on <strong class="text-on-surface">artificial countdowns</strong> to shut down your critical evaluation circuits.
+          </p>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<div class="p-3 bg-surface-container-lowest rounded-xl flex items-start gap-2 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">timer</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Cortisol Drops</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Heart rate stabilizes within 300 seconds</p>
+</div>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-xl flex items-start gap-2 shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">verified</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Fact Check Mode</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Critical prefrontal cortex re-engages</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Center / Right: guided reflection (the decorative countdown was removed) -->
+<div class="flex flex-col items-center text-center bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-xl shadow-md w-full lg:w-auto lg:min-w-[320px] max-w-md">
+<div class="w-20 h-20 rounded-full bg-primary-fixed/50 flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-primary text-[40px]">self_improvement</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">Pause with five calm questions</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Reason, evidence, timeline, feelings, then a review. Take as long as you need.</p>
+<a class="mt-space-lg w-full py-3 px-6 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-sm text-headline-sm hover:opacity-95 shadow-md flex items-center justify-center gap-2 transition-all" href="/reflect">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+<span>Start Pause &amp; Reflect</span>
+</a>
+</div>
+</div>
+</div>
+<!-- NIRVAAN Companion Insight Callout -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-space-lg">
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-full overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Warm and encouraging portrait of an approachable Indian female financial educator smiling reassuringly, softly lit studio setting, wearing modern simple indigo attire, high clarity humanist visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1PHvGApcXCTjfRlwFY2lUWgDpTnWtO-A2bZCeWb_jEX7f4ofYbscLPy3CiIil676tiwn_UAYabsVt5K3f_r-jPt-nAiMVaLIkKCdO4HnrLC976qi53EEVT0Nyrf7NIN1lheUs4B6A5gXIKvM5HZpXeys5WmWI2dcCXE4TCapCklslAg-7idWljMPjMm8okUShCViz9Y96CHNIpCnlJxAf_9Ep4aCagsRukqpP-_iWg5qGFjr_x-MF">
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center text-[12px] shadow-sm">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+</div>
+</div>
+<div class="space-y-2 text-center sm:text-left">
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">NIRVAAN Companion Insight</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container">Gentle Reality Check</span>
+</div>
+<blockquote class="font-body-lg text-body-lg text-on-surface italic">
+          "When an investment proposal makes you feel you must act within 10 minutes or lose forever, <strong class="text-primary not-italic font-semibold">that urgency is almost always engineered.</strong> Genuine, wealth-building opportunities registered with Indian regulators will still be available tomorrow."
+        </blockquote>
+<div class="flex items-center justify-center sm:justify-start gap-space-md pt-1">
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span>Listen in Hindi (सुनिए)</span>
+</button>
+<span class="text-outline-variant">•</span>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span>Listen in Tamil (கேளுங்கள்)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Stepper Navigation Controls -->
+<div class="flex items-center justify-between pt-space-md border-t border-transparent">
+<a class="px-6 py-3 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-headline-sm text-headline-sm flex items-center gap-2 transition-all" href="/reflect">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Back to Step 1 (Reason)</span>
+</a>
+<button class="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-sm text-headline-sm hover:opacity-95 shadow-md flex items-center gap-2 transition-all">
+<span>Continue to Counterfactual Reflection</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+{% endblock %}

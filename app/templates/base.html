@@ -1,0 +1,38 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_dashboard/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+<!DOCTYPE html>
+<html class="{{ 'text-[18px]' if prefs and prefs.large_text else '' }}" data-contrast="{{ 'high' if prefs and prefs.high_contrast else 'normal' }}"
+      lang="{{ lang_code or 'en' }}"
+      data-lang="{{ lang_code or 'en' }}"
+      data-data-saver="{{ '1' if prefs and prefs.data_saver else '0' }}">
+<head>
+<title>{% block title %}NIRVAAN{% endblock %} · NIRVAAN</title>
+{% include "partials/head.html" %}
+<link href="/static/css/nirvaan.css" rel="stylesheet">
+<link href="/static/manifest.webmanifest" rel="manifest">
+<meta content="#2563eb" name="theme-color">
+{% block head_extra %}{% endblock %}
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+{% include "partials/offline_banner.html" %}
+{% include "partials/sidebar.html" %}
+<div class="lg:pl-72 flex flex-col min-h-screen min-w-0 overflow-x-hidden">
+{% include "partials/topbar.html" %}
+<main class="w-full pt-20 flex-1 bg-surface">
+{% block content %}{% endblock %}
+</main>
+</div>
+{% include "partials/toast.html" %}
+<script>window.NIRVAAN = {
+  lang: "{{ lang_code or 'en' }}",
+  csrf: "{{ csrf_token }}",
+  dataSaver: {{ 'true' if prefs and prefs.data_saver else 'false' }},
+  authenticated: {{ 'true' if user else 'false' }}
+};</script>
+<script src="/static/js/nirvaan.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

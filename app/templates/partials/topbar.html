@@ -1,0 +1,122 @@
+{# ---------------------------------------------------------------
+   Top bar for signed-in pages. Originally generated from
+   nirvaan_dashboard/code.html; search removed, and the bell and
+   avatar are real menus (native <details>, closed by the script below).
+   --------------------------------------------------------------- #}
+<header class="fixed top-0 left-0 lg:left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-3 sm:px-space-lg grid grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-space-md">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant min-w-0">
+<button type="button" aria-label="Open menu" data-nav-open class="lg:hidden w-10 h-10 -ml-1 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button>
+{% if active_nav != "dashboard" %}
+<span class="hidden md:inline-flex items-center gap-space-xs min-w-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[200px]">{{ breadcrumb }}</span></span>
+{% endif %}
+</div>
+
+<div class="flex flex-col items-center justify-center text-center leading-tight">
+{% if active_nav == "dashboard" %}
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[30px] text-primary" style="font-variation-settings:'FILL' 1">shield_with_heart</span>
+<span class="text-[28px] font-extrabold tracking-tight bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent" style="font-family:'Plus Jakarta Sans',sans-serif">NIRVAAN</span>
+</div>
+<span class="hidden lg:block font-body-md text-[15px] text-on-surface-variant font-medium italic">{{ t("app.tagline") }}</span>
+{% endif %}
+</div>
+
+<div class="flex items-center justify-end gap-1.5 sm:gap-space-sm min-w-0">
+<div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div>
+
+<div class="relative"><button aria-label="Select Language" data-action="open-language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span class="hidden sm:inline">{{ language_label }}</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div>
+
+<!-- Notifications -->
+<details class="relative" data-topbar-menu>
+<summary aria-label="Notifications" class="list-none [&::-webkit-details-marker]:hidden cursor-pointer relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+{% if unread_count %}<span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-error text-on-error text-[10px] font-bold flex items-center justify-center ring-2 ring-surface">{{ unread_count if unread_count < 10 else "9+" }}</span>{% endif %}
+</summary>
+<div class="absolute right-0 top-full mt-2 w-80 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-[0_20px_40px_-8px_rgba(15,23,42,0.18)] z-50 overflow-hidden">
+<div class="flex items-center justify-between px-4 py-3 border-b border-outline-variant/30">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Notifications</p>
+{% if unread_count %}
+<form method="POST" action="/api/notifications/read-all" class="m-0">{% include "partials/csrf.html" %}<input type="hidden" name="next" value="{{ request.url.path }}">
+<button type="submit" class="font-label-md text-label-md text-primary hover:underline">Mark all as read</button>
+</form>
+{% endif %}
+</div>
+{% if notifications %}
+<ul class="max-h-96 overflow-y-auto divide-y divide-outline-variant/20">
+{% for n in notifications %}
+<li>
+<form method="POST" action="/api/notifications/{{ n.id }}/open" class="m-0">{% include "partials/csrf.html" %}
+<button type="submit" class="w-full text-left flex gap-3 px-4 py-3 hover:bg-surface-container-low transition-colors {{ '' if n.read_at else 'bg-primary-fixed/20' }}">
+<span class="material-symbols-outlined text-[20px] text-primary mt-0.5">{{ n.icon or "notifications" }}</span>
+<span class="min-w-0 flex-1">
+<span class="block font-label-md text-label-md text-on-surface font-semibold">{{ n.title }}</span>
+{% if n.body %}<span class="block font-body-sm text-body-sm text-on-surface-variant line-clamp-2">{{ n.body }}</span>{% endif %}
+<span class="block mt-1 text-[11px] text-outline">{{ n.created_at.strftime('%d %b %Y') }}</span>
+</span>
+{% if not n.read_at %}<span class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0" aria-label="Unread"></span>{% endif %}
+</button>
+</form>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<div class="px-4 py-8 text-center">
+<span class="material-symbols-outlined text-[28px] text-outline">notifications_off</span>
+<p class="mt-2 font-body-sm text-body-sm text-on-surface-variant">You have no notifications yet.</p>
+</div>
+{% endif %}
+</div>
+</details>
+
+<!-- Profile menu -->
+<details class="relative" data-topbar-menu>
+<summary aria-label="Profile menu" class="list-none [&::-webkit-details-marker]:hidden cursor-pointer w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 bg-primary hover:ring-4 hover:ring-primary/15 flex items-center justify-center text-on-primary font-label-md text-label-md font-bold transition-all">
+{% if user %}<img src="{{ user.avatar_url }}" alt="" class="w-full h-full rounded-full object-cover">{% else %}<span class="material-symbols-outlined text-[18px]">person</span>{% endif %}
+</summary>
+<div class="absolute right-0 top-full mt-2 w-64 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-[0_20px_40px_-8px_rgba(15,23,42,0.18)] z-50 overflow-hidden">
+{% if user %}
+<div class="px-4 py-3 border-b border-outline-variant/30">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">{{ user.full_name }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ user.email }}</p>
+</div>
+{% endif %}
+<nav class="py-1.5">
+<a href="/settings#profile" class="flex items-center gap-3 px-4 py-2.5 hover:bg-surface-container-low font-label-md text-label-md text-on-surface"><span class="material-symbols-outlined text-[20px] text-on-surface-variant">account_circle</span>Profile</a>
+<a href="/settings" class="flex items-center gap-3 px-4 py-2.5 hover:bg-surface-container-low font-label-md text-label-md text-on-surface"><span class="material-symbols-outlined text-[20px] text-on-surface-variant">tune</span>Settings</a>
+<a href="/privacy" class="flex items-center gap-3 px-4 py-2.5 hover:bg-surface-container-low font-label-md text-label-md text-on-surface"><span class="material-symbols-outlined text-[20px] text-on-surface-variant">lock</span>Privacy Center</a>
+</nav>
+<form method="POST" action="/logout" class="m-0 border-t border-outline-variant/30">{% include "partials/csrf.html" %}
+<button type="submit" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-error-container/40 font-label-md text-label-md text-error text-left"><span class="material-symbols-outlined text-[20px]">logout</span>Sign out</button>
+</form>
+</div>
+</details>
+</div>
+</header>
+<script>
+  // Small screens: the sidebar slides in from the left.
+  (function () {
+    const aside = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('nav-backdrop');
+    if (!aside || !backdrop) return;
+    const set = (open) => {
+      aside.classList.toggle('-translate-x-full', !open);
+      backdrop.classList.toggle('hidden', !open);
+    };
+    document.querySelectorAll('[data-nav-open]').forEach((b) => b.addEventListener('click', () => set(true)));
+    backdrop.addEventListener('click', () => set(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  })();
+  // One topbar menu open at a time; close on outside click or Escape.
+  (function () {
+    const menus = () => document.querySelectorAll('details[data-topbar-menu]');
+    document.addEventListener('click', (e) => {
+      menus().forEach((m) => { if (m.open && !m.contains(e.target)) m.open = false; });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') menus().forEach((m) => { m.open = false; });
+    });
+    menus().forEach((m) => m.addEventListener('toggle', () => {
+      if (m.open) menus().forEach((o) => { if (o !== m) o.open = false; });
+    }));
+  })();
+</script>

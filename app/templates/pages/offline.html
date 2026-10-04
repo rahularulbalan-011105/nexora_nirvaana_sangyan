@@ -1,0 +1,467 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_offline_mode/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Offline Mode{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-space-md py-space-lg sm:p-margin-desktop space-y-space-xl max-w-7xl mx-auto w-full">
+<!-- Top Connectivity Indicator & Title Group -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider shadow-sm" data-net="offline">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span>● Offline — Local Cache Mode Active</span>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm uppercase tracking-wider shadow-sm" data-net="online" hidden>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>● Online — Everything Available</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight mt-space-xs">Offline Mode &amp; Local Continuity</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+          What keeps working when your connection drops, and what waits until you are back online.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto bg-surface-container-low px-space-md py-2.5 rounded-2xl shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">enhanced_encryption</span>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Offline Notes</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kept in this browser until synced</p>
+</div>
+</div>
+</div>
+<!-- Main Offline Status Hero Banner -->
+<div class="relative overflow-hidden rounded-[24px] bg-surface-container-lowest p-space-lg md:p-space-xl shadow-[0_4px_24px_-2px_rgba(15,23,42,0.06)]">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-secondary-fixed/40 via-primary-fixed-dim/20 to-transparent blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md max-w-2xl">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[32px]">cloud_off</span>
+</div>
+<div class="space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface" data-net="offline">You are currently offline</h2>
+<h2 class="font-headline-md text-headline-md text-on-surface" data-net="online" hidden>You are online</h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-tertiary">lock</span> Private Cache
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Saved lessons, the pause timer and the safety rules keep working offline. Notes you write here wait in this browser until you sync them.
+            </p>
+<div class="flex items-center gap-space-sm pt-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+<span class="font-label-md text-label-md"><span>Last synchronized:</span> <strong class="text-on-surface">{{ offline_last_sync }}</strong></span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-all shadow-sm active:scale-95 group" id="retry-sync-btn" onclick="triggerManualSync()">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:rotate-180 transition-transform duration-500" id="sync-icon">sync</span>
+<span>Sync When Online</span>
+</button>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-primary-container to-secondary text-on-primary font-label-lg text-label-lg shadow-[0_4px_16px_rgba(37,99,235,0.25)] hover:shadow-lg transition-all active:scale-95" href="/reflect">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+<span>Open Calming Tool</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Quick Status Metagrid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md bg-surface-container-lowest rounded-2xl shadow-[0_2px_12px_rgba(15,23,42,0.03)] flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/15 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Cached Lessons</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">{% if not offline_cache_enabled %}Offline Cache Off{% elif offline_lesson_count == 1 %}1 Topic Ready{% elif offline_lesson_count %}<span>{{ offline_lesson_count }}</span> <span>Topics Ready</span>{% else %}No Topics Yet{% endif %}</p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-2xl shadow-[0_2px_12px_rgba(15,23,42,0.03)] flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-container/15 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">edit_note</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Unsynced Notes</p>
+<p class="font-headline-sm text-headline-sm text-on-surface"><span id="unsynced-counter">0</span> <span>Drafts Pending</span></p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-2xl shadow-[0_2px_12px_rgba(15,23,42,0.03)] flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/30 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">translate</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Offline Glossary</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">EN • HI • TA</p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-2xl shadow-[0_2px_12px_rgba(15,23,42,0.03)] flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Offline Rulebook</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">v3.4 Active</p>
+</div>
+</div>
+</div>
+<!-- Two-Column Operational Breakdown -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg items-start">
+<!-- Column 1: Available Offline (Green/Safe signals) -->
+<div class="bg-surface-container-lowest rounded-[24px] p-space-lg md:p-space-xl shadow-[0_4px_20px_-2px_rgba(15,23,42,0.04)] space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-tertiary-container/15 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Available Offline</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Local Encrypted Storage</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-bold">5 Systems Functional</span>
+</div>
+<div class="space-y-space-md">
+<!-- Item 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">Saved Learning Content &amp; Micro-Modules</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+{% if not offline_cache_enabled %}Offline lesson caching is turned off in your preferences.{% elif offline_lesson_titles %}Full offline access to downloaded topics including:{% else %}No lessons are available offline yet.{% endif %}
+</p>
+{% if offline_cache_enabled and offline_lesson_titles %}
+<ul class="font-body-md text-body-md text-on-surface-variant list-disc pl-5">
+{% for title in offline_lesson_titles %}<li>{{ title }}</li>
+{% endfor %}</ul>
+{% endif %}
+<div class="pt-1 flex items-center gap-2">
+<span class="text-tertiary font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">download_done</span> <span>{{ offline_lesson_count }}</span> <span>offline packs</span>
+</span>
+<span class="text-outline-variant">•</span>
+<a class="text-primary font-label-sm text-label-sm hover:underline" href="/learn">Browse lessons →</a>
+<span class="text-outline-variant">•</span>
+<a class="text-primary font-label-sm text-label-sm hover:underline" href="/settings#offline">Offline settings →</a>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">Personal Journal &amp; Past Reflections</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Write, edit, and read your thought experiments without internet connectivity. Everything is stored directly in your browser's private indexedDB.
+              </p>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-tertiary font-semibold">100% Private to your device</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">5-Minute Tactical Pause Breathing Tool</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Fully functional offline timer with guided calming breathing paces to halt emotional panic before signing or transferring money.
+              </p>
+<div class="pt-1">
+<span class="px-2 py-0.5 rounded bg-surface text-on-surface font-label-sm text-label-sm">4-4-4 Box Breathing Ready</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">Basic Scam Heuristic Checklist</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Offline rulebook for identifying SEBI verification red flags, coercive deadlines, unverified WhatsApp tips, and synthetic urgency schemes.
+              </p>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">Cached Tamil &amp; Hindi Glossaries</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Crucial financial jargon demystified in regional languages with voice-pronunciation caches intact.
+              </p>
+<div class="pt-1 flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">தமிழ் • हिन्दी • English</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Temporarily Paused (Live features) -->
+<div class="bg-surface-container-lowest rounded-[24px] p-space-lg md:p-space-xl shadow-[0_4px_20px_-2px_rgba(15,23,42,0.04)] space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">pause_circle</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Temporarily Paused</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Requires Live Connectivity</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">4 Cloud Services</span>
+</div>
+<div class="space-y-space-md">
+<!-- Item 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/70 flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h4 class="font-label-lg text-label-lg text-on-surface">Deep AI Cloud Neural Analysis</h4>
+<span class="font-label-sm text-label-sm text-outline">Queued</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                In-depth generative message deconstruction and contextual NLP verification pause until connection restores.
+              </p>
+<p class="font-body-sm text-body-sm text-primary">Fallback: Basic pattern matcher remains active.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/70 flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">domain_verification</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h4 class="font-label-lg text-label-lg text-on-surface">Live SEBI &amp; SCORES Registry Verification</h4>
+<span class="font-label-sm text-label-sm text-outline">Standby</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Real-time cross-referencing of registered intermediary registration numbers and current disciplinary action registries.
+              </p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/70 flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h4 class="font-label-lg text-label-lg text-on-surface">Real-Time Voice Synthesis</h4>
+<span class="font-label-sm text-label-sm text-outline">Cached Voice Only</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                High-fidelity cloud streaming voice synthesis. Standard offline system voice narration continues functioning as fallback.
+              </p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low/70 flex items-start gap-space-md">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">query_stats</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h4 class="font-label-lg text-label-lg text-on-surface">Live Market Historical Benchmarks</h4>
+<span class="font-label-sm text-label-sm text-outline">Fixed Cache</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+{% if market_snapshot_at %}<span>Up-to-the-minute index updates and mutual fund NAV charts are locked to the last cached snapshot:</span> <span>{{ market_snapshot_at }}</span>{% else %}Up-to-the-minute index updates and mutual fund NAV charts are locked to the last cached snapshot.{% endif %}
+</p>
+</div>
+</div>
+</div>
+<!-- Illustrated reassurance graphic -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/40 flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[26px]">network_ping</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Auto-reconnection monitoring active</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The app listens for your network adapter in the background. No manual refresh needed.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actionable Offline Tool: Reflection Journal -->
+<div class="rounded-[24px] bg-surface-container-lowest p-space-lg md:p-space-xl shadow-[0_4px_24px_-2px_rgba(15,23,42,0.06)] space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">history_edu</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Take an Offline Reflection Note</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Record pressure or doubts right now while waiting for signal.</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span>Saved in this browser only</span>
+</div>
+</div>
+<div class="space-y-space-sm">
+<div class="relative">
+<textarea class="w-full p-4 rounded-2xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all resize-none shadow-inner" id="reflection-input" placeholder="Reflect on a decision while waiting for signal... (e.g. Someone is asking me to invest in an urgent IPO via WhatsApp link...)" rows="4"></textarea>
+</div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lock_reset</span>
+<span>Notes stay in this browser until you press Sync When Online. Then they are added to your private journal.</span>
+</div>
+<button class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary hover:bg-surface-tint text-on-primary font-label-lg text-label-lg shadow-[0_4px_16px_rgba(0,74,198,0.25)] hover:shadow-lg transition-all active:scale-95 shrink-0" onclick="saveOfflineJournal()" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Note on This Device</span>
+</button>
+</div>
+</div>
+<!-- Live Save Confirmation Toast Banner (Hidden by default) -->
+<div class="hidden p-space-md rounded-xl bg-tertiary-container/15 text-tertiary flex items-center justify-between transition-all" id="save-toast">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<span class="font-label-md text-label-md font-semibold">Note saved in this browser. Press Sync When Online to add it to your journal.</span>
+</div>
+<button aria-label="Dismiss" class="hover:opacity-75" onclick="document.getElementById('save-toast').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Offline Resilience Tips Micro-card row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-lg rounded-[20px] bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">timer</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">The 24-Hour Rule</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            If someone claims a financial opportunity expires within minutes, it is almost certainly a predatory high-pressure tactic.
+          </p>
+</div>
+<div class="pt-space-md">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Principle #01</span>
+</div>
+</div>
+<div class="p-space-lg rounded-[20px] bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[24px]">vpn_key</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">No OTP is Safe to Share</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            No bank or regulatory official from SEBI or RBI will ever ask for OTPs or screen sharing via AnyDesk/TeamViewer.
+          </p>
+</div>
+<div class="pt-space-md">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Principle #02</span>
+</div>
+</div>
+<div class="p-space-lg rounded-[20px] bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">call</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">National Cyber Helpline</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Dial <strong>1930</strong> immediately from any Indian telecom provider if you have accidentally initiated a fraudulent transaction.
+          </p>
+</div>
+<div class="pt-space-md">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">National Helpline</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div hidden id="offline-strings">
+<span data-k="still_offline">You are still offline. Your notes are safe in this browser; sync again once you are connected.</span>
+<span data-k="nothing">There are no notes waiting to sync.</span>
+<span data-k="synced">Notes added to your journal.</span>
+<span data-k="failed">Could not sync your notes. They are still saved in this browser.</span>
+<span data-k="empty">Please write down your thoughts or reflections before saving.</span>
+<span data-k="storage">This browser is not allowing notes to be saved.</span>
+</div>
+<script>
+  (function () {
+    var KEY = "nirvaan_offline_notes";
+    var S = {};
+    document.querySelectorAll("#offline-strings [data-k]").forEach(function (el) { S[el.dataset.k] = el.textContent.trim(); });
+    function say(msg, kind) {
+      if (window.NIRVAAN && window.NIRVAAN.toast) window.NIRVAAN.toast(msg, kind); else alert(msg);
+    }
+    function load() {
+      try { var n = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(n) ? n : []; } catch (e) { return []; }
+    }
+    function store(notes) { localStorage.setItem(KEY, JSON.stringify(notes)); }
+    function paintCount() {
+      var counter = document.getElementById("unsynced-counter");
+      if (counter) counter.innerText = String(load().length);
+    }
+    function paintNet() {
+      var online = navigator.onLine;
+      document.querySelectorAll("[data-net]").forEach(function (el) {
+        el.hidden = (el.getAttribute("data-net") === "online") !== online;
+      });
+    }
+
+    window.triggerManualSync = async function () {
+      var icon = document.getElementById("sync-icon");
+      var btn = document.getElementById("retry-sync-btn");
+      var notes = load();
+      if (!notes.length) { say(S.nothing, "info"); return; }
+      if (!navigator.onLine) { say(S.still_offline, "info"); return; }
+      if (btn) btn.disabled = true;
+      if (icon) icon.classList.add("animate-spin");
+      try {
+        var res = await fetch("/api/account/offline-notes", {
+          method: "POST", credentials: "same-origin",
+          headers: { "Content-Type": "application/json", "X-CSRF-Token": (window.NIRVAAN && window.NIRVAAN.csrf) || "" },
+          body: JSON.stringify({ notes: notes })
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (!res.ok || !data.ok) throw new Error(data.error || "sync failed");
+        // Drop only the notes the server just stored.
+        try { store(load().slice(notes.length)); } catch (e) { /* storage blocked */ }
+        paintCount();
+        say(S.synced, "success");
+      } catch (e) {
+        say(navigator.onLine ? S.failed : S.still_offline, "error");
+      } finally {
+        if (btn) btn.disabled = false;
+        if (icon) icon.classList.remove("animate-spin");
+      }
+    };
+
+    window.saveOfflineJournal = function () {
+      var input = document.getElementById("reflection-input");
+      var toast = document.getElementById("save-toast");
+      if (!input || !input.value.trim()) { say(S.empty, "info"); return; }
+      try {
+        var notes = load();
+        notes.push({ text: input.value, timestamp: new Date().toISOString() });
+        store(notes);
+      } catch (e) { say(S.storage, "error"); return; }
+      input.value = "";
+      if (toast) toast.classList.remove("hidden");
+      paintCount();
+    };
+
+    window.addEventListener("online", paintNet);
+    window.addEventListener("offline", paintNet);
+    paintNet();
+    paintCount();
+  })();
+</script>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

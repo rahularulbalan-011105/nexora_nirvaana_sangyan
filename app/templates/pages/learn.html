@@ -1,0 +1,399 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_learn_explore/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   Lesson cards, paths and progress come from
+   app/page_context/learn_and_explore.py; behaviour from /static/js/learn.js.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Learn & Explore{% endblock %}
+
+{% block content %}
+{% set learn = learn or {} %}
+{% set learn_paths = learn.paths or {} %}
+{% set cards_by_lang = learn.cards_by_lang or {} %}
+{% set cards = cards_by_lang.get(lang_code) or cards_by_lang.get('en') or [] %}
+{% set resume = (learn.resume_by_lang or {}).get(lang_code) if learn.resume_by_lang else none %}
+{% set saved_lessons = (learn.saved_by_lang or {}).get(lang_code) or [] %}
+{% set spot = (learn.spotlight_by_lang or {}).get(lang_code) or (learn.spotlight_by_lang or {}).get('en') or {} %}
+{% set group_counts = learn.group_counts or {} %}
+{% set card_images = {
+  'what-is-a-mutual-fund': ('https://lh3.googleusercontent.com/aida-public/AB6AXuAXYdp_FcN7EL6loiCwBescTQUe5N8OIGjBCTVW7wn_6PSTPO0JzSgXi0Kx9irDnyyv9s9TnK77c-n1mmpzuHom95oEJeUnOGOAN-ouzV0ruqhIzFGeZfopSBh6uAE8rrcpZbFlS0ywtZ4332dThsiiq0mVL4LfNzfuxltGH6jZpddfiFbJm4dvW2HCzjAQ00c0F3smpFeXXThlNanN01BOa6STYCvp8VTweNA8Cdo4mlM7OdQJdLTO', 'A warm, reassuring illustration of diverse Indian citizens reviewing a clear glass jar containing plants with colorful coins.'),
+  'recognising-pressure-tactics': ('https://lh3.googleusercontent.com/aida-public/AB6AXuDwNvlQq_oTRWTHwdVRQpBI3yIVJ_k7WZzgPsF6n3snx4x7jBhBOmbQ4x5SoaKGj7JT452bVaRuGTh70xu7u22IVuIU8Auzy0g0wG82Z8GyhIK0gIrkx2BbiCsinfJq5zt4oz3n2yytfI15qDidY4DzwSINnoQs6qg73EF9TH5JglS7GyNwABaN1g7LPXieYbbvJG1ZyjIqbxfnxEtd6LcChyfCqAJ0w2HWtvFQjXKw9zyFo9D7ERnQ', 'A smartphone showing a chat message with warning badges highlighting suspicious links and countdown timers.'),
+  'investor-rights-india': ('https://lh3.googleusercontent.com/aida-public/AB6AXuAG68PVl5j2aSmS89z6skblIvC7rzBVMwyVsDTakh4eD6du1m6MHbdl_BwXqhFJNorEwbTXMF5JCaxExfOt5-EOXoBwm6_ZU3xdEcKirsbxIwbxiK5eHHwJ6T3bct6-eZIVDZUTsEaEAdOEgbvkkFBqEzlcuYbCKOieSp74sJmU980ASAFX5wUDSiYbzeh_1h-tPBFLem6FLQbICiZTg0kT0-fFFdxH_P0lCJQrli3V-M-wb8CveLhF', 'An institutional shield emblem with a balanced scale of justice icon, in deep blue and emerald green hues.'),
+  'never-share-otp': ('https://lh3.googleusercontent.com/aida-public/AB6AXuABucIJQtOGnFfvWUtGPC6dCe0YkPGwm6pSj7G81UObwxnmQvCgEDkqr8PJE8jREiryXhrQWzw8VGeQSNczcC14L6uf0tNiLM21jsR9wM_Lt_FVwK4k1gOjTwFQxjRQjI-aNpTRCIcJKBj_oN3yfhQ4mfKNJKQATr0ptUax98oQj8seIYNdJqQ8Atg_Gm2Xi0QeYRnVGtOLbt-c0jk4NDt7eH1SaoliimqgI8FgiyIAk1BydAqFoqu8', 'An illustration of UPI QR code safety with a protective shield blocking unauthorized collect request notifications.'),
+} %}
+<div class="flex flex-col w-full min-w-0">
+<!-- Interactive Top Action / Quick Bar -->
+<div class="px-margin-desktop pt-space-lg pb-space-md">
+<!-- Breadcrumb -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="text-primary font-bold tracking-wider uppercase text-[11px]">Empowerment Hub</span>
+<span>•</span>
+<span class="text-on-surface font-medium">Multilingual Investor Education</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[15px] text-tertiary">translate</span>
+          English • हिन्दी • தமிழ்
+        </span>
+</div>
+</div>
+<!-- Page Header & Stats Banner -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-on-surface font-extrabold tracking-tight">Learn &amp; Explore</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs">
+          Jargon-free financial literacy, scam defense modules, and investor rights designed for everyday citizens across Bharat.
+        </p>
+</div>
+<!-- Stats Pill Bar -->
+<div class="flex flex-wrap items-center gap-space-sm p-1.5 rounded-2xl bg-surface-container shadow-sm">
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container/15 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">school</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold"><span id="stat-completed">{{ learn.concepts_completed or 0 }}</span> <span>Concepts</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Completed</p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">route</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold"><span>{{ learn.paths_in_progress or 0 }}</span> <span>Learning Paths</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">In Progress</p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold"><span>{{ learn.saved_count or 0 }}</span> <span>Saved</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bookmarked Lessons</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Resume Learning: the most recently viewed lesson not yet completed -->
+{% if resume %}
+<section class="px-margin-desktop pb-space-sm" id="learn-resume">
+<a class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-3xl bg-primary-fixed/60 hover:bg-primary-fixed transition-colors shadow-sm" href="{{ resume.url }}">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-2xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">{{ resume.icon }}</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Resume Learning</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold break-words">{{ resume.title }}</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant"><span>{{ resume.progress.percent }}</span>% <span>read</span></p>
+</div>
+</div>
+<span class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary text-on-primary font-label-lg text-label-lg font-bold self-start sm:self-center">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</span>
+</a>
+</section>
+{% endif %}
+<!-- Saved lessons: the ones this person bookmarked -->
+<section class="px-margin-desktop pb-space-sm" id="learn-saved">
+<div class="rounded-3xl bg-surface-container-lowest p-space-md shadow-sm">
+<div class="flex items-center justify-between gap-2 mb-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2"><span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings:'FILL' 1">bookmark</span><span>Saved lessons</span></h2>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ saved_lessons|length }}</span>
+</div>
+{% if saved_lessons %}
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-space-sm">
+{% for card in saved_lessons %}
+<a href="{{ card.url }}" class="flex items-center gap-3 p-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors min-w-0">
+<span class="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">{{ card.icon }}</span></span>
+<span class="min-w-0 flex-1">
+<span class="block font-label-lg text-label-lg text-on-surface font-semibold truncate">{{ card.title }}</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">{% if card.progress.complete %}Completed{% else %}<span>{{ card.progress.percent }}</span>% <span>read</span>{% endif %}</span>
+</span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">chevron_right</span>
+</a>
+{% endfor %}
+</div>
+{% else %}
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lessons you bookmark will be listed here.</p>
+{% endif %}
+</div>
+</section>
+<!-- Horizontal Filter Chips: scroll on small screens, wrap on large ones -->
+<div class="px-margin-desktop py-space-sm min-w-0">
+<div class="overflow-x-auto no-scrollbar -mx-1 px-1">
+<div class="flex items-center gap-2.5 min-w-max lg:min-w-0 lg:flex-wrap pb-1" id="category-filter-chips" role="group" aria-label="Filter lessons by topic">
+<button class="filter-chip active flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg font-semibold shadow-sm transition-all" data-category="all" aria-pressed="true" type="button">
+<span>All Topics</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-white/20 rounded-full">{{ learn.topics_total or 0 }}</span>
+</button>
+{% for key, icon, color, label in [
+  ('basics', 'psychology_alt', 'text-primary', 'Basics'),
+  ('mutual-funds', 'pie_chart', 'text-tertiary', 'Mutual Funds & SIP'),
+  ('scams', 'gpp_maybe', 'text-error', 'Scams & Red Flags'),
+  ('rights', 'balance', 'text-secondary', 'Your Rights'),
+  ('upi', 'phonelink_lock', 'text-on-surface-variant', 'Digital & UPI Safety'),
+  ('volatility', 'show_chart', 'text-on-surface-variant', 'Market Volatility'),
+  ('budget', 'savings', 'text-on-surface-variant', 'Budgeting'),
+] %}
+<button class="filter-chip flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-lg text-label-lg shadow-sm transition-all" data-category="{{ key }}" aria-pressed="false" type="button">
+<span class="material-symbols-outlined text-[16px] {{ color }}">{{ icon }}</span>
+<span>{{ label }}</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-surface-container rounded-full">{{ group_counts.get(key, 0) }}</span>
+</button>
+{% endfor %}
+</div>
+</div>
+</div>
+<!-- SECTION 1: Structured Learning Paths -->
+<section class="px-margin-desktop pt-space-lg pb-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-xs mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-6 rounded-full bg-primary inline-block"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Structured Learning Paths</h2>
+<span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Bite-sized Steps</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pause anytime • Progress is saved to your account</span>
+</div>
+<!-- Path Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter-desktop">
+{% for key, icon, icon_bg, ring, accent, badge, hover, btn, arrow, stage_a, stage_b, title, blurb in [
+  ('foundation', 'rocket_launch', 'bg-primary-fixed text-primary', 'text-primary', 'text-primary', 'text-tertiary bg-tertiary-container/10', 'rgba(37,99,235,0.08)', 'bg-gradient-to-r from-primary to-primary-container hover:opacity-95 text-on-primary shadow-md', '', 'Stage 1', 'Foundation', 'Start Your Investor Journey', 'Risk and return, mutual funds, SIPs, diversification and volatility, explained without confusing terminology.'),
+  ('scams', 'gpp_bad', 'bg-error-container/40 text-error', 'text-error', 'text-error', 'text-error bg-error-container/30', 'rgba(186,26,26,0.08)', 'bg-surface-container hover:bg-surface-container-high text-on-surface shadow-sm', 'text-error', 'Essential Defense', 'Scam Shield', 'Stay Safe from Scams', 'Recognise guaranteed-return lures, fake credentials, pressure tactics and UPI tricks, and know where to complain.'),
+  ('habits', 'self_improvement', 'bg-tertiary-fixed text-on-tertiary-fixed-variant', 'text-tertiary', 'text-tertiary', 'text-tertiary bg-tertiary-container/10', 'rgba(0,125,85,0.08)', 'bg-surface-container hover:bg-surface-container-high text-on-surface shadow-sm', 'text-tertiary', 'Mindset & Routine', 'Behavioral', 'Build Healthy Financial Habits', 'Notice where money goes each month and why an emergency buffer matters, without any prescribed plan.'),
+] %}
+{% set path = learn_paths.get(key) or {} %}
+<div class="flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-[0_10px_24px_-4px_{{ hover }}] transition-all group" data-learn-path="{{ key }}" data-groups="{{ (path.groups or []) | join(' ') }}">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-2xl {{ icon_bg }} flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">{{ icon }}</span>
+</div>
+<!-- Progress ring: this user's completion of the path -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90" viewBox="0 0 48 48">
+<circle class="text-surface-container-high" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="{{ ring }} transition-all duration-700" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="{{ path.dashoffset if path.dashoffset is not none else 125.6 }}" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-label-md text-label-md font-bold text-on-surface">{{ path.percent or 0 }}%</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm {{ accent }} font-bold uppercase tracking-wider mb-1">
+<span>{{ stage_a }}</span>
+<span>•</span>
+<span>{{ stage_b }}</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">{{ title }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">{{ blurb }}</p>
+</div>
+<div class="pt-space-lg mt-space-md border-t border-surface-container-high/60">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium"><span>Progress:</span> <span>{{ path.completed or 0 }}</span> <span>of</span> <span>{{ path.total or 0 }}</span> <span>modules</span></span>
+<span class="font-label-sm text-label-sm {{ badge }} font-bold px-2 py-0.5 rounded-full">{% if path.status == "completed" %}Completed{% elif path.status == "in_progress" %}In Progress{% else %}Not Started{% endif %}</span>
+</div>
+{% if path.url %}
+<a class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl {{ btn }} font-label-lg text-label-lg font-bold transition-all active:scale-[0.99]" href="{{ path.url }}">
+<span>{% if path.status == "completed" %}Review Path{% elif path.status == "in_progress" %}Resume Learning{% else %}Start Learning{% endif %}</span>
+<span class="material-symbols-outlined text-[18px] {{ arrow }}">arrow_forward</span>
+</a>
+{% else %}
+<p class="w-full text-center py-3 px-space-md rounded-2xl bg-surface-container font-label-md text-label-md text-on-surface-variant">Lessons for this path are not available yet.</p>
+{% endif %}
+</div>
+</div>
+{% endfor %}
+</div>
+</section>
+<!-- Featured explainer: shown in the page language only -->
+{% if spot %}
+<section class="px-margin-desktop py-space-md" id="learn-spotlight">
+<div class="rounded-3xl bg-surface-container p-space-md sm:p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<div class="max-w-xl min-w-0">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider mb-space-sm">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+            Featured Explainer
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold leading-tight" lang="{{ lang_code }}">{{ spot.title }}</h2>
+<div class="font-body-md text-body-md text-on-surface-variant mt-space-sm space-y-2" id="spotlight-text" lang="{{ lang_code }}">
+{% for para in spot.analogy.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
+</div>
+<div class="flex flex-wrap items-center gap-space-sm mt-space-md">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm hover:bg-primary-container transition-colors" id="spotlight-listen" type="button" aria-pressed="false">
+<span class="material-symbols-outlined text-[18px]" id="spotlight-listen-icon">volume_up</span>
+<span id="spotlight-listen-label">Listen</span>
+</button>
+<a class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-bright transition-colors shadow-sm" href="/learn/what-is-a-mutual-fund">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Open the full lesson</span>
+</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm" id="spotlight-status" role="status" aria-live="polite" hidden></p>
+</div>
+<!-- Illustrated diagram representation from design prototype -->
+<div class="w-full lg:w-96 p-space-md bg-surface-container-lowest rounded-2xl shadow-sm flex flex-col items-center">
+<div class="flex items-center justify-between w-full pb-space-sm border-b border-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Visual Representation</span>
+<span class="text-tertiary font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> 3-Part Flow
+            </span>
+</div>
+<div class="grid grid-cols-3 gap-2 w-full my-space-md text-center items-center">
+<div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[28px]">group</span>
+<span class="font-label-sm text-label-sm font-bold mt-1 text-on-surface">Investors</span>
+<span class="text-[10px] text-on-surface-variant">Small Pools</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">arrow_forward</span>
+</div>
+<div class="flex flex-col items-center p-2 rounded-xl bg-secondary-fixed/50">
+<span class="material-symbols-outlined text-secondary text-[28px]">account_balance</span>
+<span class="font-label-sm text-label-sm font-bold mt-1 text-on-surface">Mutual Fund</span>
+<span class="text-[10px] text-on-surface-variant">Diversified</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low p-2.5 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Regulated by SEBI (Securities &amp; Exchange Board of India).
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endif %}
+<!-- SECTION 2: Topic Modules Grid -->
+<section class="px-margin-desktop pt-space-lg pb-space-xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-6 rounded-full bg-secondary inline-block"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Popular Topic Modules</h2>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span>Showing</span> <span id="learn-visible-count">{{ cards | length }}</span> <span>modules</span>
+</div>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop" id="learn-cards">
+{% for card in cards %}
+{% set img = card_images.get(card.slug) %}
+<article class="topic-card flex flex-col justify-between p-space-lg rounded-3xl bg-surface-container-lowest shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all min-w-0" data-learn-card="{{ card.slug }}" data-group="{{ card.group }}">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span> <span>{{ card.reading_minutes }}</span> <span>min read</span>
+</span>
+{% if card.progress.complete %}
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[14px]">task_alt</span> <span>Completed</span></span>
+{% elif card.progress.percent %}
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-primary-fixed px-2 py-0.5 rounded-full"><span>{{ card.progress.percent }}</span>% <span>read</span></span>
+{% else %}
+<span class="font-label-sm text-label-sm font-semibold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">{{ 'Intermediate' if card.difficulty == 'intermediate' else 'Advanced' if card.difficulty == 'advanced' else 'Beginner' }}</span>
+{% endif %}
+</div>
+{% if img %}
+<div class="w-full h-36 rounded-2xl overflow-hidden mb-space-md relative bg-surface-container">
+<img class="w-full h-full object-cover" alt="" data-alt="{{ img[1] }}" loading="lazy" src="{{ img[0] }}">
+</div>
+{% elif card.slug == 'what-is-volatility' %}
+<!-- Minimalist trend chart visual (synthetic, illustrative) -->
+<div class="w-full h-36 rounded-2xl bg-surface-container-low p-3 flex flex-col justify-between mb-space-md relative overflow-hidden">
+<div class="flex justify-between items-center gap-2 text-[11px] font-semibold text-on-surface-variant">
+<span>Illustrative price path</span>
+<span class="text-tertiary">Synthetic data</span>
+</div>
+<div class="w-full h-20 flex items-center">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 200 60" aria-hidden="true">
+<path class="text-primary" d="M0,45 Q25,10 50,30 T100,20 T150,38 T200,8" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<path class="text-primary/10" d="M0,45 Q25,10 50,30 T100,20 T150,38 T200,8 L200,60 L0,60 Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="text-[10px] text-on-surface-variant font-medium text-center">Not a real index. Past movement does not show future movement.</div>
+</div>
+{% elif card.slug == 'understanding-sip' %}
+<div class="w-full h-36 rounded-2xl bg-surface-container-low p-4 flex flex-col justify-center mb-space-md relative overflow-hidden">
+<div class="flex items-center justify-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold text-[13px]">₹1,000</div>
+<span class="material-symbols-outlined text-primary">add</span>
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center"><span class="material-symbols-outlined">event_repeat</span></div>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<div class="w-12 h-12 rounded-xl bg-tertiary text-on-tertiary flex items-center justify-center"><span class="material-symbols-outlined">stacked_bar_chart</span></div>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface-variant mt-3">A fixed amount at regular intervals. It does not remove risk.</p>
+</div>
+{% else %}
+<div class="w-full h-36 rounded-2xl bg-surface-container-low mb-space-md flex items-center justify-center">
+<div class="w-16 h-16 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[34px]">{{ card.icon }}</span>
+</div>
+</div>
+{% endif %}
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold break-words" lang="{{ lang_code }}">{{ card.title }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs line-clamp-2" lang="{{ lang_code }}">{{ card.summary }}</p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-surface-container">
+<a class="w-full flex items-center justify-between px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary font-label-lg text-label-lg text-on-surface transition-all group" href="{{ card.url }}">
+<span class="font-semibold">{% if card.progress.complete %}Review Concept{% elif card.progress.percent %}Continue Concept{% else %}Start Concept{% endif %}</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+{% endfor %}
+</div>
+<p class="p-space-lg rounded-3xl bg-surface-container-low text-center font-body-md text-body-md text-on-surface-variant" id="learn-empty" hidden>No lessons in this topic yet.</p>
+{% if not cards %}
+<p class="p-space-lg rounded-3xl bg-surface-container-low text-center font-body-md text-body-md text-on-surface-variant">Lessons are not available right now.</p>
+{% endif %}
+</section>
+<!-- Ask a question that is not covered -->
+<section class="px-margin-desktop pb-space-lg">
+<div class="p-space-lg rounded-3xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-on-primary flex-shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[30px]">interpreter_mode</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Have a question that is not covered here?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Ask NIRVAAN in English, Hindi or Tamil. It explains concepts; it does not recommend investments.</p>
+</div>
+</div>
+<a class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold shadow-md hover:brightness-110 transition-all flex-shrink-0" href="/talk">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+<span>Ask NIRVAAN</span>
+</a>
+</div>
+</section>
+<!-- Educational Non-Commercial Disclaimer Banner -->
+<footer class="px-margin-desktop pb-space-xl">
+<div class="p-space-md rounded-2xl bg-surface-container flex items-start gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5 flex-shrink-0">shield_with_heart</span>
+<div class="font-body-sm text-body-sm">
+<strong class="font-label-md text-label-md text-on-surface block mb-0.5">Civic Public Good Notice</strong>
+        All NIRVAAN educational modules are strictly non-commercial, non-promotional, and public-good focused. NIRVAAN does not sell financial products, take distributor commissions, manage funds, or provide stock trading recommendations. Our sole purpose is your autonomous financial resilience.
+      </div>
+</div>
+</footer>
+</div>
+<!-- Interface strings for learn.js (translated with the page). -->
+<div hidden id="learn-strings">
+<span data-k="listen">Listen</span>
+<span data-k="stop">Stop</span>
+<span data-k="speaking">Reading aloud…</span>
+<span data-k="unsupported">Listening is not supported in this browser.</span>
+<span data-k="no_voice">No voice for this language is installed on this device, so this lesson cannot be read aloud here.</span>
+<span data-k="speech_error">Reading aloud stopped because of a problem with this device's speech voice.</span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/learn.js" defer></script>
+{% endblock %}

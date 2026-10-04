@@ -1,0 +1,15 @@
+# PostgreSQL support. Install only when switching off the SQLite dev fallback.
+#
+#   python -m pip install -r requirements-postgres.txt
+#
+# Then in .env:
+#   USE_SQLITE_FALLBACK=false
+#   DATABASE_URL=postgresql+psycopg://user:pass@localhost:5432/nirvaan
+#
+# Note: psycopg[binary] needs a wheel for your exact Python version. On very
+# new interpreters the binary wheel may lag; if it does, either install the
+# pure-Python build alongside system libpq (`pip install psycopg`) or use a
+# slightly older Python. Floors, not pins, so pip can pick what exists.
+
+psycopg[binary]>=3.2.10          # PostgreSQL driver
+pgvector>=0.3.6                  # vector column type for RAG embeddings

@@ -1,0 +1,9 @@
+{# Online/offline indicator. Driven by static/js/nirvaan.js - the app must
+   never imply network features work while the device is offline. #}
+<div class="fixed top-0 left-0 right-0 z-[60] hidden" data-offline-banner>
+  <div class="flex items-center justify-center gap-space-sm px-space-md py-2
+              bg-on-surface text-inverse-on-surface font-label-md text-label-md">
+    <span class="material-symbols-outlined text-[18px]">cloud_off</span>
+    <span data-offline-text>You are offline. Saved lessons, your journal, reflection and the pause timer still work.</span>
+  </div>
+</div>

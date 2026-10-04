@@ -1,0 +1,447 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_family_mode/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Family Mode{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-space-md sm:px-margin-desktop py-space-lg space-y-space-xl max-w-7xl mx-auto w-full">
+<!-- Header Banner Area -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg sm:p-space-xl shadow-sm">
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-secondary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="absolute right-40 -bottom-24 w-72 h-72 rounded-full bg-primary-fixed/50 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">family_restroom</span>
+<span>Family Protection Shield</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+            Family Mode — Safe Financial Care for Loved Ones
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            Help elderly parents and family members navigate digital finance, verify suspicious forwards, and make calm decisions without technical complexity.
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm flex-shrink-0">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm text-label-md font-label-md font-semibold opacity-60 cursor-not-allowed" disabled title="Not available yet" type="button">
+<span class="material-symbols-outlined text-[18px]">key</span>
+<span>Emergency Safety PIN</span>
+<span class="font-label-sm text-label-sm">(Not available yet)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-high text-on-surface-variant shadow-sm text-label-md font-label-md font-bold opacity-60 cursor-not-allowed" disabled title="Inviting family members is not available yet" type="button">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span>+ Add Family Member</span>
+<span class="font-label-sm text-label-sm">(Not available yet)</span>
+</button>
+<a class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-lowest text-primary hover:bg-surface-container shadow-sm transition-all text-label-md font-label-md font-semibold" href="/settings#family">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Family Settings</span>
+</a>
+</div>
+</div>
+<!-- Top Summary Pill Bar -->
+<div class="mt-space-lg pt-space-md flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest rounded-2xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">groups</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Your Family Circle</span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-bold">{% if family_active %}<span>{{ family_active|length }}</span> <span>Linked</span>{% else %}Not Linked Yet{% endif %}</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+{% if family_links %}{% for m in family_links %}<span>{{ m.name }}</span> <span>({{ m.label }})</span>{% if not loop.last %} • {% endif %}{% endfor %}{% else %}No family members linked yet.{% endif %}
+</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+{% if family_links %}
+<div class="flex -space-x-2 overflow-hidden">
+{% set avatar_colors = ['bg-primary-fixed text-on-primary-fixed', 'bg-secondary-fixed text-on-secondary-fixed', 'bg-tertiary-fixed text-on-tertiary-fixed'] %}
+{% for m in family_links[:5] %}<div class="inline-flex items-center justify-center w-8 h-8 rounded-full {{ avatar_colors[loop.index0 % 3] }} text-label-sm font-bold shadow-sm" title="{{ m.name }}">{{ m.initials }}</div>
+{% endfor %}
+</div>
+{% endif %}
+{% if family_active %}
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> <span>Sync Active</span>
+</span>
+{% endif %}
+</div>
+</div>
+</div>
+<!-- Section 1: Senior & First-Time Investor Experience -->
+<div class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase font-bold">Elder Accessibility Architecture</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Senior &amp; First-Time Investor Experience (Preview &amp; Remote Setup)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            What your loved ones experience on their mobile phone: stripped of jargon, high-contrast, audio-first, and zero stress.
+          </p>
+</div>
+<!-- Elder Accessibility Remote Toggles -->
+<div class="flex flex-wrap items-center gap-2 bg-surface-container-lowest p-1.5 rounded-2xl shadow-sm">
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-label-sm font-label-sm font-medium hover:bg-surface-container-high transition-colors" href="/settings#accessibility">
+{% set f_large = prefs is not none and prefs.large_text %}
+<span class="material-symbols-outlined text-[16px] {{ 'text-tertiary' if f_large else 'text-outline' }}">{{ 'check_circle' if f_large else 'cancel' }}</span>
+<span>{% if f_large %}Large Text: ON{% else %}Large Text: OFF{% endif %}</span>
+</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-label-sm font-label-sm font-medium hover:bg-surface-container-high transition-colors" href="/settings#accessibility">
+{% set f_contrast = prefs is not none and prefs.high_contrast %}
+<span class="material-symbols-outlined text-[16px] {{ 'text-tertiary' if f_contrast else 'text-outline' }}">{{ 'check_circle' if f_contrast else 'cancel' }}</span>
+<span>{% if f_contrast %}High Contrast: ON{% else %}High Contrast: OFF{% endif %}</span>
+</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-label-sm font-label-sm font-medium hover:bg-surface-container-high transition-colors" href="/settings#accessibility">
+{% set f_voice = prefs is none or prefs.voice_enabled %}
+<span class="material-symbols-outlined text-[16px] {{ 'text-tertiary' if f_voice else 'text-outline' }}">{{ 'volume_up' if f_voice else 'volume_off' }}</span>
+<span>{% if f_voice %}Spoken Readout: ON{% else %}Spoken Readout: OFF{% endif %}</span>
+</a>
+</div>
+</div>
+<!-- 3 Senior-Optimized Large Visual Interactive Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Big Card 1: Mother Tongue Audio Companion -->
+<div class="relative bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/20 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">record_voice_over</span> 1-Tap Voice
+              </span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>हिन्दी</span> • <span>தமிழ்</span> • <span>Eng</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
+                Talk in Mother Tongue
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Parents just hold the button and speak naturally. NIRVAAN responds with simple, loving, non-technical audio guidance.
+              </p>
+</div>
+<!-- Big Voice Trigger Sim -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col items-center text-center space-y-space-sm">
+<a aria-label="Open Talk to NIRVAAN" class="w-20 h-20 rounded-full bg-gradient-to-tr from-primary to-secondary-container text-on-primary shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all" href="/talk">
+<span class="material-symbols-outlined text-[36px]">mic</span>
+</a>
+<span class="font-label-md text-label-md text-on-surface font-bold">
+                "बोलिए या पूछिए (Speak to Ask)"
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Zero typing needed • Spoken Indian accents recognized
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-sm flex items-center justify-between font-label-sm text-label-sm text-primary font-semibold">
+{% if family_names %}<span><span>Configured for:</span> <span>{{ family_names }}</span></span>{% else %}<span>No family members linked yet</span>{% endif %}
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+</div>
+<!-- Big Card 2: WhatsApp Suspicious Message Scanner -->
+<div class="relative bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed/20 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span> Forward Checker
+              </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant">
+                Auto-Scan
+              </span>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
+                Check a Suspicious Message
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Parents share any SMS, WhatsApp forward, or QR code. Instantly renders a massive visual verdict: Safe or Pause.
+              </p>
+</div>
+<!-- Simulated Verdict Preview -->
+<div class="rounded-2xl p-space-md bg-surface-container-low space-y-space-sm">
+<div class="flex items-center gap-space-sm bg-surface-container-lowest p-space-sm rounded-xl">
+<span class="material-symbols-outlined text-error text-[28px]">warning</span>
+<div class="min-w-0 flex-1">
+<div class="font-label-sm text-label-sm text-error font-bold uppercase tracking-wider">Verdict Sample</div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-extrabold truncate">रुको और परिवार से पूछो!</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">"Pause &amp; Ask Family Before Clicking"</div>
+</div>
+</div>
+<div class="flex items-center justify-center gap-2 text-label-sm text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Green for Safe • <span class="material-symbols-outlined text-[16px] text-error">pan_tool</span> Amber/Red to Stop
+              </div>
+</div>
+</div>
+<div class="pt-space-md mt-space-sm flex items-center justify-between font-label-sm text-label-sm text-secondary font-semibold">
+<span>{% if family_active %}Parent Remote Shortcut: Active{% else %}Parent Remote Shortcut: Not Set Up{% endif %}</span>
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+</div>
+<!-- Big Card 3: One-Tap Guidance Hotline -->
+<div class="relative bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-fixed/20 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">headset_mic</span> Calm Helpline
+              </span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Free &amp; Private</span>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
+                One-Tap Guidance Hotline
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Confusing bank prompt or unexpected OTP demand? A calm Indian voice calmly breaks down what is happening without panic.
+              </p>
+</div>
+<!-- Hotline Audio Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-bold">"NIRVAAN Shanti Mitra"</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Instant calm explanation of confusing SMS</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Average response time</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Immediate (&lt; 2s)</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-sm flex items-center justify-between font-label-sm text-label-sm text-tertiary font-semibold">
+<span>{% if family_active %}Emergency Bypass Mode: Active{% else %}Emergency Bypass Mode: Not Set Up{% endif %}</span>
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Family Protection & Verification Hub (Guardian Overview) -->
+<div class="space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase font-bold">Guardian Control Center</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Family Protection &amp; Verification Hub
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Real-time status of protected elders, deflected scam threats, and collaborative calm reviews.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm">
+{% if family_active %}
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span>Guardian Telemetry Live</span>
+</span>
+{% endif %}
+</div>
+</div>
+<!-- Bento Grid: Members Status + Shared Vault -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left 7 cols: Active Member Profiles & Alerts -->
+<div class="lg:col-span-7 space-y-space-md">
+{% set avatar_colors = ['bg-primary-fixed text-on-primary-fixed', 'bg-secondary-fixed text-on-secondary-fixed', 'bg-tertiary-fixed text-on-tertiary-fixed'] %}
+{% for m in family_links %}
+<!-- Family member -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm hover:shadow-md transition-all space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="relative">
+<div class="w-14 h-14 rounded-2xl {{ avatar_colors[loop.index0 % 3] }} flex items-center justify-center font-headline-sm text-headline-sm font-extrabold">{{ m.initials }}</div>
+{% if m.status == 'active' %}
+<span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary-fixed">check</span>
+</span>
+{% endif %}
+</div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold"><span>{{ m.name }}</span> <span>({{ m.label }})</span></h3>
+{% if m.language %}<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ m.language }}</span>{% endif %}
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{% if m.role == 'assistant' %}Your trusted family assistant{% else %}You are their trusted family assistant{% endif %}</p>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between">
+{% if m.status == 'active' %}
+<span class="px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary text-label-sm font-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span> <span>Consent Active</span>
+</span>
+{% else %}
+<span class="px-3 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container text-label-sm font-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span> <span>Awaiting Consent</span>
+</span>
+{% endif %}
+{% if m.since %}<span class="font-body-sm text-body-sm text-on-surface-variant mt-1"><span>Linked since</span> <span>{{ m.since }}</span></span>{% endif %}
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-xl bg-tertiary-container/20 text-tertiary flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div class="space-y-1 flex-1">
+<span class="font-label-md text-label-md text-tertiary font-bold">Shared with consent</span>
+{% if m.scopes %}
+<div class="flex flex-wrap gap-2 pt-1">
+{% for scope in m.scopes %}<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">{{ scope }}</span>
+{% endfor %}
+</div>
+{% else %}
+<p class="font-body-sm text-body-sm text-on-surface-variant">Nothing is shared yet.</p>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+{% for inv in family_invites %}
+<!-- Pending invitation -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">{{ 'outgoing_mail' if inv.direction == 'sent' else 'mark_email_unread' }}</span>
+</div>
+<div>
+{% if inv.direction == 'sent' %}
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Invitation Sent</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ inv.email }}</p>
+{% else %}
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Invitation Received</h3>
+{% if inv.inviter_name %}<p class="font-body-sm text-body-sm text-on-surface-variant"><span>From</span> <span>{{ inv.inviter_name }}</span></p>{% endif %}
+{% endif %}
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between">
+<span class="px-3 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container text-label-sm font-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> <span>Pending</span>
+</span>
+{% if inv.expires %}<span class="font-body-sm text-body-sm text-on-surface-variant mt-1"><span>Expires</span> <span>{{ inv.expires }}</span></span>{% endif %}
+</div>
+</div>
+{% if inv.scopes %}
+<div class="flex flex-wrap gap-2">
+{% for scope in inv.scopes %}<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">{{ scope }}</span>
+{% endfor %}
+</div>
+{% endif %}
+</div>
+{% endfor %}
+{% if not family_links and not family_invites %}
+<!-- Empty state -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col items-center text-center space-y-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">group_add</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">No family members linked yet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Invite a trusted family member to share safety alerts and learning milestones. Nothing is shared until consent is given.</p>
+</div>
+{% endif %}
+</div>
+<!-- Right 5 cols: Decision Vault & Safety Boundaries -->
+<div class="lg:col-span-5 space-y-space-md">
+<!-- Shared Family Decision Vault -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">balance</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                  Shared Decision Vault
+                </h3>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">Nothing Pending</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              When elders want a second set of eyes on an investment idea, it appears here for a pressure-free family discussion.
+            </p>
+<!-- Pending Review Item Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col items-center text-center space-y-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">inbox</span>
+<p class="font-label-md text-label-md text-on-surface font-bold">No decisions waiting for review</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ideas shared by your family members will appear here.</p>
+</div>
+</div>
+<!-- Caregiver Privacy Boundary Notice (Ethical Safeguard) -->
+<div class="rounded-3xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm font-bold">
+                Caregiver Privacy Boundary
+              </h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Family Mode protects against fraud and misinformation while honoring every member's personal autonomy.
+            </p>
+<div class="space-y-space-xs pt-1">
+<div class="flex items-start gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">check_circle</span>
+<span>Safety alerts, deflected APK warnings &amp; learning milestones are shared.</span>
+</div>
+<div class="flex items-start gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span>Personal account balances, bank logins, UPI PINs, and private thoughts <strong>remain strictly confidential</strong> to each elder.</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Audited under India DPDP Act 2023</span>
+<a class="text-primary hover:underline font-semibold" href="/privacy">Privacy Center</a>
+</div>
+</div>
+<!-- Quick Tip Card -->
+<div class="rounded-3xl bg-gradient-to-br from-primary-fixed to-surface-container-high p-space-lg space-y-space-xs text-on-primary-fixed shadow-sm">
+<div class="flex items-center gap-2 font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span>Gentle Communication Tip</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              When discussing flagged messages with elderly parents, focus on praising their caution rather than pointing out danger. Reassurance builds digital resilience faster than fear.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Shield Protection Diagnostic Footer Widget -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/15 text-tertiary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">network_ping</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Family Emergency Broadcast Mesh</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Not available yet</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Planned: alert family guardians when a remote screen-share app (e.g., AnyDesk/TeamViewer) appears on a parent's device. This does not work yet.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0 w-full md:w-auto">
+<button class="w-full md:w-auto px-space-md py-2.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold opacity-60 cursor-not-allowed" disabled title="Not available yet" type="button">
+          Configure Alert Routing
+        </button>
+<button class="w-full md:w-auto px-space-md py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold opacity-60 cursor-not-allowed" disabled title="Not available yet" type="button">
+          Test Emergency Ring
+        </button>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="flex flex-col w-full">
+<div class="px-margin-desktop py-space-lg max-w-7xl mx-auto w-full space-y-space-lg">
+<!-- Breadcrumb & Top Bar Meta -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Learn &amp; Explore</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold">Explain Simply (தமிழ் • எளிய விளக்கம்)</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+          Verified Civic Guide
+        </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+          4 min read
+        </span>
+</div>
+</div>
+<!-- Title & Mode Controller Strip -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-1 max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+              What is a Mutual Fund? 
+              <span class="text-primary font-normal text-headline-md block sm:inline sm:ml-2">(மியூச்சுவல் ஃபண்ட் என்றால் என்ன?)</span>
+</h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Demystifying collective investing without Wall Street jargon or sales pitches. A plain-language breakdown crafted for you, your elders, and first-time family investors.
+          </p>
+</div>
+<!-- Language Pill Selector -->
+<div class="flex items-center p-1.5 bg-surface-container-low rounded-2xl self-start lg:self-center">
+<button class="px-3.5 py-1.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="switchLanguage('en')">
+            English
+          </button>
+<button class="px-4 py-1.5 rounded-xl font-label-md text-label-md bg-primary text-on-primary shadow-sm font-bold flex items-center gap-1.5" onclick="switchLanguage('ta')">
+<span class="material-symbols-outlined text-[16px]">check</span>
+            தமிழ் (Tamil)
+          </button>
+<button class="px-3.5 py-1.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="switchLanguage('hi')">
+            हिन्दी
+          </button>
+</div>
+</div>
+<!-- Mode Tabs (Simple, Detailed, Example, Analogy) -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm pt-2">
+<div class="flex items-center gap-2 overflow-x-auto pb-1" id="mode-tabs">
+<button class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg shadow-sm flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+            Simple (எளிமையானது)
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+            Detailed Analysis
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">calculate</span>
+            SIP Example (₹500/mo)
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">family_restroom</span>
+            Village Analogy
+          </button>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/10 hover:bg-secondary/20 text-secondary font-label-md text-label-md font-semibold transition-all" id="narrate-btn">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span id="narrate-txt">Listen (கேளுங்கள் • 1:45)</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Adjust text size">
+<span class="material-symbols-outlined text-[20px]">format_size</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Central Interactive Infographic: The 3-Step Pooling Mechanism -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm relative overflow-hidden">
+<!-- Watermark / Context Accent -->
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary/5 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-lg">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Visual Mechanics</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">How Money Pools &amp; Grows Safely</h2>
+</div>
+<span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed-dim/30 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          SEBI Investor Protection Framework
+        </span>
+</div>
+<!-- 3-Column Stepper Flow -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg relative items-stretch">
+<!-- Step 1: Investors -->
+<div class="bg-surface-container-low rounded-2xl p-space-lg flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">1</span>
+<span class="material-symbols-outlined text-primary text-[28px]">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">முதலீட்டாளர்கள்</h3>
+<p class="font-label-md text-label-md text-primary font-medium mb-space-sm">Everyday Citizens (You &amp; Me)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              ஆயிரக்கணக்கான சாமானிய மக்கள் தங்களின் சிறிய சேமிப்புகளை (₹500, ₹1000 அல்லது ₹5000) ஒன்றாக இணைக்கின்றனர்.
+            </p>
+</div>
+<!-- Micro Visual: Coin Contributors -->
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest rounded-xl p-3 flex items-center justify-between">
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block h-7 w-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-label-sm text-label-sm font-bold">PS</div>
+<div class="inline-block h-7 w-7 rounded-full bg-secondary/20 text-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">RK</div>
+<div class="inline-block h-7 w-7 rounded-full bg-tertiary/20 text-tertiary flex items-center justify-center font-label-sm text-label-sm font-bold">AM</div>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Pool: ₹10 Cr+</span>
+</div>
+</div>
+<!-- Arrow (desktop horizontal, mobile vertical) -->
+<div class="hidden md:flex absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-surface-container-lowest shadow-md items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+<!-- Step 2: The Fund & Manager -->
+<div class="bg-primary/5 rounded-2xl p-space-lg flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">2</span>
+<span class="material-symbols-outlined text-primary text-[28px]">account_balance</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">மியூச்சுவல் ஃபண்ட் நிதி</h3>
+<p class="font-label-md text-label-md text-primary font-medium mb-space-sm">Certified Fund Management</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              SEBI விதிகளுக்குட்பட்டு, நிதி நிபுணர்கள் (Fund Managers) சந்தையை ஆய்வு செய்து கூட்டு நிதியை முறையாக நிர்வகிக்கின்றனர்.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest rounded-xl p-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Strict SEBI Guidelines Applied</span>
+</div>
+</div>
+<!-- Arrow -->
+<div class="hidden md:flex absolute left-2/3 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-surface-container-lowest shadow-md items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+<!-- Step 3: Diversified Allocation -->
+<div class="bg-surface-container-low rounded-2xl p-space-lg flex flex-col justify-between transition-transform hover:-translate-y-1 duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">3</span>
+<span class="material-symbols-outlined text-primary text-[28px]">pie_chart</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">பல்வகை சொத்துகள்</h3>
+<p class="font-label-md text-label-md text-primary font-medium mb-space-sm">Diversified Across 50+ Assets</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              பணம் ஒரே நிறுவனத்தில் போடப்படாமல்; டாப் நிறுவன பங்குகள், அரசு பத்திரங்கள் மற்றும் தங்கத்தில் பிரித்து முதலீடு செய்யப்படுகிறது.
+            </p>
+</div>
+<!-- Micro Visual: Asset Basket mini tag pills -->
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest rounded-xl p-2.5 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-md bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-semibold">TCS / Infy</span>
+<span class="px-2 py-0.5 rounded-md bg-primary-fixed/50 text-on-primary-fixed font-label-sm text-label-sm font-semibold">HDFC / SBI</span>
+<span class="px-2 py-0.5 rounded-md bg-tertiary-fixed/50 text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Govt Bonds</span>
+</div>
+</div>
+</div>
+<!-- Vernacular Insight Callout Box -->
+<div class="mt-space-lg bg-surface-container p-space-lg rounded-2xl flex flex-col sm:flex-row items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">translate</span>
+</div>
+<div class="space-y-1.5 flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-label-lg text-label-lg text-primary font-bold">தமிழ் விளக்கம் (Tamil Summary Note)</h4>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Easy-to-Share</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-relaxed">
+            "மியூச்சுவல் ஃபண்ட் என்பது பல முதலீட்டாளர்களிடம் இருந்து திரட்டப்படும் நிதியை நிபுணர்கள் முதலீடு செய்யும் வழியாகும். இது உங்கள் முதலீட்டை பல இடங்களில் பிரித்து வைப்பதால் தனிப்பட்ட நிறுவன வீழ்ச்சியால் வரும் பெருத்த நஷ்ட அபாயத்தை குறைக்க உதவுகிறது."
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+            Translation: "A mutual fund pools money from everyday citizens so verified professionals can allocate it broadly across the economy, mitigating single-stock failure risk."
+          </p>
+</div>
+</div>
+</div>
+<!-- 4 Key Resilience Takeaways (Civic Protection Cards) -->
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Protection Rules</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">4 Rules to Protect Your Hard-Earned Money</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant hidden md:block">Never skip basic verification</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Rule 1: Market Risk Understanding -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/15 text-tertiary flex items-center justify-center flex-shrink-0 font-bold">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+<div class="space-y-1 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+              ஆபத்து மற்றும் வருமானம் புரிதல்
+            </h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Rule 01: Understand Market Nature</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              மியூச்சுவல் ஃபண்டுகள் வங்கி ஃபிக்சட் டெபாசிட் அல்ல. சந்தை ஏற்ற இறக்கத்திற்கு உட்பட்டவை. நீண்ட கால முதலீட்டிற்கு (5+ ஆண்டுகள்) உகந்தது.
+            </p>
+</div>
+</div>
+<!-- Rule 2: Beware of Fake 30% Schemes -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0 font-bold">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div class="space-y-1 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+              போலி 30% உத்தரவாதங்களை தவிர்க்கவும்
+            </h3>
+<p class="font-label-sm text-label-sm text-error font-semibold">Rule 02: Reject Fake WhatsApp Promises</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              "மாதம் 30% உறுதி" அல்லது "3 மாதத்தில் பணம் இரட்டிப்பு" என்று எந்த முறையான ஃபண்டும் கூறாது. அத்தகைய குறுஞ்செய்திகள் மோசடிகளே!
+            </p>
+</div>
+</div>
+<!-- Rule 3: Verify SEBI AMC -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0 font-bold">
+<span class="material-symbols-outlined text-[22px]">domain_verification</span>
+</div>
+<div class="space-y-1 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+              SEBI பதிவு பெற்ற நிறுவனங்கள் மட்டும்
+            </h3>
+<p class="font-label-sm text-label-sm text-secondary font-semibold">Rule 03: Always Verify Fund House</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              முதலீடு செய்யும் முன், அந்த நிறுவனம் (AMC) இந்திய பங்குகள் மற்றும் பரிவர்த்தனை வாரியத்தில் (SEBI) பதிவு செய்யப்பட்டுள்ளதா என சரிபார்க்கவும்.
+            </p>
+</div>
+</div>
+<!-- Rule 4: Disciplined SIP Habit -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 font-bold">
+<span class="material-symbols-outlined text-[22px]">event_repeat</span>
+</div>
+<div class="space-y-1 flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+              சிறு தொகையாக SIP முறையில் துவங்கலாம்
+            </h3>
+<p class="font-label-sm text-label-sm text-primary font-semibold">Rule 04: Build Habit, Not Impulse</p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              மொத்தமாக பணம் போட வேண்டிய அவசியமில்லை. மாதம் ₹500 SIP (Systematic Investment Plan) முறையில் சீரான சேமிப்பு பழக்கத்தை உருவாக்கலாம்.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Illustrated Real-World Analogy & Companion Reflection -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column: The Shared Fruit Basket Analogy -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">storefront</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Real World Analogy: The Fruit Basket (பழக் கூடை உவமை)</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Think of individual stocks like buying just a single apple. If that apple turns out sour or rotten, your entire purchase is ruined.
+        </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md my-space-md">
+<!-- Un-diversified -->
+<div class="bg-error-container/20 rounded-2xl p-space-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-lg text-label-lg font-bold text-on-error-container">Single Stock (தனிப் பங்கு)</span>
+<span class="material-symbols-outlined text-error text-[20px]">crisis_alert</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Putting ₹10,000 in only one company's share. If that company shuts down or suffers huge losses, you lose everything.
+              </p>
+</div>
+<div class="mt-space-md text-center py-2 px-3 bg-surface-container-lowest rounded-xl font-label-sm text-label-sm font-bold text-error">
+              High Concentration Risk ⚠️
+            </div>
+</div>
+<!-- Diversified Basket -->
+<div class="bg-tertiary-container/10 rounded-2xl p-space-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-lg text-label-lg font-bold text-tertiary">Mutual Fund (பழக்கூடை)</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">shopping_basket</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Your ₹10,000 buys fractional shares of 60 top companies, bonds, and assets. Even if 2 companies underperform, the other 58 steady your basket.
+              </p>
+</div>
+<div class="mt-space-md text-center py-2 px-3 bg-surface-container-lowest rounded-xl font-label-sm text-label-sm font-bold text-tertiary">
+              Balanced Peace of Mind 🛡️
+            </div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-2xl flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">quiz</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Want to test if this fits your current goals?</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold hover:shadow-md transition-all">
+            Take 2-Min Reflection Quiz
+          </button>
+</div>
+</div>
+<!-- Right Column: NIRVAAN Companion Card -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex items-center gap-space-sm">
+<!-- NIRVAAN Companion Avatar -->
+<div class="relative w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0 bg-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Photorealistic 3D Pixar styled warm friendly Indian female financial mentor avatar named NIRVAAN with gentle expression, large approachable eyes, sleek dark hair, wearing soft cyan and electric blue civic companion blazer in clean soft-lit studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAejkVFB4ciCl0hOp5j8sLVDWzYQv-yl_r6Zfl9ep6Jpuor6-iSl5BW8xIPq_ywVbjywPkWQhIsUGwtQPJFRmtFyMeeJROy50lfztlwOPWlTe5PSBGaKq3o5kAjg_Or_5pFz-nCEgwZd81Vflm2gZqDJQ4xYu93BJCzB3pfAnsFnhu-968oSosT92E2VuYOW6vDtbs9ZXVQPhhNscix4UttQ0ztnNS7EIxr36jaf1eB4bQBsfEMyx_o">
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">Priya's Companion</p>
+<p class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Always Objective • Zero Commission
+              </p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-2xl text-on-surface space-y-2">
+<p class="font-body-sm text-body-sm leading-relaxed">
+              "Priya, someone may try to sell you a mutual fund promising overnight riches. Always remember: true wealth creation takes patience. If someone is rushing you to invest before today's deadline, that is a warning signal."
+            </p>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Nirvaan Wisdom #18</span>
+<button class="text-primary hover:underline font-semibold" onclick="replayAudioTip()">Hear Voice</button>
+</div>
+</div>
+</div>
+<div class="space-y-space-sm pt-2">
+<button class="w-full py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-between transition-colors">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">contact_support</span>
+              Ask NIRVAAN in Tamil
+            </span>
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+<a class="w-full py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center justify-between transition-colors" href="#">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">policy</span>
+              SEBI Investor Grievance Portal
+            </span>
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Responsive Action Deck -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-md shadow-lg flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2 flex-wrap">
+<button class="px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg flex items-center gap-2 transition-all" id="primary-audio-btn">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+          Listen to Tamil Audio Guide
+        </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold flex items-center gap-2 transition-colors" onclick="toggleTranslation()">
+<span class="material-symbols-outlined text-[18px] text-primary">translate</span>
+          Toggle Tamil / English
+        </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold flex items-center gap-2 transition-colors" onclick="saveToJournal()">
+<span class="material-symbols-outlined text-[18px] text-tertiary">bookmark_add</span>
+          Save to Reflection Journal
+        </button>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold flex items-center gap-1.5 hover:bg-primary transition-colors" onclick="openFollowUpModal()">
+<span class="material-symbols-outlined text-[18px]">chat_bubble_outline</span>
+          Ask Follow-Up
+        </button>
+<button class="p-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" title="Share with family on WhatsApp">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Educational Non-Commercial Disclaimer -->
+<div class="text-center py-space-sm space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium">
+        🛡️ Civic Financial Education Notice: NIRVAAN is a public-good companion. We do not sell mutual funds, take commissions, or recommend specific commercial schemes.
+      </p>
+<p class="font-body-sm text-body-sm text-outline-variant">
+        Investments are subject to market risks. Always read scheme-related documents carefully before investing.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  function switchLanguage(lang) {
+    if(lang === 'ta') {
+      alert('Language switched to தமிழ் (Tamil). Showing clear regional terminology.');
+    } else if(lang === 'en') {
+      alert('Switched to English. Technical terms shown in simple plain English.');
+    } else if(lang === 'hi') {
+      alert('भाषा बदलकर हिन्दी कर दी गई है। (Switched to Hindi)');
+    }
+  }
+
+  function toggleTranslation() {
+    const quote = document.querySelector('.bg-surface-container p.font-body-lg');
+    if (quote.innerText.includes('மியூச்சுவல் ஃபண்ட்')) {
+      quote.innerText = 'A mutual fund pools hard-earned savings from everyday citizens so verified professionals can allocate it broadly across high-grade assets under strict SEBI compliance.';
+    } else {
+      quote.innerText = 'மியூச்சுவல் ஃபண்ட் என்பது பல முதலீட்டாளர்களிடம் இருந்து திரட்டப்படும் நிதியை நிபுணர்கள் முதலீடு செய்யும் வழியாகும். இது உங்கள் முதலீட்டை பல இடங்களில் பிரித்து வைப்பதால் அபாயத்தை குறைக்க உதவுகிறது.';
+    }
+  }
+
+  let isPlaying = false;
+  const audioBtn = document.getElementById('primary-audio-btn');
+  const narrateTxt = document.getElementById('narrate-txt');
+
+  if(audioBtn) {
+    audioBtn.addEventListener('click', function() {
+      isPlaying = !isPlaying;
+      if(isPlaying) {
+        audioBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">pause_circle</span> Playing Audio (தமிழ்)...';
+        if(narrateTxt) narrateTxt.innerText = 'Playing... (Pause)';
+      } else {
+        audioBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">play_circle</span> Listen to Tamil Audio Guide';
+        if(narrateTxt) narrateTxt.innerText = 'Listen (கேளுங்கள் • 1:45)';
+      }
+    });
+  }
+
+  function replayAudioTip() {
+    alert('NIRVAAN Voice: "வணக்கம் பிரியா, முதலீடு செய்வதற்கு முன் நிதானமாக யோசியுங்கள். அவசரப்படுத்தினால் எச்சரிக்கையாக இருங்கள்."');
+  }
+
+  function saveToJournal() {
+    alert('Saved "What is a Mutual Fund? (தமிழ் விளக்கம்)" to your personal Reflection Journal.');
+  }
+
+  function openFollowUpModal() {
+    const q = prompt('Ask NIRVAAN any question regarding Mutual Funds (e.g. SIP vs Lumpsum? Tax deductions?):');
+    if(q) {
+      alert('NIRVAAN is analyzing: "' + q + '". Clear, un-biased answer arriving in moments!');
+    }
+  }
+</script></main></div></body></html>

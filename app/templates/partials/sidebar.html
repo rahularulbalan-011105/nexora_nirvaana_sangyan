@@ -1,0 +1,20 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_dashboard/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+<div id="nav-backdrop" class="hidden lg:hidden fixed inset-0 z-40 bg-inverse-surface/40" data-nav-close></div>
+<aside id="app-sidebar" class="fixed left-0 top-0 h-screen w-72 max-w-[85vw] bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto -translate-x-full lg:translate-x-0 transition-transform duration-200"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1">
+{%- for item in nav_items %}
+{%- if item.divider_before %}
+<div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div>
+{%- endif %}
+<a class="{{ nav_active_class if item.key == active_nav else nav_inactive_class }}"
+   data-path="{{ item.key }}"
+   href="{{ item.url }}"
+   {% if item.key == active_nav %}aria-current="page"{% endif %}>
+<span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
+<span class="font-label-lg text-label-lg">{{ item.label }}</span>
+</a>
+{%- endfor %}
+</nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full overflow-hidden bg-primary flex items-center justify-center text-on-primary shadow-sm ring-2 ring-primary/20">{% if user %}<img src="{{ user.avatar_url }}" alt="" class="w-full h-full object-cover">{% else %}<span class="material-symbols-outlined text-[20px]">person</span>{% endif %}</div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">{{ user.full_name if user else 'Guest' }}</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ user_status }}</p></div></div><form method="POST" action="/logout" class="m-0">{% include "partials/csrf.html" %}<button type="submit" aria-label="Sign out" title="Sign out" class="text-on-surface-variant hover:text-error p-1.5 rounded-lg hover:bg-error-container/40 transition-colors"><span class="material-symbols-outlined text-[20px]">logout</span></button></form></div></aside>

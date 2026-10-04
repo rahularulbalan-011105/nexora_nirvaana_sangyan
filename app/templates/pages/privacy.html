@@ -1,0 +1,379 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_privacy_center/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Privacy Center{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+<div class="px-space-md sm:px-margin-tablet lg:px-margin-desktop py-space-xl max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Header & Hero Block -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary/10 via-secondary-container/20 to-transparent blur-3xl pointer-events-none"></div>
+<div class="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex items-center gap-space-md opacity-90 pointer-events-none">
+<div class="w-32 h-32 rounded-2xl bg-surface-container-low flex flex-col items-center justify-center p-space-md text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[36px]" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold mt-1">Off by Default</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Memory &amp; Transcripts</span>
+</div>
+<div class="w-32 h-32 rounded-2xl bg-surface-container-low flex flex-col items-center justify-center p-space-md text-center shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[36px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold mt-1">Zero Ads</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">No Data Sales</span>
+</div>
+</div>
+<div class="relative z-10 max-w-2xl space-y-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>Account Security &amp; Sovereignty</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-wider font-extrabold shadow-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>Zero Data Monetization Guarantee</span>
+</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface font-black tracking-tight pt-1">
+          Your Data. Your Control.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          NIRVAAN only processes information strictly necessary to provide calm reflection. We never sell your data, track credit scores, or monetize your reflection journal.
+        </p>
+<div class="pt-space-xs flex flex-wrap items-center gap-x-space-md gap-y-1 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm font-medium">Every switch below saves instantly</span>
+</div>
+<span class="text-outline-variant font-body-sm text-body-sm">•</span>
+<a class="font-body-sm text-body-sm text-primary font-semibold hover:underline" href="/settings#privacy">More controls in Settings</a>
+</div>
+</div>
+</div>
+{% set p_memory = privacy.memory_enabled if privacy is not none else false %}
+{% set p_voice = privacy.store_voice_transcripts if privacy is not none else false %}
+{% set p_history = privacy.store_analysis_history if privacy is not none else true %}
+{% set p_uploads = privacy.store_uploaded_files if privacy is not none else false %}
+{% set p_family = privacy.allow_family_access if privacy is not none else false %}
+<!-- Section 1: Active Privacy & Memory Toggles -->
+<div class="rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">memory</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Active Privacy &amp; Memory Controls</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Granular controls dictating NIRVAAN's transient context engines and on-device recall.</p>
+</div>
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md self-start sm:self-auto">
+<span class="material-symbols-outlined text-[16px] text-tertiary">security</span>
+<span>End-to-End Partitioned</span>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Toggle Item 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Personal Reflection Memory</h3>
+<span data-status-for="memory_enabled" class="{{ 'px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold' if p_memory else 'px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold' }}">{% if p_memory %}Active{% else %}Turned Off{% endif %}</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Allow NIRVAAN to remember things you choose to share. When off, nothing new is remembered.
+              </p>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold hover:underline" href="/settings#memory"><span>Manage Memory</span> <span>({{ history_counts.memories }})</span></a>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-label="Personal Reflection Memory" data-privacy="memory_enabled" type="button" aria-checked="{{ 'true' if p_memory else 'false' }}" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full {{ 'bg-primary-container' if p_memory else 'bg-surface-dim' }} p-1 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-primary" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 {{ 'translate-x-6' if p_memory else 'translate-x-0' }} transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-on-surface-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">mic_off</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Voice Interaction Transcripts</h3>
+<span data-status-for="store_voice_transcripts" class="{{ 'px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold' if p_voice else 'px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold' }}">{% if p_voice %}Active{% else %}Turned Off{% endif %}</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Save what you and NIRVAAN say in Talk to NIRVAAN so you can review it later. When off, nothing you or NIRVAAN say is saved.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-label="Voice Interaction Transcripts" data-privacy="store_voice_transcripts" type="button" aria-checked="{{ 'true' if p_voice else 'false' }}" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full {{ 'bg-primary-container' if p_voice else 'bg-surface-dim' }} p-1 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-primary" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 {{ 'translate-x-6' if p_voice else 'translate-x-0' }} transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Message Safety Analysis History</h3>
+<span data-status-for="store_analysis_history" class="{{ 'px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold' if p_history else 'px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold' }}">{% if p_history %}Active{% else %}Turned Off{% endif %}</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Keep a record of the messages and links you check so you can look back at them.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-label="Message Safety Analysis History" data-privacy="store_analysis_history" type="button" aria-checked="{{ 'true' if p_history else 'false' }}" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full {{ 'bg-primary-container' if p_history else 'bg-surface-dim' }} p-1 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-primary" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 {{ 'translate-x-6' if p_history else 'translate-x-0' }} transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 3b -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-on-surface-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">image</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Uploaded Screenshots</h3>
+<span data-status-for="store_uploaded_files" class="{{ 'px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold' if p_uploads else 'px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold' }}">{% if p_uploads %}Active{% else %}Turned Off{% endif %}</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Keep screenshots you upload after they have been checked. When off, they are not kept.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-label="Uploaded Screenshots" data-privacy="store_uploaded_files" type="button" aria-checked="{{ 'true' if p_uploads else 'false' }}" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full {{ 'bg-primary-container' if p_uploads else 'bg-surface-dim' }} p-1 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-primary" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 {{ 'translate-x-6' if p_uploads else 'translate-x-0' }} transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">supervised_user_circle</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Family Mode Protective Sharing</h3>
+<span class="px-2 py-0.5 rounded-md bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">{% if guardian_count == 1 %}1 Guardian{% elif guardian_count %}<span>{{ guardian_count }}</span> <span>Guardians</span>{% else %}No Guardians{% endif %}</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Your consent for linked family members to see only the scopes you grant. Off by default.
+              </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-end gap-space-sm flex-shrink-0 pl-16 md:pl-0">
+<button aria-label="Family Mode Protective Sharing" data-privacy="allow_family_access" type="button" aria-checked="{{ 'true' if p_family else 'false' }}" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full {{ 'bg-primary-container' if p_family else 'bg-surface-dim' }} p-1 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-primary" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 {{ 'translate-x-6' if p_family else 'translate-x-0' }} transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:opacity-95 transition-opacity" href="/family">
+{% if guardian_permission_count == 1 %}<span>1 Permission Active</span>{% elif guardian_permission_count %}<span>{{ guardian_permission_count }}</span> <span>Permissions Active</span>{% else %}<span>No Permissions Active</span>{% endif %}
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Data Sovereignty & Export Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch">
+<!-- Card A: Export & Portable Data -->
+<div class="lg:col-span-5 rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm flex flex-col justify-between space-y-space-lg">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">download_for_offline</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Export &amp; Portable Data</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Complete ownership of your digital wellness timeline.</p>
+</div>
+<!-- Illustrated Spec Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Download Complete NIRVAAN Archive</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">100% UNRESTRICTED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              A ZIP of JSON files with your profile, settings, journal, reflections, memories, message checks, voice conversations and learning progress.
+            </p>
+<div class="grid grid-cols-3 gap-2 pt-1 text-center">
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">{{ record_counts.journals }}</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Journals</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">{{ record_counts.analyses }}</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Scam Checks</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">{{ record_counts.lessons_completed }}</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Badges</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<a class="w-full h-12 rounded-full bg-gradient-to-r from-primary to-secondary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" id="downloadBtn" href="/privacy/export.zip" download>
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+<span>Download My Data (ZIP) ↓</span>
+</a>
+</div>
+</div>
+<!-- Card B: Granular Erasure & Deletion -->
+<div class="lg:col-span-7 rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm flex flex-col justify-between space-y-space-lg">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">delete_forever</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Granular Erasure &amp; Deletion</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Immediate zero-trace scrubbing. No recovery backups or retention delays.</p>
+</div>
+<!-- Rows Container -->
+<div class="space-y-space-sm">
+<!-- Row 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Delete Reflection Journal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Remove all your journal entries.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container/60 hover:bg-error-container text-on-error-container font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5 flex-shrink-0" data-confirm="journal" data-url="/api/account/history/journal/delete" type="button">
+<span class="material-symbols-outlined text-[16px]">ink_eraser</span>
+<span>Delete Journal</span> <span>({{ history_counts.journals }})</span>
+</button>
+</div>
+<!-- Row 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Clear Message Scan Logs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Wipe all message checks, batch checks and uploaded screenshots.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container/60 hover:bg-error-container text-on-error-container font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5 flex-shrink-0" data-confirm="analysis" data-url="/api/account/history/analysis/delete" type="button">
+<span class="material-symbols-outlined text-[16px]">folder_delete</span>
+<span>Delete Analysis History</span> <span>({{ history_counts.analyses }})</span>
+</button>
+</div>
+<!-- Row 2b -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Delete Voice Transcripts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Wipe all Talk to NIRVAAN conversations.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container/60 hover:bg-error-container text-on-error-container font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5 flex-shrink-0" data-confirm="voice" data-url="/api/account/history/voice/delete" type="button">
+<span class="material-symbols-outlined text-[16px]">voice_over_off</span>
+<span>Delete Voice History</span> <span>({{ history_counts.voice_sessions }})</span>
+</button>
+</div>
+<!-- Row 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-error font-bold block">Complete Account Erasure</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Permanently erase your account, preferences and every record, then sign out.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold hover:opacity-90 shadow-sm transition-all flex items-center justify-center gap-1.5 flex-shrink-0" data-confirm="account" data-typed data-url="/api/account/delete" type="button">
+<span class="material-symbols-outlined text-[16px]">person_off</span>
+<span>Delete All Data &amp; Account</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-high/60 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-body-sm text-body-sm text-[12px]">Deletion is immediate and permanent: records are removed from NIRVAAN's database, not hidden. Every deletion asks you to confirm first.</span>
+</div>
+</div>
+</div>
+<!-- Section 3: NIRVAAN Zero-Access Public Good Shield -->
+<div class="rounded-3xl bg-gradient-to-br from-primary-fixed to-surface-container-high p-space-lg sm:p-space-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10 space-y-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold uppercase tracking-wider mb-1">
+              Public Good Framework
+            </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+              What NIRVAAN will NEVER ask for or store
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+              NIRVAAN operates as a public-good cognitive firewall. All image OCR and text debiasing occurs in transient sandboxes with zero third-party telemetry.
+            </p>
+</div>
+</div>
+<!-- 4 Clear Pills with Red Cross-Out Icons -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Bank OTPs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Never requested</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Account Passwords</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Strictly prohibited</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No UPI PINs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Zero access design</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Card Numbers or CVVs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Auto-redacted locally</span>
+</div>
+</div>
+</div>
+<!-- Explanatory Trust Footer Strip -->
+<div class="pt-space-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-[20px]">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">
+              Digital Personal Data Protection (DPDP) Act Compliance &amp; SEBI Investor Education Alignment
+            </p>
+</div>
+<div class="flex items-center gap-space-md">
+<a class="font-label-md text-label-md text-primary font-bold hover:underline" href="/help#faq">Read how your data is handled →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% include "pages/_account_confirm.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script defer src="/static/js/account.js"></script>
+{% endblock %}

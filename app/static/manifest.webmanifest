@@ -1,0 +1,22 @@
+{
+  "name": "NIRVAAN - Financial Resilience Companion",
+  "short_name": "NIRVAAN",
+  "description": "Understand financial information, spot warning signals, pause before acting, and decide for yourself.",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#faf8ff",
+  "theme_color": "#2563eb",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "finance", "utilities"],
+  "icons": [
+    { "src": "/static/img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Check a Message", "url": "/check" },
+    { "name": "Pause & Reflect", "url": "/reflect" },
+    { "name": "Talk to NIRVAAN", "url": "/talk" }
+  ]
+}

@@ -1,0 +1,170 @@
+{# Print-ready report. Shared by /reports/journey and /reports/batch/<id>.
+   Self-contained styles so a downloaded copy renders offline. #}
+<!DOCTYPE html>
+<html lang="{{ lang_code or 'en' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ report_title }} · NIRVAAN</title>
+<style>
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#1d4ed8; --soft:#f1f5ff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#f6f7fb; color:var(--ink);
+         font-family: "Inter","Segoe UI","Nirmala UI","Noto Sans Devanagari","Noto Sans Tamil",system-ui,sans-serif;
+         font-size:14px; line-height:1.5; }
+  .toolbar { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end;
+             padding:12px 16px; background:#ffffffee; border-bottom:1px solid var(--line); backdrop-filter:blur(6px); }
+  .btn { display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:12px; font-weight:600;
+         font-size:13px; text-decoration:none; border:1px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .btn.primary { background:linear-gradient(90deg,#1d4ed8,#6d28d9); color:#fff; border-color:transparent; }
+  .page { max-width:860px; margin:24px auto; background:#fff; border:1px solid var(--line); border-radius:20px; padding:40px; }
+  header.r { display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+             border-bottom:2px solid var(--soft); padding-bottom:20px; margin-bottom:24px; }
+  .brand { display:flex; align-items:center; gap:8px; font-weight:800; color:#1e3a8a; font-size:18px; }
+  h1 { font-size:26px; margin:14px 0 4px; }
+  .muted { color:var(--muted); }
+  .meta { text-align:right; font-size:12px; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }
+  .stat { background:var(--soft); border-radius:14px; padding:14px 16px; }
+  .stat b { display:block; font-size:24px; color:var(--brand); }
+  .stat span { font-size:12px; color:var(--muted); font-weight:600; }
+  h2 { font-size:16px; margin:28px 0 10px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); background:#fafbff; }
+  .pill { display:inline-block; padding:2px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-size:12px; font-weight:600; margin:0 6px 6px 0; }
+  .empty { padding:16px; border:1px dashed var(--line); border-radius:12px; color:var(--muted); }
+  footer.r { margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+  @media (max-width:640px) { .page { margin:0; border-radius:0; padding:20px 16px; } header.r { flex-direction:column; } .meta { text-align:left; } }
+  @media print {
+    body { background:#fff; }
+    .toolbar { display:none; }
+    .page { margin:0; border:0; border-radius:0; padding:0; max-width:none; }
+    tr { page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="btn primary" type="button" onclick="window.print()">Save as PDF</button>
+  <a class="btn" href="{{ download_url }}">Download report</a>
+  {% if csv_url %}<a class="btn" href="{{ csv_url }}">Download CSV</a>{% endif %}
+</div>
+
+<main class="page">
+  <header class="r">
+    <div>
+      <div class="brand">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#38bdf8" fill-opacity="0.35" stroke="#0284c7"/>
+          <path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#1d4ed8"/>
+        </svg>
+        NIRVAAN
+      </div>
+      <h1>{{ report_title }}</h1>
+      <div class="muted">{{ report_subtitle }}</div>
+    </div>
+    <div class="meta">
+      <div><strong>{{ user.full_name }}</strong></div>
+      <div>{{ user.email }}</div>
+      <div>{{ generated_at.strftime('%d %b %Y, %H:%M UTC') }}</div>
+    </div>
+  </header>
+
+  <section class="grid">
+    {% for label, value in metrics %}
+    <div class="stat"><b>{{ value }}</b><span>{{ label }}</span></div>
+    {% endfor %}
+  </section>
+
+  {% if status_counts %}
+  <h2>Results by status</h2>
+  <div>
+    {% for name, count in status_counts.items() %}
+    <span class="pill">{{ name|replace('_', ' ')|title }}: {{ count }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if report_kind == "journey" %}
+    <h2>Reflections</h2>
+    {% if reflections %}
+    <table>
+      <thead><tr><th>Date</th><th>Summary</th><th>Paused</th><th>Completed</th></tr></thead>
+      <tbody>
+      {% for r in reflections %}
+      <tr>
+        <td>{{ r.created_at.strftime('%d %b %Y') }}</td>
+        <td>{{ r.summary or "—" }}</td>
+        <td>{{ ((r.pause_seconds or 0) / 60)|round(1) }} min</td>
+        <td>{{ "Yes" if r.completed_at else "No" }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">No reflections yet.</div>
+    {% endif %}
+
+    <h2>Messages checked</h2>
+    {% if analyses %}
+    <table>
+      <thead><tr><th>Date</th><th>Message</th><th>Result</th></tr></thead>
+      <tbody>
+      {% for a in analyses %}
+      <tr>
+        <td>{{ a.created_at.strftime('%d %b %Y') }}</td>
+        <td>{{ (a.corrected_text or a.raw_text or "")|truncate(90) }}</td>
+        <td>{{ (a.status or "")|replace('_', ' ')|title }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">No messages checked yet.</div>
+    {% endif %}
+
+    <h2>Concepts learned</h2>
+    {% if learned %}
+    <table>
+      <thead><tr><th>Concept</th><th>Completed</th></tr></thead>
+      <tbody>
+      {% for title, completed_at in learned %}
+      <tr><td>{{ title }}</td><td>{{ completed_at.strftime('%d %b %Y') }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">No concepts completed yet.</div>
+    {% endif %}
+  {% endif %}
+
+  {% if report_kind == "batch" %}
+    <h2>Items</h2>
+    {% if items %}
+    <table>
+      <thead><tr><th>#</th><th>Item</th><th>Status</th><th>Result</th></tr></thead>
+      <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.position + 1 }}</td>
+        <td>{{ item.display_name or "—" }}</td>
+        <td>{{ item.status|replace('_', ' ')|title }}</td>
+        <td>{{ (item.result_status or item.error or "—")|replace('_', ' ') }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">This batch has no items.</div>
+    {% endif %}
+  {% endif %}
+
+  <footer class="r">
+    NIRVAAN explains information and points out what is worth verifying. It does not tell you what to buy, sell or hold.
+    The decision is always yours.
+  </footer>
+</main>
+{% if request.query_params.get("print") == "1" %}<script>window.addEventListener("load", () => window.print());</script>{% endif %}
+</body>
+</html>

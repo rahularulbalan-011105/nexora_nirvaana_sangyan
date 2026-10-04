@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="flex flex-col w-full">
+<div class="px-space-md sm:px-margin-tablet lg:px-margin-desktop py-space-xl max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Header & Hero Block -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary/10 via-secondary-container/20 to-transparent blur-3xl pointer-events-none"></div>
+<div class="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex items-center gap-space-md opacity-90 pointer-events-none">
+<div class="w-32 h-32 rounded-2xl bg-surface-container-low flex flex-col items-center justify-center p-space-md text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[36px]" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold mt-1">AES-256</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Client Encrypted</span>
+</div>
+<div class="w-32 h-32 rounded-2xl bg-surface-container-low flex flex-col items-center justify-center p-space-md text-center shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[36px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold mt-1">Zero Cloud</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Local Sovereignty</span>
+</div>
+</div>
+<div class="relative z-10 max-w-2xl space-y-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>Account Security &amp; Sovereignty</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-wider font-extrabold shadow-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>Zero Data Monetization Guarantee</span>
+</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface font-black tracking-tight pt-1">
+          Your Data. Your Control.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          NIRVAAN only processes information strictly necessary to provide calm reflection. We never sell your data, track credit scores, or monetize your reflection journal.
+        </p>
+<div class="pt-space-xs flex items-center gap-space-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm font-medium">Privacy Status: Sovereign &amp; Sandboxed</span>
+</div>
+<span class="text-outline-variant font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm">Last audited: Today, Local Sandbox active</span>
+</div>
+</div>
+</div>
+<!-- Section 1: Active Privacy & Memory Toggles -->
+<div class="rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">memory</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Active Privacy &amp; Memory Controls</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Granular controls dictating NIRVAAN's transient context engines and on-device recall.</p>
+</div>
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md self-start sm:self-auto">
+<span class="material-symbols-outlined text-[16px] text-tertiary">security</span>
+<span>End-to-End Partitioned</span>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Toggle Item 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Personal Reflection Memory</h3>
+<span class="px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Active</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Allow NIRVAAN to remember your past reflections to identify recurring emotional FOMO patterns.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-checked="true" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-1 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 translate-x-6 transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-on-surface-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">mic_off</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Voice Interaction Transcripts</h3>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold">Turned Off</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Temporarily store voice audio transcripts in local session memory for multi-turn Tamil/Hindi queries.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-checked="false" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full bg-surface-dim p-1 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 translate-x-0 transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Message Safety Analysis History</h3>
+<span class="px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Active</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Keep local logs of verified screenshots and links to track deflection patterns over time.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<button aria-checked="true" class="privacy-toggle group relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-1 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch">
+<span class="pointer-events-none inline-block h-6 w-6 translate-x-6 transform rounded-full bg-surface-container-lowest shadow-md transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Toggle Item 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">supervised_user_circle</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Family Mode Protective Sharing</h3>
+<span class="px-2 py-0.5 rounded-md bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">2 Guardians</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Allow connected family guardians to receive alerts when high-risk scam patterns are detected.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-end flex-shrink-0 pl-16 md:pl-0">
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:opacity-95 transition-opacity" href="#">
+<span>2 Permissions Active</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Data Sovereignty & Export Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch">
+<!-- Card A: Export & Portable Data -->
+<div class="lg:col-span-5 rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm flex flex-col justify-between space-y-space-lg">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">download_for_offline</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Export &amp; Portable Data</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Complete ownership of your digital wellness timeline.</p>
+</div>
+<!-- Illustrated Spec Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Download Complete NIRVAAN Archive</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">100% UNRESTRICTED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Standard JSON / PDF export containing your reflection journals, paused impulse milestones, scam analysis audit tags, and learning badges.
+            </p>
+<div class="grid grid-cols-3 gap-2 pt-1 text-center">
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">14</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Journals</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">9</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Scam Checks</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-lowest">
+<span class="block font-headline-sm text-headline-sm font-bold text-on-surface">5</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant text-[10px]">Badges</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full h-12 rounded-full bg-gradient-to-r from-primary to-secondary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" id="downloadBtn" onclick="triggerDownload()">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+<span>Download My Data (ZIP) ↓</span>
+</button>
+<p class="hidden text-center font-body-sm text-body-sm text-tertiary font-medium mt-2" id="downloadFeedback">Archive package generated and ready.</p>
+</div>
+</div>
+<!-- Card B: Granular Erasure & Deletion -->
+<div class="lg:col-span-7 rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm flex flex-col justify-between space-y-space-lg">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">delete_forever</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Granular Erasure &amp; Deletion</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Immediate zero-trace scrubbing. No recovery backups or retention delays.</p>
+</div>
+<!-- Rows Container -->
+<div class="space-y-space-sm">
+<!-- Row 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Delete Reflection Journal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Remove all diary entries and counterfactual thoughts.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container/60 hover:bg-error-container text-on-error-container font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5 flex-shrink-0" onclick="confirmAction('Reflection Journal')">
+<span class="material-symbols-outlined text-[16px]">ink_eraser</span>
+<span>Delete Memories</span>
+</button>
+</div>
+<!-- Row 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">Clear Message Scan Logs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Wipe all uploaded screenshots and forwarded scam texts.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container/60 hover:bg-error-container text-on-error-container font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5 flex-shrink-0" onclick="confirmAction('Message Scan Logs')">
+<span class="material-symbols-outlined text-[16px]">folder_delete</span>
+<span>Delete Analysis History</span>
+</button>
+</div>
+<!-- Row 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-error font-bold block">Complete Account Erasure</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Irrevocably purge all profile preferences, encryption keys, and records.</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold hover:opacity-90 shadow-sm transition-all flex items-center justify-center gap-1.5 flex-shrink-0" onclick="confirmAction('Complete NIRVAAN Profile')">
+<span class="material-symbols-outlined text-[16px]">person_off</span>
+<span>Delete All Data &amp; Account</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-high/60 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-body-sm text-body-sm text-[12px]">All deletion requests issue on-device cryptoshred commands instantly across partition boundaries.</span>
+</div>
+</div>
+</div>
+<!-- Section 3: NIRVAAN Zero-Access Public Good Shield -->
+<div class="rounded-3xl bg-gradient-to-br from-primary-fixed to-surface-container-high p-space-lg sm:p-space-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10 space-y-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold uppercase tracking-wider mb-1">
+              Public Good Framework
+            </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+              What NIRVAAN will NEVER ask for or store
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+              NIRVAAN operates as a public-good cognitive firewall. All image OCR and text debiasing occurs in transient sandboxes with zero third-party telemetry.
+            </p>
+</div>
+</div>
+<!-- 4 Clear Pills with Red Cross-Out Icons -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Bank OTPs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Never requested</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Account Passwords</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Strictly prohibited</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No UPI PINs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Zero access design</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex items-center gap-space-sm shadow-sm">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold block">No Card Numbers or CVVs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Auto-redacted locally</span>
+</div>
+</div>
+</div>
+<!-- Explanatory Trust Footer Strip -->
+<div class="pt-space-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-[20px]">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">
+              Digital Personal Data Protection (DPDP) Act Compliance &amp; SEBI Investor Education Alignment
+            </p>
+</div>
+<div class="flex items-center gap-space-md">
+<a class="font-label-md text-label-md text-primary font-bold hover:underline" href="#">Read Architecture Whitepaper →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function toggleSwitch(btn) {
+    const isChecked = btn.getAttribute('aria-checked') === 'true';
+    const thumb = btn.querySelector('span');
+    
+    if (isChecked) {
+      btn.setAttribute('aria-checked', 'false');
+      btn.classList.remove('bg-primary-container');
+      btn.classList.add('bg-surface-dim');
+      thumb.classList.remove('translate-x-6');
+      thumb.classList.add('translate-x-0');
+    } else {
+      btn.setAttribute('aria-checked', 'true');
+      btn.classList.remove('bg-surface-dim');
+      btn.classList.add('bg-primary-container');
+      thumb.classList.remove('translate-x-0');
+      thumb.classList.add('translate-x-6');
+    }
+  }
+
+  function triggerDownload() {
+    const btn = document.getElementById('downloadBtn');
+    const feedback = document.getElementById('downloadFeedback');
+    btn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Packaging Encrypted Archive...</span>';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span>Downloaded NIRVAAN-Archive.zip</span>';
+      feedback.classList.remove('hidden');
+    }, 1200);
+  }
+
+  function confirmAction(targetName) {
+    const confirmed = window.confirm('Are you sure you want to permanently erase ' + targetName + '? This action cannot be reversed.');
+    if (confirmed) {
+      alert(targetName + ' has been permanently wiped from local memory partitions.');
+    }
+  }
+</script></main></div></body></html>

@@ -1,0 +1,18 @@
+{# Live region for non-blocking status messages. Announced to screen readers. #}
+<div aria-atomic="true" aria-live="polite"
+     class="fixed bottom-6 right-6 z-[70] flex flex-col gap-space-sm pointer-events-none"
+     data-toast-host role="status"></div>
+
+<template data-toast-template>
+  <div class="pointer-events-auto flex items-start gap-space-sm max-w-sm px-space-md py-3
+              rounded-2xl bg-surface-container-lowest
+              shadow-[0_20px_40px_-8px_rgba(15,23,42,0.16)]
+              border border-outline-variant/40">
+    <span class="material-symbols-outlined text-[20px] text-primary" data-toast-icon>info</span>
+    <p class="font-body-md text-body-md text-on-surface flex-1" data-toast-message></p>
+    <button aria-label="Dismiss" class="text-on-surface-variant hover:text-on-surface"
+            data-toast-close>
+      <span class="material-symbols-outlined text-[18px]">close</span>
+    </button>
+  </div>
+</template>

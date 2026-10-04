@@ -1,0 +1,293 @@
+{# Check a Message: result card, empty state and past-check rows.
+   Imported by check_message.html and rendered alone by /api/check so a fresh
+   result and a re-opened past result share one design. #}
+
+{% macro result_card(la, stored=True) %}
+{% set tone = la.meta.tone %}
+{% set tone_cls = {
+  "error": {"banner": "bg-error-container text-on-error-container", "icon": "bg-error text-on-error", "title": "text-on-error-container", "pill": "bg-error text-on-error", "dot": "bg-error"},
+  "secondary": {"banner": "bg-secondary-fixed text-on-secondary-fixed", "icon": "bg-secondary text-on-secondary", "title": "text-on-secondary-fixed", "pill": "bg-secondary text-on-secondary", "dot": "bg-secondary"},
+  "tertiary": {"banner": "bg-tertiary-fixed text-on-tertiary-fixed", "icon": "bg-tertiary text-on-tertiary", "title": "text-on-tertiary-fixed", "pill": "bg-tertiary text-on-tertiary", "dot": "bg-tertiary"}
+}[tone] %}
+<div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden" data-result data-analysis-id="{{ la.obj.id if stored else '' }}">
+<!-- Result Banner -->
+<div class="p-space-lg {{ tone_cls.banner }} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-start sm:items-center gap-space-md min-w-0">
+<div class="w-12 h-12 rounded-2xl {{ tone_cls.icon }} flex items-center justify-center flex-shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">{{ la.meta.icon }}</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<h2 class="font-headline-sm text-headline-sm font-bold {{ tone_cls.title }}" data-speak>{{ la.meta.label }}</h2>
+{% if la.severity_label %}
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full {{ tone_cls.pill }} font-label-sm text-label-sm">{{ la.severity_label }}</span>
+{% endif %}
+</div>
+<p class="font-body-sm text-body-sm {{ tone_cls.title }} mt-1" data-speak>{{ la.meta.summary }}</p>
+<p class="font-body-sm text-[12px] {{ tone_cls.title }} mt-1 opacity-80"><span>{{ la.kind_label }}</span> · <span>{{ la.obj.created_at.strftime('%d %b %Y, %I:%M %p') if la.obj.created_at else '' }}</span></p>
+</div>
+</div>
+<div class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md flex items-center gap-1.5 flex-shrink-0 shadow-xs">
+<span class="w-2 h-2 rounded-full {{ tone_cls.dot }}"></span>
+<span class="font-semibold">Detection confidence:</span>
+<span class="font-semibold">{{ la.confidence_label }}</span>
+</div>
+</div>
+<!-- Card Body -->
+<div class="p-space-lg flex flex-col gap-space-lg">
+{% if not stored %}
+<div class="p-3 rounded-2xl bg-surface-container-low flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-tertiary flex-shrink-0">lock</span>
+<p class="font-body-sm text-body-sm">Analysis history is turned off in Privacy Center, so this result was not saved.</p>
+</div>
+{% endif %}
+<!-- Segmented Analysis Navigation Tabs -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1.5 rounded-2xl overflow-x-auto" role="tablist">
+<button type="button" role="tab" aria-selected="true" class="analysis-tab-btn flex-1 min-w-[110px] py-2 px-3 rounded-xl bg-surface-container-lowest text-primary font-label-md text-label-md shadow-xs text-center transition-all" data-tab="summary">Summary</button>
+<button type="button" role="tab" aria-selected="false" class="analysis-tab-btn flex-1 min-w-[110px] py-2 px-3 rounded-xl text-on-surface-variant hover:text-on-surface font-label-md text-label-md text-center transition-all" data-tab="signals"><span>Detected Signals</span> <span>({{ la.signals|length }})</span></button>
+<button type="button" role="tab" aria-selected="false" class="analysis-tab-btn flex-1 min-w-[110px] py-2 px-3 rounded-xl text-on-surface-variant hover:text-on-surface font-label-md text-label-md text-center transition-all" data-tab="claims">Claim Analysis</button>
+<button type="button" role="tab" aria-selected="false" class="analysis-tab-btn flex-1 min-w-[110px] py-2 px-3 rounded-xl text-on-surface-variant hover:text-on-surface font-label-md text-label-md text-center transition-all" data-tab="source">Source &amp; Link</button>
+</div>
+<!-- Tab: Summary -->
+<div class="flex flex-col gap-space-lg" data-tab-panel="summary">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low rounded-2xl p-space-md flex flex-col justify-between min-w-0">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">What we detected:</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface whitespace-pre-line break-words" data-speak>{{ la.obj.what_we_detected }}</p>
+</div>
+</div>
+<div class="bg-error-container/40 rounded-2xl p-space-md flex flex-col justify-between min-w-0">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-headline-sm text-headline-sm text-error">Why this needs attention:</span>
+</div>
+{% if la.signals %}
+<ul class="space-y-2 font-body-md text-body-md text-on-surface">
+{% for s in la.signals %}
+<li class="flex items-start gap-2 min-w-0">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span class="break-words min-w-0"><strong>{{ la.signal_label[s.id] }}:</strong> {{ s.explanation }}{% if s.evidence %} <em class="text-on-surface-variant">"{{ s.evidence }}"</em>{% endif %}</span>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="font-body-md text-body-md text-on-surface-variant">No warning signals were detected in this message.</p>
+{% endif %}
+</div>
+{% if la.obj.why_it_matters %}
+<div class="mt-4 pt-3 border-t border-error-container text-error font-label-sm text-label-sm font-semibold whitespace-pre-line">{{ la.obj.why_it_matters }}</div>
+{% endif %}
+</div>
+</div>
+{% if la.obj.what_to_verify %}
+<div class="p-space-lg rounded-2xl bg-gradient-to-r from-error/10 via-error-container/30 to-surface-container-low flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[22px]">gavel</span>
+</div>
+<div class="min-w-0">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">What to verify</h3>
+<p class="font-body-md text-body-md text-on-surface mt-0.5 whitespace-pre-line break-words" data-speak>{{ la.obj.what_to_verify }}</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 self-end md:self-auto flex-shrink-0">
+{% set first = la.verify_links[0] %}
+<a class="px-4 py-2 rounded-full bg-error text-on-error font-label-md text-label-md font-semibold hover:opacity-95 shadow-sm transition-all flex items-center gap-1" href="{{ first[1] }}" rel="noopener noreferrer" target="_blank">
+<span>{{ first[0] }}</span>
+<span class="material-symbols-outlined text-[16px]">launch</span>
+</a>
+</div>
+</div>
+{% endif %}
+</div>
+<!-- Tab: Detected signals -->
+<div class="hidden flex-col gap-space-sm" data-tab-panel="signals">
+{% for s in la.signals %}
+<div class="rounded-2xl bg-surface-container-low p-space-md min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">{{ la.signal_label[s.id] }}</span>
+<span class="px-2 py-0.5 rounded-full {{ 'bg-error-container text-on-error-container' if s.severity == 'HIGH' else 'bg-secondary-fixed text-on-secondary-fixed' if s.severity == 'MEDIUM' else 'bg-surface-container-high text-on-surface-variant' }} font-label-sm text-[11px] font-bold">{{ {"HIGH": "High Risk", "MEDIUM": "Medium Risk", "LOW": "Low Risk"}[s.severity] }}</span>
+</div>
+{% if s.evidence %}<p class="font-body-sm text-body-sm text-error mt-1 break-words">“{{ s.evidence }}”</p>{% endif %}
+{% if s.explanation %}<p class="font-body-sm text-body-sm text-on-surface mt-1">{{ s.explanation }}</p>{% endif %}
+{% if s.verify_hint %}<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary flex-shrink-0">verified_user</span><span>{{ s.verify_hint }}</span></p>{% endif %}
+</div>
+{% else %}
+<p class="font-body-md text-body-md text-on-surface-variant">No warning signals were detected in this message.</p>
+{% endfor %}
+</div>
+<!-- Tab: Claims -->
+<div class="hidden flex-col gap-space-sm" data-tab-panel="claims">
+{% if la.claims %}
+<p class="font-body-sm text-body-sm text-on-surface-variant">Statements in the message about money, returns or approvals. Each one is a claim to check, not a fact.</p>
+<ul class="space-y-2.5 font-body-md text-body-md text-on-surface">
+{% for claim in la.claims %}
+<li class="flex items-start gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[18px] flex-shrink-0 mt-0.5">label_important</span>
+<span class="break-words min-w-0">{{ claim }}</span>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="font-body-md text-body-md text-on-surface-variant">No specific claims were extracted from this message.</p>
+{% endif %}
+</div>
+<!-- Tab: Source & Link -->
+<div class="hidden flex-col gap-space-sm" data-tab-panel="source">
+{% if la.links %}
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md min-w-0">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">{{ 'public_off' if la.link_signals else 'public' }}</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Source / Link Analysis:</span>
+{% for link in la.links[:3] %}
+<code class="px-2 py-0.5 rounded bg-surface-container text-primary font-mono text-body-sm font-semibold break-all">{{ link }}</code>
+{% endfor %}
+</div>
+<div class="flex flex-col gap-1 mt-1 font-body-sm text-body-sm text-on-surface-variant">
+{% for s in la.link_signals %}
+<span class="flex items-start gap-1 text-error"><span class="w-1.5 h-1.5 rounded-full bg-error mt-2 flex-shrink-0"></span><span>{{ s.explanation or la.signal_label[s.id] }}</span></span>
+{% else %}
+<span>No link-specific warning signals were detected.</span>
+{% endfor %}
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2">Links are checked by their address only. NIRVAAN does not open them.</p>
+</div>
+</div>
+{% else %}
+<p class="font-body-md text-body-md text-on-surface-variant">No links were found in this message.</p>
+{% endif %}
+</div>
+<!-- Action Dock -->
+<div class="pt-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<button type="button" aria-expanded="false" class="px-4 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-label-md text-label-md font-bold shadow-sm transition-all flex items-center gap-2" data-action="explain">
+<span class="material-symbols-outlined text-[20px]">translate</span>
+<span>Explain in Simple Words</span>
+</button>
+<a class="px-4 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-all flex items-center gap-1.5" href="{{ la.verify_links[0][1] }}" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-tertiary">verified_user</span>
+<span>Verify Official Source</span>
+</a>
+{% if stored %}
+<button type="button" class="px-4 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-all flex items-center gap-1.5 disabled:opacity-60" data-action="journal">
+<span class="material-symbols-outlined text-[18px] text-primary">bookmark_add</span>
+<span>Save to Journal</span>
+</button>
+{% endif %}
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-2 hidden" data-journal-msg role="status"></p>
+<!-- Simple Words Panel -->
+<div class="hidden bg-surface-container-low rounded-2xl p-space-lg" data-simple-panel>
+<div class="flex items-center gap-2 pb-space-sm mb-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">auto_stories</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Plain Language Explanation</h4>
+</div>
+<div class="space-y-3 font-body-md text-body-md text-on-surface">
+<div class="p-3.5 bg-surface-container-lowest rounded-xl shadow-xs space-y-2">
+{% for line in la.simple %}<p>{{ line }}</p>{% else %}<p>{{ la.meta.summary }}</p>{% endfor %}
+</div>
+<p class="font-label-md text-label-md text-tertiary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+<span>Take your time. Nothing legitimate needs an answer from you right now.</span>
+</p>
+</div>
+</div>
+<!-- How this was worked out -->
+<div class="bg-surface-container-low rounded-2xl p-space-md">
+<details class="group cursor-pointer">
+<summary class="flex items-center justify-between gap-2 font-label-lg text-label-lg text-on-surface list-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology_alt</span>
+<span>How NIRVAAN arrived at this result</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-space-md pt-space-md space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+{% if la.signals %}
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm text-center">
+{% for s in la.signals[:3] %}
+<div class="p-3 bg-surface-container-lowest rounded-xl">
+<p class="font-headline-sm text-headline-sm {{ 'text-error' if s.severity == 'HIGH' else 'text-secondary' }} font-bold">{{ {"HIGH": "High", "MEDIUM": "Medium", "LOW": "Low"}[s.severity] }}</p>
+<p class="text-on-surface-variant text-[11px] mt-0.5">{{ la.signal_label[s.id] }}</p>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+<p class="text-on-surface leading-relaxed">The content was compared with a set of known warning patterns (such as guaranteed returns, pressure to act, requests for OTPs or payments, and unusual links). The result reflects how many patterns matched and how serious they are.</p>
+{% if la.obj.what_is_uncertain %}
+<p class="text-on-surface leading-relaxed whitespace-pre-line">{{ la.obj.what_is_uncertain }}</p>
+{% endif %}
+<p class="text-on-surface leading-relaxed">Under SEBI rules, registered advisers and research analysts may not promise assured returns on market investments. A promise of fixed, guaranteed profits is a reason to verify carefully.</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+{% endmacro %}
+
+{% macro empty_card() %}
+<div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden" data-result-empty>
+<div class="p-space-lg bg-surface-container-low flex items-start sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">shield_question</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">No analysis yet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Your results will appear here after you check a message.</p>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<p class="font-headline-sm text-headline-sm text-on-surface">What you will see</p>
+<ul class="space-y-2.5 font-body-md text-body-md text-on-surface">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] flex-shrink-0 mt-0.5">label_important</span>
+<span>What the message claims, in plain words.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span>Warning signals found, with the exact words that triggered them.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">verified_user</span>
+<span>What to verify, and where to verify it.</span>
+</li>
+</ul>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ t("explain.not_proof") }}</p>
+</div>
+</div>
+{% endmacro %}
+
+{% macro history_row(item) %}
+<li>
+<button type="button" data-open-check="{{ item.id }}" class="w-full text-left p-4 rounded-2xl bg-surface-container-low/70 hover:bg-surface-container-low hover:shadow-sm cursor-pointer transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-3 min-w-0">
+<div class="flex items-start gap-3.5 min-w-0">
+<div class="w-10 h-10 rounded-xl {{ item.icon_class }} flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">{{ item.kind_icon }}</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">{{ item.title }}</span>
+{% if item.badge %}<span class="px-2 py-0.5 rounded-full {{ item.badge_class }} font-label-sm text-[11px] font-bold">{{ item.badge }}</span>{% endif %}
+</div>
+{% if item.quote %}<p class="font-body-sm text-body-sm text-on-surface mt-0.5 break-words line-clamp-2">“{{ item.quote }}”</p>{% endif %}
+{% if item.detail %}<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">{{ item.detail }}</p>{% endif %}
+</div>
+</div>
+<div class="flex items-center gap-3 self-end md:self-center flex-shrink-0">
+<span class="font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">{{ item.ago }}</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface hover:text-primary font-label-sm text-label-sm font-bold shadow-sm transition inline-flex items-center gap-1 whitespace-nowrap"><span>View result</span><span class="material-symbols-outlined text-[16px]">open_in_new</span></span>
+</div>
+</button>
+</li>
+{% endmacro %}

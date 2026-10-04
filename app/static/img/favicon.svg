@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="44" fill="url(#g)"/>
+  <!-- Lotus mark, matching the brand glyph used across the UI -->
+  <g fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M96 42c12 24 32 40 56 40-12 32-32 56-56 104-24-48-44-72-56-104 24 0 44-16 56-40z"
+          fill="#ffffff" fill-opacity="0.18"/>
+    <path d="M96 98c20-24 52-32 72-16-8 32-28 56-72 104-44-48-64-72-72-104 20-16 52-8 72 16z"/>
+  </g>
+</svg>

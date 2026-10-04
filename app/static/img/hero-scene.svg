@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMax slice">
+  <!-- Landing hero backdrop: dawn sky, temple skyline, river ghats, boats. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dbe8ff"/>
+      <stop offset="0.45" stop-color="#ece6ff"/>
+      <stop offset="0.72" stop-color="#ffe4ea"/>
+      <stop offset="1" stop-color="#ffefd9"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff3d1"/>
+      <stop offset="0.5" stop-color="#ffd9a8" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#ffd9a8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe0f5"/>
+      <stop offset="1" stop-color="#7fb4e0"/>
+    </linearGradient>
+    <linearGradient id="bank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4d9b4"/>
+      <stop offset="1" stop-color="#e6bf8f"/>
+    </linearGradient>
+
+    <!-- Nagara-style temple: base 0..100 wide, ground at y=200 -->
+    <symbol id="temple" overflow="visible">
+      <path d="M-26 200 L-26 172 C-24 152 -18 142 -12 138 C-6 142 0 152 2 172 L2 200 Z"/>
+      <path d="M98 200 L98 172 C100 152 106 142 112 138 C118 142 124 152 126 172 L126 200 Z"/>
+      <path d="M6 200 L6 150 L94 150 L94 200 Z"/>
+      <path d="M18 150 C20 100 34 52 50 30 C66 52 80 100 82 150 Z"/>
+      <ellipse cx="50" cy="28" rx="11" ry="5"/>
+      <path d="M46 24 L50 6 L54 24 Z"/>
+      <path d="M50 6 L50 -8 L62 -3 L50 2" />
+      <g fill="#000" fill-opacity="0.12">
+        <path d="M50 30 C66 52 80 100 82 150 L50 150 Z"/>
+        <path d="M50 150 L94 150 L94 200 L50 200 Z"/>
+      </g>
+      <g fill="none" stroke="#000" stroke-opacity="0.12" stroke-width="2">
+        <path d="M30 150 C32 110 40 72 50 48"/><path d="M70 150 C68 110 60 72 50 48"/>
+        <path d="M22 120 L78 120"/><path d="M26 92 L74 92"/><path d="M34 64 L66 64"/>
+      </g>
+      <path d="M40 200 L40 176 Q50 162 60 176 L60 200 Z" fill="#000" fill-opacity="0.22"/>
+    </symbol>
+
+    <!-- Domed palace: 0..160 wide, ground at y=120 -->
+    <symbol id="palace" overflow="visible">
+      <path d="M8 120 L8 62 L152 62 L152 120 Z"/>
+      <path d="M48 62 C48 22 112 22 112 62 Z"/>
+      <path d="M78 26 L80 10 L82 26 Z"/>
+      <path d="M8 62 C8 44 30 44 30 62 Z"/><path d="M130 62 C130 44 152 44 152 62 Z"/>
+      <path d="M4 120 L4 40 L14 40 L14 120 Z"/><path d="M146 120 L146 40 L156 40 L156 120 Z"/>
+      <path d="M2 40 C2 30 16 30 16 40 Z"/><path d="M144 40 C144 30 158 30 158 40 Z"/>
+      <g fill="#000" fill-opacity="0.18">
+        <path d="M28 120 L28 92 Q38 78 48 92 L48 120 Z"/>
+        <path d="M70 120 L70 86 Q80 70 90 86 L90 120 Z"/>
+        <path d="M112 120 L112 92 Q122 78 132 92 L132 120 Z"/>
+      </g>
+      <path d="M80 62 L152 62 L152 120 L80 120 Z" fill="#000" fill-opacity="0.08"/>
+    </symbol>
+
+    <!-- Palm tree: trunk base at (0,0), grows upward -->
+    <symbol id="palm" overflow="visible">
+      <path d="M-4 0 C-2 -60 6 -110 2 -150 L8 -150 C12 -110 6 -60 6 0 Z" fill="#8a6a4a"/>
+      <g fill="#4f9a6a">
+        <path d="M5 -150 C-20 -170 -50 -160 -60 -140 C-40 -150 -20 -150 5 -146 Z"/>
+        <path d="M5 -150 C30 -172 56 -162 62 -140 C44 -152 26 -150 5 -146 Z"/>
+        <path d="M5 -150 C-10 -180 -40 -186 -52 -174 C-30 -172 -14 -164 5 -148 Z"/>
+        <path d="M5 -150 C20 -182 46 -186 56 -172 C36 -172 20 -164 5 -148 Z"/>
+        <path d="M5 -150 C0 -180 6 -196 14 -198 C12 -182 10 -168 5 -148 Z"/>
+      </g>
+    </symbol>
+
+    <!-- Wooden river boat with canopy: 0..120 wide -->
+    <symbol id="boat" overflow="visible">
+      <path d="M30 10 Q60 -26 90 10 Z" fill="#f2c14e"/>
+      <path d="M30 10 Q60 -26 90 10" fill="none" stroke="#c98a1c" stroke-width="2"/>
+      <path d="M34 10 L34 2 M86 10 L86 2" stroke="#6b4a2b" stroke-width="3"/>
+      <path d="M0 8 Q60 30 120 8 L108 22 Q60 38 12 22 Z" fill="#8b5a32"/>
+      <path d="M6 12 Q60 30 114 12" fill="none" stroke="#c9884e" stroke-width="2.5"/>
+    </symbol>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1440" height="720" fill="url(#sky)"/>
+  <circle cx="1060" cy="430" r="200" fill="url(#sun)"/>
+
+  <!-- clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <g transform="translate(160 120)"><ellipse cx="0" cy="0" rx="70" ry="18"/><ellipse cx="30" cy="-14" rx="40" ry="20"/><ellipse cx="-30" cy="-8" rx="30" ry="14"/></g>
+    <g transform="translate(720 80)"><ellipse cx="0" cy="0" rx="90" ry="16"/><ellipse cx="-20" cy="-14" rx="44" ry="20"/><ellipse cx="34" cy="-10" rx="34" ry="14"/></g>
+    <g transform="translate(1260 170)" opacity="0.8"><ellipse cx="0" cy="0" rx="80" ry="16"/><ellipse cx="20" cy="-14" rx="40" ry="18"/></g>
+  </g>
+  <g fill="none" stroke="#8b8fb8" stroke-width="2.5" stroke-linecap="round" opacity="0.5">
+    <path d="M540 170 q8 -8 16 0 q8 -8 16 0"/><path d="M590 150 q6 -6 12 0 q6 -6 12 0"/>
+    <path d="M1150 250 q7 -7 14 0 q7 -7 14 0"/>
+  </g>
+
+  <!-- distant hills -->
+  <path d="M0 500 C120 440 240 470 360 450 C500 425 600 480 760 460 C900 440 1020 400 1160 430 C1280 455 1360 430 1440 440 L1440 600 L0 600 Z"
+        fill="#d4d2f4" opacity="0.8"/>
+
+  <!-- far skyline (lavender) -->
+  <g fill="#bdb6ea" opacity="0.9">
+    <use href="#temple" xlink:href="#temple" transform="translate(40 330) scale(1.1)"/>
+    <use href="#palace" xlink:href="#palace" transform="translate(250 450) scale(1.05)"/>
+    <use href="#temple" xlink:href="#temple" transform="translate(470 410) scale(0.75)"/>
+    <use href="#palace" xlink:href="#palace" transform="translate(940 430) scale(1.2)"/>
+    <use href="#temple" xlink:href="#temple" transform="translate(1180 300) scale(1.3)"/>
+  </g>
+
+  <!-- river bank / ghats -->
+  <path d="M0 560 C200 545 400 560 720 556 C1000 552 1240 545 1440 556 L1440 620 L0 620 Z" fill="url(#bank)"/>
+  <g stroke="#d4a571" stroke-width="2" opacity="0.7">
+    <path d="M0 578 L1440 574"/><path d="M0 594 L1440 590"/><path d="M0 608 L1440 606"/>
+  </g>
+
+  <!-- near skyline (sandstone) -->
+  <g fill="#eab98c">
+    <use href="#temple" xlink:href="#temple" transform="translate(-40 250) scale(1.55)"/>
+    <use href="#palace" xlink:href="#palace" transform="translate(150 440) scale(0.95)"/>
+    <use href="#temple" xlink:href="#temple" transform="translate(1290 240) scale(1.6)"/>
+    <use href="#palace" xlink:href="#palace" transform="translate(1100 455) scale(0.85)"/>
+  </g>
+
+  <!-- palms -->
+  <use href="#palm" xlink:href="#palm" transform="translate(110 568) scale(1.1)"/>
+  <use href="#palm" xlink:href="#palm" transform="translate(340 566) scale(0.8)"/>
+  <use href="#palm" xlink:href="#palm" transform="translate(1250 566) scale(0.9)"/>
+  <use href="#palm" xlink:href="#palm" transform="translate(1400 570) scale(1.15)"/>
+
+  <!-- river -->
+  <rect x="0" y="618" width="1440" height="102" fill="url(#river)"/>
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" opacity="0.6" stroke-width="2.5">
+    <path d="M80 646 h90"/><path d="M420 664 h140"/><path d="M760 640 h70"/><path d="M1000 676 h120"/>
+    <path d="M1260 652 h90"/><path d="M220 692 h110"/><path d="M640 700 h90"/>
+  </g>
+  <!-- sun reflection -->
+  <g fill="#fff3d1" opacity="0.7"><rect x="1010" y="630" width="100" height="4" rx="2"/><rect x="1030" y="646" width="60" height="4" rx="2"/></g>
+
+  <!-- boats -->
+  <use href="#boat" xlink:href="#boat" transform="translate(300 648) scale(1.2)"/>
+  <use href="#boat" xlink:href="#boat" transform="translate(860 664) scale(1.35)"/>
+  <use href="#boat" xlink:href="#boat" transform="translate(1180 630) scale(0.7)" opacity="0.85"/>
+</svg>

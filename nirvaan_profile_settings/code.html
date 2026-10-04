@@ -1,0 +1,581 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#005236", "inverse-surface": "#283044", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "tertiary-container": "#007d55", "on-surface-variant": "#434655", "surface-dim": "#d2d9f4", "secondary-fixed": "#acedff", "on-tertiary-fixed": "#002113", "tertiary-fixed": "#6ffbbe", "surface": "#faf8ff", "background": "#faf8ff", "on-primary-container": "#eeefff", "on-tertiary": "#ffffff", "tertiary": "#006242", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#4edea3", "on-secondary-fixed": "#001f26", "on-error-container": "#93000a", "surface-bright": "#faf8ff", "on-secondary-fixed-variant": "#004e5c", "surface-container": "#eaedff", "surface-variant": "#dae2fd", "primary": "#004ac6", "secondary-fixed-dim": "#4cd7f6", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-container": "#006172", "inverse-on-surface": "#eef0ff", "on-primary": "#ffffff", "inverse-primary": "#b4c5ff", "outline-variant": "#c3c6d7", "on-primary-fixed-variant": "#003ea8", "surface-container-highest": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#dbe1ff", "on-background": "#131b2e", "on-surface": "#131b2e", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#bdffdb", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "surface-container-high": "#e2e7ff", "outline": "#737686", "secondary": "#00687a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "1.5rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="px-space-lg pt-space-lg"><div class="flex items-center gap-space-sm mb-space-lg"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-[0_4px_16px_-2px_rgba(37,99,235,0.25)]"><span class="material-symbols-outlined text-[24px]">spa</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">NIRVAAN</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold tracking-wide uppercase">Beta</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Financial Resilience</p></div></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.18)]"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Home / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="talk-to-nirvaan" href="#"><span class="material-symbols-outlined text-[20px]">mic</span><span class="font-label-lg text-label-lg">Talk to NIRVAAN</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="check-a-message" href="#"><span class="material-symbols-outlined text-[20px]">document_scanner</span><span class="font-label-lg text-label-lg">Check a Message</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pause-and-reflect" href="#"><span class="material-symbols-outlined text-[20px]">self_improvement</span><span class="font-label-lg text-label-lg">Pause &amp; Reflect</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learn-and-explore" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-lg text-label-lg">Learn &amp; Explore</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-journey" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">My Journey</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="family-mode" href="#"><span class="material-symbols-outlined text-[20px]">supervised_user_circle</span><span class="font-label-lg text-label-lg">Family Mode</span></a><div class="py-2 px-space-md"><div class="h-px w-full bg-surface-container-high"></div></div><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-shield" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Safety Shield</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="responsible-ai" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span><span class="font-label-lg text-label-lg">Responsible AI</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="privacy-center" href="#"><span class="material-symbols-outlined text-[20px]">lock_reset</span><span class="font-label-lg text-label-lg">Privacy Center</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-lg text-label-lg">Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-lg text-label-lg">Help &amp; Support</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-2xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div><div class="overflow-hidden"><div class="flex items-center gap-1.5"><p class="font-label-md text-label-md text-on-surface truncate">Priya Sharma</p><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block"></span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Learning • Growing</p></div></div><button aria-label="Profile Options" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[18px] text-primary">shield_with_heart</span><span class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant truncate max-w-[140px]">Resilience Portal</span></div><div class="flex-1 max-w-2xl mx-auto"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-[20px] text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-12 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-[0_2px_12px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Ask anything about financial information... (e.g. SIP, mutual funds, scam check)" type="text"><button aria-label="Voice Search" class="absolute right-3.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">mic</span></button></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>Live Shield</span></div><div class="relative"><button aria-label="Select Language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span>English</span><span class="text-outline-variant text-[10px]">| தமிழ் | हिन्दी</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-surface-container-lowest hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 flex-1 bg-surface"><div class="flex flex-col w-full">
+<div class="px-space-md sm:px-margin-desktop py-space-lg max-w-7xl mx-auto w-full space-y-space-xl">
+<!-- Top Header Area -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-wider mb-space-xs">
+<span class="material-symbols-outlined text-[15px]">tune</span>
+          Autonomous Preferences
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          Profile &amp; Settings
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">
+          Manage your personal preferences, multilingual companion settings, reflection habits, and security controls.
+        </p>
+</div>
+<!-- Quick Status Strip -->
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2.5 rounded-full shadow-sm flex-shrink-0">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface">End-to-End Vault Encrypted</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Zero Ad Tracking</span>
+</div>
+</div>
+<!-- Profile Hero Card (Level 1 Elevation) -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-sm">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-secondary-fixed/30 via-primary-fixed/20 to-transparent blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<!-- User Metadata Left -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-lg">
+<div class="relative">
+<div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-primary to-secondary p-1 shadow-md">
+<div class="w-full h-full rounded-[14px] bg-surface-container-highest overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Warm natural portrait of Priya Sharma, a 30-year-old South Asian woman with an encouraging calm smile, wearing modern casual attire, soft studio daylight lighting, soft indigo and teal ambient background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-ET7hLjwjfXprnkPbcAgMn_eANhPkC1xlO7olA7nOLlmJNMzIiZc8tER7-ETKiEtQcssm7vZ_LWqcdSBG8iYyeTOqVOR0Ma4H_aOAbaVLDTXdhR6cLgakWSJ0GVzTPJ5bLSkgu59klhFmx3ATvX0GolVzC3UQBuEwVLZ0zyGGpeiVFnQXpM868Ze-kELVLxWzboJOK-dAYpcxT8SLWBN-L4H4pqykZOf1BplGArX0D0zhftO27Xze">
+</div>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-tertiary text-on-tertiary p-1 rounded-xl shadow-sm flex items-center justify-center" title="Shield Level 2 Active">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex flex-wrap items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Priya Sharma</h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">spa</span>
+                Calm Discernment • Level 2 Shield Active
+              </span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 font-body-md text-body-md text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+                priya.sharma@example.com
+              </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+                Bengaluru, India
+              </span>
+</div>
+<!-- Quick Badges -->
+<div class="pt-2 flex flex-wrap gap-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+                Member since Nov 2024
+              </div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+                14 Reflections Completed
+              </div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">language</span>
+                English &amp; தமிழ்
+              </div>
+</div>
+</div>
+</div>
+<!-- Right CTA Button -->
+<div class="flex sm:flex-col items-center lg:items-end gap-space-sm pt-2 lg:pt-0">
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-container text-on-surface font-label-lg text-label-lg transition-all shadow-sm group" id="editProfileBtn">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">edit</span>
+<span>Edit Profile Info</span>
+</button>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Last synced: 14 mins ago</p>
+</div>
+</div>
+</div>
+<!-- Main Two-Column Settings Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- LEFT COLUMN: Behavioral, Linguistic, & Accessibility Configuration (7 Cols) -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- Category 1: Language & Regional Preferences -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">translate</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Language &amp; Regional Preferences</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Customize linguistic companion nuance and localized metaphors</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-bold">Multilingual</span>
+</div>
+<div class="space-y-space-md">
+<!-- Default Interface Language -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface block" for="ui-lang">Default Interface Language</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Menus, labels, and analytical risk cards</p>
+</div>
+<div class="relative min-w-[190px]">
+<select class="w-full py-2.5 pl-3.5 pr-8 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md appearance-none focus:outline-none focus:bg-surface-container-highest cursor-pointer" id="ui-lang">
+<option selected="">English</option>
+<option>தமிழ் (Tamil)</option>
+<option>हिन्दी (Hindi)</option>
+<option>తెలుగు (Telugu)</option>
+<option>ಕನ್ನಡ (Kannada)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">unfold_more</span>
+</div>
+</div>
+<!-- Primary Voice Companion Language -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface block" for="voice-primary">Primary Voice Companion Language</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Spoken tone in "Talk to NIRVAAN" audio pod</p>
+</div>
+<div class="relative min-w-[190px]">
+<select class="w-full py-2.5 pl-3.5 pr-8 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md appearance-none focus:outline-none focus:bg-surface-container-highest cursor-pointer" id="voice-primary">
+<option>English (Indian Accent)</option>
+<option selected="">தமிழ் (Tamil)</option>
+<option>हिन्दी (Hindi)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">unfold_more</span>
+</div>
+</div>
+<!-- Secondary Fallback Language -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface block" for="voice-secondary">Secondary Fallback Language</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">When technical terminology lacks direct vernacular phrasing</p>
+</div>
+<div class="relative min-w-[190px]">
+<select class="w-full py-2.5 pl-3.5 pr-8 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md appearance-none focus:outline-none focus:bg-surface-container-highest cursor-pointer" id="voice-secondary">
+<option>English</option>
+<option selected="">हिन्दी (Hindi)</option>
+<option>தமிழ் (Tamil)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">unfold_more</span>
+</div>
+</div>
+<!-- Voice Speed Slider -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Voice Speed</span>
+<span class="font-label-md text-label-md text-primary font-bold bg-surface-container-lowest px-2.5 py-0.5 rounded-full" id="speedValueLabel">0.9x • Calm &amp; Measured</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Slower cadences systematically lower heart rate during market volatility stress.</p>
+<div class="pt-2">
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="voiceSpeedRange" max="1.3" min="0.7" step="0.05" type="range" value="0.9">
+<div class="flex justify-between font-label-sm text-label-sm text-outline-variant pt-1">
+<span>0.7x Gentle</span>
+<span>1.0x Normal</span>
+<span>1.3x Brisk</span>
+</div>
+</div>
+</div>
+<!-- Regional Financial Analogies Toggle -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface block">Regional Financial Analogies</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Uses cultural comparisons like chit funds (சீட்டு), village grain banks, and bachat mandals to explain compound risk.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input checked="" class="sr-only peer" id="analogyToggle" type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Category 2: Reflection & Cooldown Preferences -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-2xl bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">self_improvement</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Reflection &amp; Cooldown Preferences</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protective behavioral interventions against impulsive financial moves</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-tertiary-container/15 font-label-sm text-label-sm text-tertiary font-bold">Guardrails</span>
+</div>
+<div class="space-y-space-md">
+<!-- Default Tactical Pause Duration -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Default Tactical Pause Duration</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The mindful breathing interval initiated before finalizing unverified transactions.</p>
+</div>
+<div class="grid grid-cols-3 gap-space-sm pt-1" id="pauseDurationContainer">
+<button class="pause-pill py-2.5 px-4 rounded-xl font-label-md text-label-md transition-all text-on-surface-variant bg-surface-container-lowest text-center hover:bg-surface-container" data-duration="2" type="button">
+                  2 min
+                </button>
+<button class="pause-pill py-2.5 px-4 rounded-xl font-label-md text-label-md transition-all bg-primary text-on-primary font-bold shadow-sm text-center" data-duration="5" type="button">
+                  5 min (Active)
+                </button>
+<button class="pause-pill py-2.5 px-4 rounded-xl font-label-md text-label-md transition-all text-on-surface-variant bg-surface-container-lowest text-center hover:bg-surface-container" data-duration="10" type="button">
+                  10 min
+                </button>
+</div>
+</div>
+<!-- High-Urgency Auto-Cooldown Toggle -->
+<div class="flex items-start justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg text-on-surface">High-Urgency Auto-Cooldown</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock_clock</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enforces a mandatory 12-hour psychological cooling off window for unknown transfers or speculative investments flagged over ₹10,000.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+<input checked="" class="sr-only peer" id="cooldownToggle" type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Prompt Frequency Selector -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<span class="font-label-lg text-label-lg text-on-surface block">Prompt Frequency</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How often NIRVAAN invites you to record post-investment sentiments.</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-1">
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest cursor-pointer hover:bg-surface-container transition-colors">
+<input class="text-primary focus:ring-0 cursor-pointer" name="prompt_freq" type="radio" value="gentle">
+<span class="font-label-md text-label-md text-on-surface">Gentle</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container text-primary cursor-pointer transition-colors">
+<input checked="" class="text-primary focus:ring-0 cursor-pointer" name="prompt_freq" type="radio" value="regular">
+<span class="font-label-md text-label-md font-bold text-on-surface">Regular</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest cursor-pointer hover:bg-surface-container transition-colors">
+<input class="text-primary focus:ring-0 cursor-pointer" name="prompt_freq" type="radio" value="demand">
+<span class="font-label-md text-label-md text-on-surface">On-Demand</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Category 3: Accessibility & Display -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">visibility</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Accessibility &amp; Display</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visual, auditory, and screen reader calibration</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-bold">Universal Design</span>
+</div>
+<div class="space-y-space-md">
+<!-- Contrast Mode -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div class="space-y-0.5">
+<span class="font-label-lg text-label-lg text-on-surface block">Contrast Mode</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Switch between clinical soft mists and high-contrast WCAG AAA surfaces.</p>
+</div>
+<div class="flex bg-surface-container-lowest p-1 rounded-xl">
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface font-semibold">Normal</button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface">High Contrast</button>
+</div>
+</div>
+<!-- Font Scale -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Font Scale</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Adjust body text legibility</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<button class="py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold text-center">Standard (100%)</button>
+<button class="py-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center hover:bg-surface-container">Large (115%)</button>
+<button class="py-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center hover:bg-surface-container">Extra Large (130%)</button>
+</div>
+</div>
+<!-- Reduced Motion Toggle -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Reduced Motion</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Disables pulsing orbs, sliding cards, and tactile transition sweeps.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input class="sr-only peer" type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Screen Reader Optimizations Toggle -->
+<div class="flex items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-low">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Screen Reader Optimizations</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Expands spoken semantic ARIA landmarks for risk matrices and financial charts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Security, Device Sessions, Storage & Account Management (5 Cols) -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- Card 1: Account Security & Device Sessions -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">security</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Account Security</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Multi-factor tokens &amp; hardware sessions</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- 2FA Status -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary">key</span>
+<span class="font-label-lg text-label-lg text-on-surface">Two-Factor Authentication</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active via TOTP Authenticator App</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold flex-shrink-0">Active</span>
+</div>
+<!-- Active Sessions List -->
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Active Device Sessions</span>
+<div class="space-y-2">
+<!-- Session 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">laptop_mac</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Chrome on macOS</p>
+<p class="font-body-sm text-body-sm text-tertiary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        Current Active Session
+                      </p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Bengaluru</span>
+</div>
+<!-- Session 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">smartphone</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">NIRVAAN Android (Pixel 8)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active 2 hrs ago</p>
+</div>
+</div>
+<button class="text-error hover:text-on-surface-variant transition-colors p-1" title="Terminate Session">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Security PIN for Journal -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Security PIN for Reflection Journal</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protects private emotional diary entries from family co-viewers</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest hover:bg-surface-container font-label-md text-label-md text-primary font-semibold transition-colors flex-shrink-0">
+                Change PIN
+              </button>
+</div>
+</div>
+</div>
+<!-- Card 2: Data & Storage Management -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-10 h-10 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">database</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Data &amp; Storage</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">On-device footprint &amp; sync controls</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Storage Bar Gauge -->
+<div class="p-space-md rounded-2xl bg-surface-container-low space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Local Encrypted Cache</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">14.2 MB / 100 MB</span>
+</div>
+<!-- Custom Segmented Storage Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary" style="width: 14%;" title="Audio Lessons (10.2 MB)"></div>
+<div class="h-full bg-secondary" style="width: 6%;" title="Reflection Text (4.0 MB)"></div>
+</div>
+<div class="flex items-center gap-4 pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                  Audio Lessons (10.2 MB)
+                </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  Reflections (4.0 MB)
+                </span>
+</div>
+</div>
+<!-- Storage Actions -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<button class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" id="clearCacheBtn">
+<span class="material-symbols-outlined text-[18px] text-outline">delete_sweep</span>
+<span>Clear Cached Audio</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">sync_lock</span>
+<span>Sync Across Devices</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Danger Zone & Account Management -->
+<div class="bg-error-container/20 rounded-3xl p-space-lg sm:p-space-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-error font-bold">Danger Zone</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Irreversible erasure &amp; session termination</p>
+</div>
+</div>
+<div class="space-y-space-sm pt-2">
+<!-- Reset Memory -->
+<div class="flex items-center justify-between p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Erase Behavioural Memory</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Clears AI understanding of your impulse triggers.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-low hover:bg-error-container text-error font-label-md text-label-md font-semibold transition-colors flex-shrink-0">
+                Reset Memory
+              </button>
+</div>
+<!-- Sign Out All -->
+<div class="flex items-center justify-between p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Sign Out of All Devices</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Invalidates tokens on laptop, phone, &amp; tablets.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-colors flex-shrink-0">
+                Sign Out
+              </button>
+</div>
+<!-- Delete Account -->
+<div class="flex items-center justify-between p-space-md rounded-2xl bg-surface-container-lowest">
+<div>
+<p class="font-label-md text-label-md text-error font-semibold">Delete Entire Account</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permanent purge under Digital Personal Data Protection Act.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-xl bg-error text-on-error font-label-md text-label-md font-bold transition-opacity hover:opacity-90 flex-shrink-0 shadow-sm">
+                Delete Account
+              </button>
+</div>
+</div>
+</div>
+<!-- Card 4: About NIRVAAN & Charter Compliance -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm space-y-space-sm text-center sm:text-left">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">spa</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">NIRVAAN Platform</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+              v2.4.2 • Public Good
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            NIRVAAN is an open-access civic resilience companion aligned with the <strong>SEBI Investor Protection &amp; Education Charter</strong>. No product recommendations, no commissions, no financial solicitations.
+          </p>
+<div class="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-4 font-label-sm text-label-sm text-primary">
+<a class="hover:underline flex items-center gap-1" href="#">
+<span>Investor Charter</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:underline flex items-center gap-1" href="#">
+<span>Terms of Service</span>
+</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:underline flex items-center gap-1" href="#">
+<span>Privacy Policy</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Save Changes Floater / Confirmation Strip -->
+<div class="sticky bottom-6 z-30 flex items-center justify-between p-space-md rounded-2xl bg-surface-container-lowest/95 backdrop-blur-xl shadow-xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+<span class="font-bold">Preferences synced to local device vault.</span> Encrypted with AES-GCM.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-5 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">
+          Discard Changes
+        </button>
+<button class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-secondary text-on-primary font-label-md text-label-md font-bold shadow-md hover:shadow-lg transition-all">
+<span>Save Preferences</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    // Micro-interactions for Settings Screen
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic voice speed slider display
+      const speedSlider = document.getElementById('voiceSpeedRange');
+      const speedLabel = document.getElementById('speedValueLabel');
+      
+      if (speedSlider && speedLabel) {
+        speedSlider.addEventListener('input', (e) => {
+          const val = parseFloat(e.target.value).toFixed(2);
+          let nuance = "Standard";
+          if (val < 0.85) nuance = "Deep & Gentle";
+          else if (val <= 0.95) nuance = "Calm & Measured";
+          else if (val <= 1.1) nuance = "Neutral";
+          else nuance = "Brisk Flow";
+          
+          speedLabel.textContent = `${val}x • ${nuance}`;
+        });
+      }
+
+      // Pause Duration Pill Selector Toggle
+      const pauseContainer = document.getElementById('pauseDurationContainer');
+      if (pauseContainer) {
+        const pills = pauseContainer.querySelectorAll('.pause-pill');
+        pills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            pills.forEach(p => {
+              p.className = 'pause-pill py-2.5 px-4 rounded-xl font-label-md text-label-md transition-all text-on-surface-variant bg-surface-container-lowest text-center hover:bg-surface-container';
+              p.textContent = p.textContent.replace(' (Active)', '');
+            });
+            pill.className = 'pause-pill py-2.5 px-4 rounded-xl font-label-md text-label-md transition-all bg-primary text-on-primary font-bold shadow-sm text-center';
+            pill.textContent = `${pill.getAttribute('data-duration')} min (Active)`;
+          });
+        });
+      }
+
+      // Clear cache simple feedback
+      const clearBtn = document.getElementById('clearCacheBtn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          const originalText = clearBtn.innerHTML;
+          clearBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] text-tertiary">check</span><span>Cleared!</span>`;
+          setTimeout(() => {
+            clearBtn.innerHTML = originalText;
+          }, 2000);
+        });
+      }
+    });
+  </script>
+</div></main></div></body></html>

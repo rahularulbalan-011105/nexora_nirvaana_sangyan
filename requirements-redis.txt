@@ -1,0 +1,19 @@
+# Redis support. Optional: install only when running more than one uvicorn
+# worker (or more than one host).
+#
+#   python -m pip install -r requirements-redis.txt
+#
+# Then in .env:
+#   REDIS_URL=redis://localhost:6379/0
+#
+# and run a job worker next to the web process:
+#   python scripts/worker.py
+#
+# Without REDIS_URL (or if Redis is down) the app falls back to in-process
+# rate limits, cache and a thread-pool job queue.
+
+redis>=5.0                      # client (rate limits, shared cache)
+rq>=1.16                        # job queue + worker (SimpleWorker runs on Windows)
+
+# Tests only - an in-memory Redis used by tests/test_scalability.py.
+fakeredis>=2.20

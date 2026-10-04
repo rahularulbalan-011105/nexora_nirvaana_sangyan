@@ -1,0 +1,396 @@
+{# ---------------------------------------------------------------
+   Originally generated from pause_reflect_suite/code.html. The Stitch
+   export is the visual source of truth; the five-step flow is driven by
+   /static/js/reflect.js and saved through POST /api/reflect/complete.
+   --------------------------------------------------------------- #}
+{% extends "base.html" %}
+{% block title %}Pause & Reflect{% endblock %}
+
+{# One selectable answer. Single-choice unless multi=True. #}
+{% macro opt(name, value, title, sub="", multi=False, exclusive=False) -%}
+<button class="reflect-opt text-left p-space-md rounded-2xl bg-surface hover:bg-surface-container transition-all flex items-start gap-3 min-w-0" type="button" data-name="{{ name }}" data-value="{{ value }}"{% if multi %} data-multi{% endif %}{% if exclusive %} data-exclusive{% endif %} aria-pressed="false">
+<div class="w-5 h-5 {{ 'rounded-md' if multi else 'rounded-full' }} bg-surface-container-high flex items-center justify-center mt-0.5 flex-shrink-0 check-circle">
+<div class="w-2 h-2 {{ 'rounded-sm' if multi else 'rounded-full' }} bg-transparent dot"></div>
+</div>
+<div class="min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface opt-title" data-label>{{ title }}</p>
+{% if sub %}<p class="font-body-sm text-body-sm text-on-surface-variant">{{ sub }}</p>{% endif %}
+</div>
+</button>
+{%- endmacro %}
+
+{% block content %}
+<style>#reflect-root [hidden]{display:none!important}</style>
+<div class="w-full max-w-[1440px] mx-auto px-space-md sm:px-space-lg py-space-lg"><div class="flex flex-col w-full min-w-0" id="reflect-root" data-user="{{ user.id if user else '' }}" data-lang="{{ lang_code or 'en' }}">
+<!-- Top Intro & Audio Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div class="min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+          Cognitive Resilience Protocol
+        </span>
+<span class="font-label-sm text-label-sm text-outline">•</span>
+<span class="font-label-sm text-label-sm text-outline">Reflections completed:</span>
+<span class="font-label-sm text-label-sm text-outline" id="reflect-count">{{ reflect.completed or 0 }}</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Pause &amp; Reflect</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Let’s take a calm, structured moment before committing your hard-earned funds.</p>
+</div>
+<!-- Read-aloud of the current question (browser speech; off until pressed) -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest shadow-sm rounded-full p-1.5 pr-4 self-start md:self-auto max-w-full">
+<button class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-90 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0" id="audio-toggle-btn" type="button" aria-pressed="false" aria-label="Read the current question aloud">
+<span class="material-symbols-outlined text-[20px]" id="audio-icon">volume_up</span>
+</button>
+<div class="leading-tight min-w-0">
+<p class="font-label-md text-label-md text-on-surface">Voice Narration</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 font-medium" id="audio-status">Press to read the question aloud</p>
+</div>
+<div class="h-6 w-px bg-surface-container-high mx-1"></div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">translate</span>
+<span>{{ language_label }}</span>
+</div>
+</div>
+</div>
+<!-- 5-Step Process Stepper -->
+<nav class="bg-surface-container-lowest rounded-2xl p-space-md sm:p-space-lg shadow-sm mb-space-xl" aria-label="Reflection steps">
+<ol class="relative flex items-start justify-between w-full max-w-4xl mx-auto" id="reflect-stepper">
+<!-- Continuous Background Track -->
+<li aria-hidden="true" class="absolute left-6 right-6 top-5 -translate-y-1/2 h-1 bg-surface-container-high rounded-full z-0"></li>
+<!-- Active Progress Track -->
+<li aria-hidden="true" class="absolute left-6 top-5 -translate-y-1/2 h-1 bg-gradient-to-r from-primary to-secondary-container rounded-full z-0 transition-all duration-300" id="reflect-progress" style="width:0"></li>
+{% for n, name, sub in [(1, "Reason", "Inquiry"), (2, "Evidence", "Verification"), (3, "Horizon", "Timeline"), (4, "Emotions", "Mindset"), (5, "Review", "Synthesis")] %}
+<li class="relative z-10 flex flex-col items-center min-w-0">
+<button type="button" class="flex flex-col items-center disabled:cursor-default" data-step-dot="{{ n }}" disabled>
+<span class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center transition-all" data-dot><span>{{ n }}</span></span>
+<span class="mt-2 font-label-md text-[11px] sm:text-label-md text-on-surface-variant font-semibold" data-step-name>{{ name }}</span>
+<span class="hidden sm:block font-label-sm text-label-sm text-outline">{{ sub }}</span>
+</button>
+</li>
+{% endfor %}
+</ol>
+</nav>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- LEFT COLUMN: the five steps -->
+<div class="lg:col-span-7 flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-lg sm:p-space-xl shadow-sm min-w-0">
+<form id="reflect-form" novalidate class="flex flex-col justify-between h-full min-w-0">
+<div class="min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold"><span>Step</span> <span id="step-num">1</span> <span>of 5</span></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Self-Reflection Phase</span>
+</div>
+
+<!-- STEP 1: Reason -->
+<section data-panel="1" aria-labelledby="q-reason">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile sm:font-headline-lg sm:text-headline-lg text-on-surface font-bold mb-space-sm" id="q-reason" data-q="reason" data-speak>Why are you considering this decision?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+          Be honest with yourself. Identifying your true initial trigger exposes cognitive biases before they lead to irreversible financial commitment.
+        </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mb-space-lg" role="group" aria-labelledby="q-reason">
+{{ opt("reason", "researched", "I independently researched it", "Self-directed analysis of reports") }}
+{{ opt("reason", "recommended", "Someone recommended it", "Colleague, friend, or advisor suggestion") }}
+{{ opt("reason", "social", "Everyone seems to be doing it", "Trending on feeds, chat groups, social hype") }}
+{{ opt("reason", "fomo", "I don’t want to miss out (FOMO)", "Perception of fast gains escaping you") }}
+{{ opt("reason", "recover_loss", "I want to recover a previous loss", "Attempting to break even quickly") }}
+{{ opt("reason", "unsure", "I’m unsure", "Confused by conflicting details") }}
+</div>
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs" for="reason_text" data-q="reason_text">In your own words, what is the reason?</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Optional. A clear written reason helps you see your own plan.</p>
+<textarea class="w-full min-h-[84px] px-4 py-3 rounded-xl bg-surface text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary transition-all mb-space-lg" id="reason_text" name="reason_text" maxlength="600" placeholder="For example: saving for my daughter’s college fees in 2030"></textarea>
+{% if reflect.checks %}
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs" for="analysis_id" data-q="analysis_id">Is this about a message you checked?</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Optional. Only your own recent message checks are listed.</p>
+<select class="w-full h-11 px-4 rounded-xl bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary mb-space-lg" id="analysis_id" name="analysis_id">
+<option value="">Not linked to a message check</option>
+{% for c in reflect.checks %}
+<option value="{{ c.id }}">{{ c.snippet }} · {{ c.when }}</option>
+{% endfor %}
+</select>
+{% endif %}
+<!-- Contextual Behavioral Guidance Card -->
+<div class="bg-surface-container rounded-2xl p-space-md flex flex-col sm:flex-row gap-space-md items-start" aria-live="polite">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">spa</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-md text-label-md text-on-surface font-bold">Behavioral AI Observation</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[11px] font-bold" id="observation-chip">Waiting for your answer</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant" id="observation-text">Choose the reason that feels closest to the truth. NIRVAAN describes the behavioural signals it notices — it never tells you what to buy, sell or invest in.</p>
+</div>
+</div>
+</section>
+
+<!-- STEP 2: Evidence -->
+<section data-panel="2" hidden aria-labelledby="q-evidence">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile sm:font-headline-lg sm:text-headline-lg text-on-surface font-bold mb-space-sm" id="q-evidence" data-q="evidence" data-speak>What have you verified yourself?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">Choose everything that applies. It is fine if the honest answer is “nothing yet”.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mb-space-lg" role="group" aria-labelledby="q-evidence">
+{{ opt("evidence", "registration", "Checked SEBI / RBI registration myself", "On the regulator’s own website", multi=True) }}
+{{ opt("evidence", "documents", "Read the official documents and charges", "Terms, lock-in, exit fees", multi=True) }}
+{{ opt("evidence", "independent", "Compared with an independent source", "Not the person or group promoting it", multi=True) }}
+{{ opt("evidence", "only_message", "I only have the message or what I was told", "Nothing verified yet", multi=True, exclusive=True) }}
+</div>
+<p class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-sm" id="q-understanding" data-q="understanding">Could you explain how this works, including its fees and risks, to a family member?</p>
+<div class="flex flex-wrap gap-space-sm mb-space-lg" role="group" aria-labelledby="q-understanding">
+{{ opt("understanding", "yes", "Yes, clearly") }}
+{{ opt("understanding", "partly", "Partly") }}
+{{ opt("understanding", "no", "Not really") }}
+</div>
+<div class="bg-surface rounded-2xl p-space-md">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs" for="change_mind" data-q="change_mind">What verifiable information or disclosure would change your mind?</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Optional. E.g., Proof of unregulated scheme, high hidden exit fees, negative market historical drawdown.</p>
+<input class="w-full h-11 px-4 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="change_mind" name="change_mind" maxlength="400" placeholder="Type what could make you reconsider (or pick below)..." type="text" value="">
+<div class="flex flex-wrap gap-1.5 mt-space-sm">
+<button class="reflect-suggest px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors" type="button"><span>+</span> <span data-suggest>Verified SEBI registration missing</span></button>
+<button class="reflect-suggest px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors" type="button"><span>+</span> <span data-suggest>Inability to withdraw for 12 months</span></button>
+<button class="reflect-suggest px-2.5 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm transition-colors" type="button"><span>+</span> <span data-suggest>Guaranteed unrealistic 30% yield</span></button>
+</div>
+</div>
+</section>
+
+<!-- STEP 3: Horizon -->
+<section data-panel="3" hidden aria-labelledby="q-deadline">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile sm:font-headline-lg sm:text-headline-lg text-on-surface font-bold mb-space-sm" id="q-deadline" data-q="deadline" data-speak>When do you feel you need to decide?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">Artificial deadlines are a common pressure tactic. Notice where yours comes from.</p>
+<div class="grid grid-cols-1 gap-space-sm mb-space-lg" role="group" aria-labelledby="q-deadline">
+{{ opt("deadline", "today", "Today — I was told it ends soon", "A “last day” or “limited seats” message") }}
+{{ opt("deadline", "week", "Within this week", "A plan of my own with a near date") }}
+{{ opt("deadline", "none", "No fixed deadline — I can take my time", "Nothing is forcing a quick decision") }}
+</div>
+<p class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-sm" id="q-commitment" data-q="commitment">How long would this money be committed?</p>
+<div class="flex flex-wrap gap-space-sm mb-space-lg" role="group" aria-labelledby="q-commitment">
+{{ opt("commitment", "lt1", "Less than a year") }}
+{{ opt("commitment", "1to5", "1 to 5 years") }}
+{{ opt("commitment", "gt5", "More than 5 years") }}
+{{ opt("commitment", "unknown", "I don’t know yet") }}
+</div>
+<p class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-sm" id="q-essentials" data-q="essentials">If this money were locked or lost, would your essentials still be covered?</p>
+<div class="flex flex-wrap gap-space-sm" role="group" aria-labelledby="q-essentials">
+{{ opt("essentials", "yes", "Yes, essentials stay covered") }}
+{{ opt("essentials", "unsure", "I’m not sure") }}
+{{ opt("essentials", "no", "No, it would affect essentials") }}
+</div>
+</section>
+
+<!-- STEP 4: Emotions -->
+<section data-panel="4" hidden aria-labelledby="q-emotions">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile sm:font-headline-lg sm:text-headline-lg text-on-surface font-bold mb-space-sm" id="q-emotions" data-q="emotions" data-speak>How are you feeling about this decision right now?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">Choose everything that applies. Strong feelings are normal; naming them makes them easier to set aside.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mb-space-lg" role="group" aria-labelledby="q-emotions">
+{{ opt("emotions", "calm", "Calm", multi=True) }}
+{{ opt("emotions", "hopeful", "Hopeful", multi=True) }}
+{{ opt("emotions", "excited", "Excited", multi=True) }}
+{{ opt("emotions", "anxious", "Anxious", multi=True) }}
+{{ opt("emotions", "pressured", "Rushed or pressured", multi=True) }}
+{{ opt("emotions", "fomo", "Afraid of missing out", multi=True) }}
+</div>
+<div class="bg-surface rounded-2xl p-space-md">
+<div class="flex items-center gap-2 mb-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">swap_calls</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider">Counterfactual Test</span>
+</div>
+<p class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-sm" id="q-counterfactual" data-q="counterfactual">If nobody else had recommended this or mentioned it on social feeds, would you still make the same decision?</p>
+<div class="flex flex-wrap gap-space-sm" role="group" aria-labelledby="q-counterfactual">
+{{ opt("counterfactual", "yes", "Yes, absolutely") }}
+{{ opt("counterfactual", "no", "No, probably not") }}
+{{ opt("counterfactual", "unsure", "Not sure") }}
+</div>
+</div>
+</section>
+
+<!-- STEP 5: Review -->
+<section data-panel="5" hidden aria-labelledby="q-review">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile sm:font-headline-lg sm:text-headline-lg text-on-surface font-bold mb-space-sm" id="q-review" data-speak>Review your reflection</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">These are your answers. Use Edit to change any step before you complete it.</p>
+<div class="flex flex-col gap-space-sm mb-space-lg" id="review-list"></div>
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs" for="note" data-q="note">Anything you want to remember about this reflection?</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Optional. If left empty, a short summary of your answers is saved instead.</p>
+<textarea class="w-full min-h-[84px] px-4 py-3 rounded-xl bg-surface text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary transition-all mb-space-md" id="note" name="note" maxlength="1500" placeholder="For example: I will ask my son before deciding."></textarea>
+<label class="flex items-start gap-3 p-space-md rounded-2xl bg-surface cursor-pointer">
+<input class="mt-0.5 w-5 h-5 rounded accent-[#004ac6] flex-shrink-0" id="save_journal" name="save_journal" type="checkbox">
+<span class="min-w-0">
+<span class="block font-label-lg text-label-lg text-on-surface">Also save this reflection to my private journal</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Journal entries are private to you and are not shared with family.</span>
+</span>
+</label>
+</section>
+
+<p class="mt-space-md font-body-md text-body-md text-error font-semibold flex items-start gap-1.5" id="step-error" role="alert" hidden><span class="material-symbols-outlined text-[18px]">error</span><span id="step-error-text"></span></p>
+</div>
+<!-- Action Navigation Buttons -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-lg mt-space-lg">
+<button class="px-space-lg py-2.5 rounded-full bg-surface hover:bg-surface-container font-label-lg text-label-lg text-on-surface transition-all flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed" type="button" id="btn-back" disabled>
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back</span>
+</button>
+<button class="px-space-xl py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2" type="button" id="btn-next">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="px-space-xl py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2 disabled:opacity-60 disabled:cursor-wait" type="submit" id="btn-complete" hidden>
+<span id="btn-complete-text">Complete reflection</span>
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+</div>
+</form>
+
+<!-- Completion state (shown after a successful save) -->
+<div id="reflect-done" hidden tabindex="-1" class="focus:outline-none">
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">task_alt</span>
+</div>
+<div class="min-w-0">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Reflection saved</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Saved to your account. It now counts in My Journey and on your Dashboard.</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">What your answers show — a description of this moment, not advice on what to do:</p>
+<ul class="flex flex-col gap-space-sm mb-space-md" id="done-cards"></ul>
+<p class="font-body-md text-body-md text-on-surface flex items-center gap-1.5 mb-space-md" id="done-journal" hidden><span class="material-symbols-outlined text-[18px] text-tertiary">bookmark_added</span><span>A copy was saved to your private journal.</span></p>
+<div class="flex flex-wrap gap-space-sm pt-space-md">
+<a class="px-space-lg py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg font-bold shadow-md flex items-center gap-2" href="/journey"><span class="material-symbols-outlined text-[18px]">trending_up</span><span>View My Journey</span></a>
+<a class="px-space-lg py-2.5 rounded-full bg-surface hover:bg-surface-container font-label-lg text-label-lg text-on-surface flex items-center gap-2" href="/dashboard"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Go to Dashboard</span></a>
+<button class="px-space-lg py-2.5 rounded-full bg-surface hover:bg-surface-container font-label-lg text-label-lg text-on-surface flex items-center gap-2" type="button" id="btn-restart"><span class="material-symbols-outlined text-[18px]">restart_alt</span><span>Start a new reflection</span></button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Companion & Readiness Matrix -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg min-w-0">
+<!-- AI Companion Persona Wisdom Card -->
+<div class="flex flex-col justify-between bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-surface-container-lowest rounded-3xl p-space-lg shadow-sm">
+<div>
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="relative flex-shrink-0">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-md" alt="" data-alt="Warm and encouraging portrait of an Indian woman companion with pleasant natural expression, neat hair, dressed in smart casual indigo clothing, soft diffused ambient daylight, cinematic soft portrait photography, calm resilience companion persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCngtwk1sHtfyvm1bzRo5g6XsHPs2A7l6yOH7rZdjjuQprnBMmT7lHP45_f6rM_Fn4yWCtudIKMDeCLbXe4Nea_qIIPQs5ZkO0PiyRsuWA546zLEGuU7kC_cMDP8svlljAk3mtfzSpagJrG4SrEDtkRjPEAgNjbcvA9WfJcasy0EPDBpQTmPdnKVDsKTCgQ31GQmVv5HqFwzLydj_nVEF96c6jiQI8o5bswoVoRffpUv3LUrAmvdEU3">
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-tertiary flex items-center justify-center text-on-tertiary ring-2 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+</div>
+</div>
+<div class="min-w-0">
+<div class="flex flex-wrap items-center gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">NIRVAAN Guide</h4>
+<span class="px-1.5 py-0.5 rounded-full bg-primary text-on-primary text-[10px] font-bold">AI Companion</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Here to safeguard your peace</p>
+</div>
+</div>
+<blockquote class="bg-surface-container-lowest/80 backdrop-blur-sm rounded-2xl p-space-md shadow-sm mb-space-md">
+<span class="material-symbols-outlined text-primary text-[24px] mb-1">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface font-medium italic">
+            "True financial resilience comes from making decisions that fit your unique timeline and family commitments, not someone else's excitement."
+          </p>
+<div class="mt-3 pt-2 text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">— Companion Principle #4</span>
+</div>
+</blockquote>
+<div class="space-y-2">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5">check</span>
+<p class="font-body-sm text-body-sm"><strong class="text-on-surface">No rush:</strong> Good investments rarely vanish overnight.</p>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5">check</span>
+<p class="font-body-sm text-body-sm"><strong class="text-on-surface">Autonomy:</strong> Your decision should be yours alone.</p>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md">
+<a class="w-full py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-sm transition-all" data-path="talk-to-nirvaan" href="/talk">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span>Talk with Nirvaan about this</span>
+</a>
+</div>
+</div>
+<!-- Decision Readiness Grid -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm">
+<div class="flex flex-wrap items-start justify-between gap-2 mb-space-sm">
+<div class="min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Decision Readiness Matrix</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="matrix-from"{% if not reflect.latest %} hidden{% endif %}><span>From your last reflection on</span> <span id="matrix-date">{{ reflect.latest_date }}</span></p>
+{% if not reflect.latest %}
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="matrix-empty">Fills in when you complete your first reflection</p>
+{% endif %}
+</div>
+<span class="px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold" id="matrix-chip">{% if reflect.latest %}Last Reflection{% else %}Not Started{% endif %}</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm mt-space-sm">
+{% for card in reflect.cards %}
+<div class="p-space-sm bg-surface rounded-xl flex flex-col justify-between min-w-0{% if loop.last and loop.length is odd %} col-span-2{% endif %}" data-card="{{ card.key }}">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">{{ card.name }}</span>
+<span class="material-symbols-outlined text-[16px] {{ card.icon[1] }}" data-card-icon>{{ card.icon[0] }}</span>
+</div>
+<div class="mt-2">
+<span class="inline-block px-2 py-0.5 rounded-full {{ card.chip }} font-label-sm text-label-sm font-bold" data-card-label>{{ card.label or "Not Set" }}</span>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+</div>
+
+<!-- Interface strings for reflect.js. Kept as markup so the page
+     translator renders them in the chosen language. -->
+<div hidden id="reflect-strings">
+<span data-k="obs_chip">Signal noticed</span>
+<span data-k="obs_chip_calm">Your own reasoning</span>
+<span data-k="obs_researched">You did your own research. In the next step, note exactly what you checked — that is what makes a reason solid.</span>
+<span data-k="obs_recommended">A recommendation can be a fine starting point. It helps to check whether you would still choose this if nobody had suggested it.</span>
+<span data-k="obs_social">When everyone seems to be doing something, it can feel safer than it is. This is called herd behaviour — notice it, then look for evidence of your own.</span>
+<span data-k="obs_fomo">Fear of missing out often comes with a feeling of urgency. Genuine opportunities rarely disappear overnight.</span>
+<span data-k="obs_recover_loss">Wanting to win back a loss is very human. It can push towards bigger risks than you would normally take.</span>
+<span data-k="obs_unsure">Being unsure is an honest place to start. The next steps help you sort out what you know and what you do not.</span>
+<span data-k="need_reason">Please choose the reason that feels closest to the truth.</span>
+<span data-k="need_evidence">Please choose what you have verified — “I only have the message” is a fine answer.</span>
+<span data-k="need_understanding">Please say whether you could explain how this works.</span>
+<span data-k="need_deadline">Please choose when you feel you need to decide.</span>
+<span data-k="need_commitment">Please choose how long the money would be committed.</span>
+<span data-k="need_essentials">Please say whether your essentials would stay covered.</span>
+<span data-k="need_emotions">Please choose at least one feeling.</span>
+<span data-k="need_counterfactual">Please answer the counterfactual question.</span>
+<span data-k="edit">Edit</span>
+<span data-k="not_answered">Not answered</span>
+<span data-k="saving">Saving…</span>
+<span data-k="complete">Complete reflection</span>
+<span data-k="save_failed">Your reflection could not be saved. Your answers are kept on this page — please try again.</span>
+<span data-k="offline">You appear to be offline. Your answers are kept on this page — complete the reflection when you are back online.</span>
+<span data-k="audio_idle">Press to read the question aloud</span>
+<span data-k="audio_on">Reading aloud…</span>
+<span data-k="audio_none">Read-aloud is not available in this browser</span>
+<span data-k="last_reflection">Last Reflection</span>
+<span data-k="today">Today</span>
+<span data-k="why_rc_pressure">The reason you picked comes from outside pressure or a past loss, not your own plan.</span>
+<span data-k="why_rc_unsure">You said you are unsure why you are considering this.</span>
+<span data-k="why_rc_written">You described your reason in your own words.</span>
+<span data-k="why_rc_unwritten">Writing the reason in your own words would make it clearer.</span>
+<span data-k="why_eq_two">You verified it in at least two independent ways.</span>
+<span data-k="why_eq_one">You verified it in one way so far.</span>
+<span data-k="why_eq_none">Nothing has been verified yet beyond the message or what you were told.</span>
+<span data-k="why_tp_present">You noted a same-day deadline or a feeling of being rushed.</span>
+<span data-k="why_tp_none">You did not report a deadline pushing you to decide today.</span>
+<span data-k="why_ei_present">Other people's enthusiasm seems to be part of this decision.</span>
+<span data-k="why_ei_own">You said you would make the same choice without others' recommendations.</span>
+<span data-k="why_ei_none">You did not report others pushing this decision.</span>
+<span data-k="why_un_yes">You said you could explain how it works, with its fees and risks.</span>
+<span data-k="why_un_partly">You said you partly understand how it works.</span>
+<span data-k="why_un_no">You said you could not yet explain how it works.</span>
+<span data-k="label_Good">Good</span>
+<span data-k="label_Needs Review">Needs Review</span>
+<span data-k="label_Present">Present</span>
+<span data-k="label_Developing">Developing</span>
+</div>
+</div></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/reflect.js" defer></script>
+{% endblock %}

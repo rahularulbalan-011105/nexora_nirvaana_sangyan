@@ -1,0 +1,42 @@
+# ---- NIRVAAN backend requirements ----
+#
+# Minimum-version floors rather than exact pins, so pip resolves wheels that
+# exist for whichever interpreter you run (tested on CPython 3.11 and 3.14).
+# Exact pins broke on 3.14: several packages had no matching wheel and fell
+# back to source builds. Use `pip freeze > requirements.lock.txt` if you need
+# a reproducible deployment set.
+#
+# The PostgreSQL driver is NOT here on purpose - the dev default is the SQLite
+# fallback. See requirements-postgres.txt.
+
+# Web
+fastapi>=0.115.6
+uvicorn[standard]>=0.34.0
+jinja2>=3.1.5
+python-multipart>=0.0.20
+itsdangerous>=2.2.0
+
+# Database (driver-agnostic; SQLite ships with Python)
+SQLAlchemy>=2.0.36
+alembic>=1.14.0
+
+# Config / validation
+pydantic>=2.10.4
+pydantic-settings>=2.7.0
+email-validator>=2.2.0
+
+# Security
+argon2-cffi>=23.1.0             # password hashing (Argon2id)
+PyJWT>=2.10.1                   # signed tokens (verify-email, password reset)
+
+# AI / NLP
+httpx>=0.28.1                   # Ollama HTTP client
+pypdf>=5.1.0                    # PDF text extraction for Check a Message / Batch
+langdetect>=1.0.9               # statistical language detection fallback
+
+# Tests
+pytest>=8.3.0
+
+# Optional extras:
+#   requirements-postgres.txt  PostgreSQL driver + pgvector
+#   requirements-ml.txt        offline OCR, local embeddings, PDF extraction

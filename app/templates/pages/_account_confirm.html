@@ -1,0 +1,56 @@
+{# Shared by settings.html and privacy.html: the confirm dialog and the
+   strings account.js shows. Every string is a whole English text node so the
+   post-render translator can localise it. #}
+<dialog id="account-confirm" aria-labelledby="account-confirm-title"
+        class="w-[calc(100%-2rem)] max-w-md rounded-3xl bg-surface-container-lowest p-0 text-on-surface shadow-xl backdrop:bg-inverse-surface/50">
+<form method="dialog" class="p-space-lg space-y-space-md" id="account-confirm-form">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div class="space-y-1 min-w-0">
+<h2 class="font-headline-sm text-headline-sm font-bold" id="account-confirm-title"></h2>
+<p class="font-body-md text-body-md text-on-surface-variant" id="account-confirm-body"></p>
+</div>
+</div>
+<div class="space-y-1.5 hidden" id="account-confirm-typed">
+<label class="font-label-md text-label-md text-on-surface block" for="account-confirm-input">Type DELETE to confirm</label>
+<input autocomplete="off" class="w-full rounded-xl border-outline-variant/60 bg-surface-container-low px-3 py-2.5 font-body-md text-body-md" id="account-confirm-input" spellcheck="false" type="text">
+</div>
+<p class="font-body-sm text-body-sm text-error hidden" id="account-confirm-error" role="alert"></p>
+<div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-space-sm pt-1">
+<button class="px-5 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold" type="button" value="cancel" id="account-confirm-cancel">Cancel</button>
+<button class="px-5 py-2.5 rounded-full bg-error text-on-error font-label-md text-label-md font-bold hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed" type="submit" value="confirm" id="account-confirm-ok">Delete permanently</button>
+</div>
+</form>
+</dialog>
+<div hidden id="account-strings">
+<span data-k="saved">Saved.</span>
+<span data-k="save_failed">Could not save. Please try again.</span>
+<span data-k="network">Could not reach NIRVAAN. Check your connection and try again.</span>
+<span data-k="deleted">Deleted.</span>
+<span data-k="nothing">There was nothing to delete.</span>
+<span data-k="active">Active</span>
+<span data-k="off">Turned Off</span>
+<span data-k="session_ended">Session ended on that device.</span>
+<span data-k="memory.title">Delete this memory?</span>
+<span data-k="memory.body">NIRVAAN will forget this item. This cannot be undone.</span>
+<span data-k="memories.title">Delete all memories?</span>
+<span data-k="memories.body">Everything NIRVAAN remembers about you will be erased. This cannot be undone.</span>
+<span data-k="analysis.title">Delete message check history?</span>
+<span data-k="analysis.body">All your message checks, their warning signals, batch checks and uploaded screenshots will be erased. This cannot be undone.</span>
+<span data-k="voice.title">Delete voice transcripts?</span>
+<span data-k="voice.body">All your Talk to NIRVAAN conversations and their transcripts will be erased. This cannot be undone.</span>
+<span data-k="journal.title">Delete your reflection journal?</span>
+<span data-k="journal.body">All your journal entries will be erased. Completed reflections still count on My Journey. This cannot be undone.</span>
+<span data-k="account.title">Delete your account?</span>
+<span data-k="account.body">Your profile, preferences, journal, memories, message checks, voice transcripts, family links and sign-ins will be erased and you will be signed out. Download your data first if you want a copy. This cannot be undone.</span>
+<span data-k="session.title">End this session?</span>
+<span data-k="session.body">That device will be signed out the next time it loads a page.</span>
+<span data-k="session.ok">End session</span>
+<span data-k="delete.ok">Delete permanently</span>
+<span data-k="speed.slow">Deep &amp; Gentle</span>
+<span data-k="speed.calm">Calm &amp; Measured</span>
+<span data-k="speed.neutral">Neutral</span>
+<span data-k="speed.brisk">Brisk Flow</span>
+</div>

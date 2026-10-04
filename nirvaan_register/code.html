@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NIRVAAN - Create Your Account</title>
+<!-- Tailwind CSS v3 with Forms Plugin -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              cyan: '#06b6d4',
+            },
+            canvas: '#faf8ff',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft-card': '0 10px 30px -4px rgba(79, 70, 229, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom CSS for specialized adjustments -->
+<style data-purpose="custom-styling">
+    body {
+      background: radial-gradient(circle at top center, #ffffff 0%, #f6f3ff 50%, #faf8ff 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 font-sans antialiased flex flex-col justify-between p-4 sm:p-6 lg:p-8">
+<!-- BEGIN: Navigation / Top Header -->
+<header class="w-full max-w-6xl mx-auto flex items-center justify-between py-2 px-4" data-purpose="app-header">
+<div class="flex items-center gap-2">
+<!-- Lotus Brand Icon -->
+<div class="w-7 h-7 text-sky-500 flex items-center justify-center">
+<svg class="w-7 h-7 text-sky-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#38bdf8" fill-opacity="0.3"></path>
+<path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#0284c7"></path>
+</svg>
+</div>
+<span class="font-bold text-xl tracking-tight text-slate-900">NIRVAAN</span>
+</div>
+<!-- Quick Help & Language Indicator -->
+<div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+<span class="inline-flex items-center gap-1.5 bg-white/80 border border-slate-200/80 px-2.5 py-1 rounded-full shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        SEBI Registered Framework Safe
+      </span>
+</div>
+</header>
+<!-- END: Navigation / Top Header -->
+<!-- BEGIN: Main Register Card Container -->
+<main class="w-full flex-grow flex items-center justify-center py-6" data-purpose="register-container">
+<div class="w-full max-w-[460px] bg-white border border-slate-100 rounded-3xl p-7 sm:p-9 shadow-soft-card" data-purpose="auth-card">
+<!-- Header & Brand Logo -->
+<div class="text-center mb-6" data-purpose="card-header">
+<!-- Centered Stylized Lotus Logo -->
+<div class="inline-flex items-center justify-center w-12 h-12 mb-3 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#0284c7" fill-opacity="0.25"></path>
+<path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#0284c7"></path>
+</svg>
+</div>
+<p class="text-xs uppercase tracking-widest font-bold text-sky-600 mb-1">NIRVAAN</p>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900">Create Your Account</h1>
+<p class="text-xs sm:text-sm text-slate-500 mt-1">Join NIRVAAN and make safer financial decisions.</p>
+</div>
+<!-- Registration Form -->
+<form action="#" class="space-y-4" data-purpose="signup-form" method="POST">
+<!-- Full Name Field -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="fullName">Full name</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brand-600 focus:ring-2 focus:ring-brand-100 transition-all outline-none" id="fullName" name="fullName" placeholder="e.g. Priya Sharma" required="" type="text" value="Priya Sharma">
+</div>
+<!-- Email Field -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="email">Email address</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brand-600 focus:ring-2 focus:ring-brand-100 transition-all outline-none" id="email" name="email" placeholder="name@example.com" required="" type="email">
+</div>
+<!-- Password Field with Strength Indicator -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="password">Password</label>
+<div class="relative">
+<input class="w-full text-sm px-3.5 py-2.5 pr-10 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brand-600 focus:ring-2 focus:ring-brand-100 transition-all outline-none" id="password" name="password" placeholder="Create a strong password" required="" type="password" value="••••••••••••">
+<!-- Password Visibility Toggle Button -->
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600" type="button">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Password Strength Meter -->
+<div class="mt-2" data-purpose="password-strength-indicator">
+<div class="flex items-center gap-1.5">
+<span class="h-1 flex-1 rounded-full bg-emerald-500"></span>
+<span class="h-1 flex-1 rounded-full bg-emerald-500"></span>
+<span class="h-1 flex-1 rounded-full bg-emerald-500"></span>
+</div>
+<div class="flex justify-between items-center mt-1 text-[11px] text-slate-500">
+<span>Security level</span>
+<span class="font-medium text-emerald-600">Strong</span>
+</div>
+</div>
+</div>
+<!-- Preferred Language Selection -->
+<div class="pt-1" data-purpose="language-selector">
+<label class="block text-xs font-semibold text-slate-700 mb-1.5">Preferred language</label>
+<div aria-label="Preferred Language" class="grid grid-cols-3 gap-2" role="radiogroup">
+<!-- Active Option: English -->
+<label class="flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-blue-600 bg-blue-600 text-white shadow-sm cursor-pointer transition-all">
+<input checked="" class="sr-only" name="language" type="radio" value="en">
+<span>English</span>
+</label>
+<!-- Option: Hindi -->
+<label class="flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-sm cursor-pointer transition-all">
+<input class="sr-only" name="language" type="radio" value="hi">
+<span>हिन्दी</span>
+</label>
+<!-- Option: Tamil -->
+<label class="flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-sm cursor-pointer transition-all">
+<input class="sr-only" name="language" type="radio" value="ta">
+<span>தமிழ்</span>
+</label>
+</div>
+</div>
+<!-- Terms and Policy Checkbox -->
+<div class="flex items-start gap-2.5 pt-1">
+<input checked="" class="h-4 w-4 mt-0.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500" id="terms" name="terms" required="" type="checkbox">
+<label class="text-xs text-slate-600 leading-relaxed cursor-pointer select-none" for="terms">
+            I agree to the <a class="text-brand-600 hover:underline" href="#">Terms of Service</a> and <a class="text-brand-600 hover:underline" href="#">Privacy Policy</a>
+</label>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.99] shadow-md shadow-blue-500/25 transition-all outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" type="submit">
+<span>Create Account</span>
+<span class="text-base leading-none">→</span>
+</button>
+</div>
+</form>
+<!-- Bottom Alternative Option -->
+<div class="mt-6 pt-5 border-t border-slate-100 text-center" data-purpose="card-footer">
+<p class="text-xs text-slate-600">
+          Already have an account? 
+          <a class="font-semibold text-blue-600 hover:text-blue-700 hover:underline ml-0.5" href="#">Sign in</a>
+</p>
+</div>
+</div>
+</main>
+<!-- END: Main Register Card Container -->
+<!-- BEGIN: Reassurance Badges Footer -->
+<footer class="w-full max-w-xl mx-auto py-3 text-center" data-purpose="reassurance-badges">
+<div class="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-slate-500 font-medium px-4 py-2 rounded-full bg-white/60 border border-slate-200/60 shadow-sm">
+<span class="inline-flex items-center gap-1">
+<span>🛡️</span> SEBI-neutral
+      </span>
+<span class="text-slate-300">•</span>
+<span>No product selling</span>
+<span class="text-slate-300">•</span>
+<span>No credit score tracking</span>
+</div>
+</footer>
+<!-- END: Reassurance Badges Footer -->
+<!-- BEGIN: Simple Interactive Language Selector Script -->
+<script data-purpose="language-pill-toggle">
+    document.addEventListener('DOMContentLoaded', () => {
+      const labels = document.querySelectorAll('div[data-purpose="language-selector"] label');
+      labels.forEach(label => {
+        const input = label.querySelector('input');
+        input.addEventListener('change', () => {
+          labels.forEach(l => {
+            l.className = 'flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-sm cursor-pointer transition-all';
+          });
+          if (input.checked) {
+            label.className = 'flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-blue-600 bg-blue-600 text-white shadow-sm cursor-pointer transition-all';
+          }
+        });
+      });
+    });
+  </script>
+<!-- END: Simple Interactive Language Selector Script -->
+</body></html>

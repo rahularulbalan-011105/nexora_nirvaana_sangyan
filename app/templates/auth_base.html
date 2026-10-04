@@ -1,0 +1,131 @@
+{# ---------------------------------------------------------------
+   GENERATED from nirvaan_register/code.html by scripts/extract_templates.py
+   The Stitch export is the visual source of truth. Markup below is
+   copied verbatim; add behaviour with Jinja expressions in place.
+   --------------------------------------------------------------- #}
+<!DOCTYPE html>
+<html lang="{{ lang_code or 'en' }}" data-lang="{{ lang_code or 'en' }}">
+<head>
+<title>{% block title %}Welcome{% endblock %} · NIRVAAN</title>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!-- Tailwind CSS v3 with Forms Plugin -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              cyan: '#06b6d4',
+            },
+            canvas: '#faf8ff',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft-card': '0 10px 30px -4px rgba(79, 70, 229, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom CSS for specialized adjustments -->
+<style data-purpose="custom-styling">
+    body {
+      background: radial-gradient(circle at top center, #ffffff 0%, #f6f3ff 50%, #faf8ff 100%);
+    }
+  </style>
+<link href="/static/css/nirvaan.css" rel="stylesheet">
+<link href="/static/manifest.webmanifest" rel="manifest">
+</head>
+<body class="min-h-screen text-slate-800 font-sans antialiased flex flex-col justify-between p-4 sm:p-6 lg:p-8">
+
+<!-- BEGIN: Navigation / Top Header -->
+<header class="w-full max-w-6xl mx-auto flex items-center justify-between py-2 px-4" data-purpose="app-header">
+<div class="flex items-center gap-2">
+<!-- Lotus Brand Icon -->
+<div class="w-7 h-7 text-sky-500 flex items-center justify-center">
+<svg class="w-7 h-7 text-sky-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 3c1.5 3 4 5 7 5-1.5 4-4 7-7 13-3-6-5.5-9-7-13 3 0 5.5-2 7-5z" fill="#38bdf8" fill-opacity="0.3"></path>
+<path d="M12 10c2.5-3 6.5-4 9-2-1 4-3.5 7-9 13-5.5-6-8-9-9-13 2.5-2 6.5-1 9 2z" stroke="#0284c7"></path>
+</svg>
+</div>
+<span class="font-bold text-xl tracking-tight text-slate-900">NIRVAAN</span>
+</div>
+<!-- Quick Help & Language Indicator -->
+<div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+<nav aria-label="Language" class="inline-flex items-center gap-0.5 bg-white/80 border border-slate-200/80 p-0.5 rounded-full shadow-sm">
+{% for option in language_options %}
+<a href="{{ request.url.path }}?lang={{ option.code }}" data-ui-lang="{{ option.code }}"
+   class="px-2.5 py-1 rounded-full font-semibold transition-colors {{ 'bg-blue-600 text-white' if option.code == lang_code else 'text-slate-600 hover:bg-slate-100' }}">{{ option.native }}</a>
+{% endfor %}
+</nav>
+
+</div>
+</header>
+<!-- END: Navigation / Top Header -->
+<!-- BEGIN: Main Register Card Container -->
+
+<main class="w-full flex-grow flex items-center justify-center py-6" data-purpose="register-container">
+{% block content %}{% endblock %}
+</main>
+
+<!-- END: Main Register Card Container -->
+
+<!-- BEGIN: Simple Interactive Language Selector Script -->
+<script data-purpose="language-pill-toggle">
+    document.addEventListener('DOMContentLoaded', () => {
+      const labels = document.querySelectorAll('div[data-purpose="language-selector"] label');
+      labels.forEach(label => {
+        const input = label.querySelector('input');
+        input.addEventListener('change', () => {
+          labels.forEach(l => {
+            l.className = 'flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-sm cursor-pointer transition-all';
+          });
+          if (input.checked) {
+            label.className = 'flex items-center justify-center px-3 py-2 text-xs font-semibold rounded-xl border border-blue-600 bg-blue-600 text-white shadow-sm cursor-pointer transition-all';
+          }
+        });
+      });
+    });
+  </script>
+<!-- END: Simple Interactive Language Selector Script -->
+
+<script>window.NIRVAAN = { lang: "{{ lang_code or 'en' }}", csrf: "{{ csrf_token }}", authenticated: false };</script>
+<script src="/static/js/nirvaan.js" defer></script>
+<script data-purpose="language-switch">
+  // Choosing a language on the sign-up form also switches the page language.
+  // Name and email are carried across the reload in sessionStorage (never the password).
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form[action="/register"]');
+    try {
+      const saved = JSON.parse(sessionStorage.getItem('nirvaan_register') || 'null');
+      if (form && saved) {
+        ['full_name', 'email', 'gender'].forEach((k) => { if (form[k] && !form[k].value) form[k].value = saved[k] || ''; });
+      }
+      sessionStorage.removeItem('nirvaan_register');
+    } catch (e) {}
+    document.querySelectorAll('div[data-purpose="language-selector"] input[name="language"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        if (!input.checked || input.value === document.documentElement.lang) return;
+        try {
+          if (form) sessionStorage.setItem('nirvaan_register', JSON.stringify({
+            full_name: form.full_name ? form.full_name.value : '', email: form.email ? form.email.value : '',
+            gender: form.gender ? form.gender.value : '' }));
+        } catch (e) {}
+        window.location.href = window.location.pathname + '?lang=' + encodeURIComponent(input.value);
+      });
+    });
+  });
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

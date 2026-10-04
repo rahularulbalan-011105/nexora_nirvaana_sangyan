@@ -1,0 +1,42 @@
+{% extends "auth_base.html" %}
+{% block title %}{{ status }} Error{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-[460px] bg-white border border-slate-100 rounded-3xl
+            p-7 sm:p-9 shadow-soft-card text-center">
+  <div class="inline-flex items-center justify-center w-12 h-12 mb-3 rounded-2xl
+              bg-amber-50 text-amber-600 border border-amber-100">
+    <span class="material-symbols-outlined text-[26px]">
+      {% if status == 404 %}search_off{% elif status == 403 %}lock{% else %}error{% endif %}
+    </span>
+  </div>
+
+  <p class="text-xs uppercase tracking-widest font-bold text-slate-400 mb-1">
+    {{ status }}
+  </p>
+  <h1 class="text-2xl font-bold tracking-tight text-slate-900 mb-2">
+    {% if status == 404 %}{{ t("error.not_found") }}
+    {% elif status == 403 %}You do not have access to this
+    {% elif status == 429 %}{{ t("error.rate_limited") }}
+    {% else %}{{ t("error.generic") }}{% endif %}
+  </h1>
+  <p class="text-sm text-slate-600 leading-relaxed mb-6">{{ detail }}</p>
+
+  {% if trace %}
+  <pre class="text-left text-[10px] bg-slate-50 border border-slate-200 rounded-xl
+              p-3 mb-5 overflow-x-auto text-slate-600">{{ trace }}</pre>
+  {% endif %}
+
+  <a class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl
+            text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700
+            shadow-md shadow-blue-500/25 transition-all"
+     href="{{ '/dashboard' if user else '/' }}">
+    <span>{{ "Back to dashboard" if user else "Back to home" }}</span>
+  </a>
+</div>
+{% endblock %}
+
+{% block head_extra %}
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet">
+{% endblock %}

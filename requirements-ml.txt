@@ -1,0 +1,7 @@
+# Optional ML extras. Not required for the app to boot — every service that
+# uses these degrades to a deterministic fallback when the import fails.
+# NOTE: on Python 3.14 some of these may lack wheels; a 3.11/3.12 venv is safer.
+sentence-transformers==3.3.1    # local embeddings for RAG
+easyocr==1.7.2                  # offline OCR (also pulls torch)
+pypdf==5.1.0                    # PDF text extraction
+Pillow==11.0.0

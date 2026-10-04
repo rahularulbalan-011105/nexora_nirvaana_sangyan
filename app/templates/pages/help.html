@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block title %}Help & Support{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-[1440px] mx-auto px-space-md sm:px-space-lg py-space-lg">
+<div class="flex flex-col w-full gap-space-lg pb-12">
+
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r
+                  from-surface-container-low via-surface-container to-surface-variant
+                  p-6 sm:p-8 shadow-[0_4px_24px_-4px_rgba(37,99,235,0.06)]">
+    <div class="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-secondary-fixed/30
+                blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl space-y-3">
+      <a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold hover:underline"
+         data-back href="/dashboard">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Back</span>
+      </a>
+      <h1 class="font-display-lg text-headline-lg sm:text-display-lg text-on-surface
+                 font-extrabold tracking-tight">Help &amp; Support</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+        How NIRVAAN works, what it will and will not do, and where to go if
+        something has already gone wrong.
+      </p>
+      <nav aria-label="Help sections" class="flex flex-wrap gap-2 pt-1">
+        {% for anchor, label in [("urgent", "If you were defrauded"), ("report", "Where to report"),
+                                 ("faq", "Common questions"), ("more", "Settings & lessons")] %}
+        <a class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-lowest
+                  text-on-surface font-label-md text-label-md hover:bg-surface-container-high
+                  transition-colors" href="#{{ anchor }}">{{ label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </section>
+
+  <!-- Urgent help first: someone mid-incident should not have to scroll -->
+  <section class="rounded-2xl bg-error-container/40 border border-error/20 p-6 scroll-mt-24" id="urgent">
+    <h2 class="font-headline-md text-headline-md text-on-error-container font-bold mb-space-sm">
+      If you think you have just been defrauded
+    </h2>
+    <ol class="space-y-2.5 mb-space-md">
+      {% for step in [
+        "Contact your bank immediately using the number printed on your card or passbook. Ask them to block the card or account and review recent transactions.",
+        "Change the password of any account whose credentials you shared.",
+        "Report it on the national cybercrime portal, cybercrime.gov.in, or call 1930. Report early - recovery chances fall sharply with time.",
+        "Keep every message, screenshot and transaction reference. Do not delete the conversation.",
+        "Tell someone you trust. Being targeted is not your fault, and talking it through helps."
+      ] %}
+      <li class="flex items-start gap-space-sm">
+        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-on-error-container
+                     text-error-container font-label-sm text-label-sm
+                     flex items-center justify-center">{{ loop.index }}</span>
+        <span class="font-body-md text-body-md text-on-surface leading-relaxed">{{ step }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">
+      NIRVAAN cannot contact your bank or file a report for you, and it is not
+      a law-enforcement or regulatory body.
+    </p>
+  </section>
+
+  <!-- Official places to report or complain. Real links only. -->
+  <section class="rounded-2xl bg-surface-container-lowest p-6 scroll-mt-24
+                  shadow-[0_2px_12px_rgba(15,23,42,0.03)]" id="report">
+    <h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+      Where to report or complain
+    </h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed">
+      These are official public services. NIRVAAN is not connected to them and does not file anything on your behalf.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {% for icon, title, desc, href, cta, external in [
+        ("call", "National Cyber Crime Helpline", "Call 1930 as soon as possible after a fraudulent payment.", "tel:1930", "Call 1930", false),
+        ("public", "National Cyber Crime Reporting Portal", "File a complaint about online fraud or cybercrime.", "https://cybercrime.gov.in/", "Open cybercrime.gov.in", true),
+        ("gavel", "SEBI SCORES", "Complain about a broker, adviser, mutual fund or listed company.", "https://scores.sebi.gov.in/", "Open SEBI SCORES", true),
+        ("account_balance", "RBI Complaint Management System", "Complain about a bank, NBFC or digital payment service.", "https://cms.rbi.org.in/", "Open RBI CMS", true)
+      ] %}
+      <div class="rounded-2xl bg-surface-container-low p-4 flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-primary">{{ icon }}</span>
+          <h3 class="font-label-lg text-label-lg text-on-surface font-bold">{{ title }}</h3>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">{{ desc }}</p>
+        <a class="inline-flex items-center gap-1 self-start font-label-md text-label-md text-primary font-semibold hover:underline"
+           href="{{ href }}"{% if external %} rel="noopener noreferrer" target="_blank"{% endif %}>
+          <span>{{ cta }}</span>
+          <span class="material-symbols-outlined text-[16px]">{{ 'open_in_new' if external else 'call' }}</span>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-md leading-relaxed">
+      NIRVAAN does not have a support desk or ticket system yet. For your account and data, use
+      <a class="text-primary font-semibold hover:underline" href="/settings">Settings</a> and the
+      <a class="text-primary font-semibold hover:underline" href="/privacy">Privacy Center</a>, where you can download or delete your data yourself.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="rounded-2xl bg-surface-container-lowest p-6 scroll-mt-24
+                  shadow-[0_2px_12px_rgba(15,23,42,0.03)]" id="faq">
+    <h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-md">
+      Common questions
+    </h2>
+    <div class="space-y-2">
+      {% for item in [
+        ("Will NIRVAAN tell me what to invest in?",
+         "No. It will not recommend buying, selling or holding anything, predict prices or returns, or rank investments. It explains information, points out risks and warning signals, and says what is worth verifying. The decision stays with you."),
+        ("Is NIRVAAN selling anything?",
+         "No. It is non-commercial. There are no brokers, products or schemes promoted, and no commission earned on anything."),
+        ("Does my data leave my device?",
+         "The language model runs locally, so your messages are processed on this machine. Your journal, memories and voice transcripts are stored only according to your Privacy Center settings - personal memory is off unless you turn it on."),
+        ("Can NIRVAAN tell me for certain whether something is a scam?",
+         "No, and it will not pretend to. It reports which warning signals are present and the evidence for each, then tells you what remains unverified. Signals are not proof of fraud."),
+        ("Which languages are supported?",
+         "English, Hindi and Tamil, across the interface, the assistant and voice. You can switch at any time from the language selector in the top bar."),
+        ("What works without internet?",
+         "Saved lessons, your journal, the reflection questions, the pause timer and the basic safety rules. The full assistant, live verification and market data need a connection, and the app says plainly when you are offline."),
+        ("Who can see my information if I use Family Mode?",
+         "Only what you explicitly share, with a person you explicitly invite. Access is off by default, limited to the scopes you grant, and you can withdraw it at any time."),
+        ("Can an administrator read my journal?",
+         "No. Administrators manage content, safety rules and system health. They have no access to private journals, memories, voice conversations or your analyses.")
+      ] %}
+      <details class="group rounded-2xl bg-surface-container-low px-space-md py-3">
+        <summary class="flex items-center justify-between cursor-pointer list-none
+                        font-label-lg text-label-lg text-on-surface">
+          <span class="pr-space-sm">{{ item[0] }}</span>
+          <span class="material-symbols-outlined text-[20px] text-on-surface-variant
+                       transition-transform group-open:rotate-180 flex-shrink-0">
+            expand_more</span>
+        </summary>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2.5 leading-relaxed">
+          {{ item[1] }}
+        </p>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Accessibility + where to go next -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 scroll-mt-24" id="more">
+    <div class="rounded-2xl bg-surface-container-lowest p-6
+                shadow-[0_2px_12px_rgba(15,23,42,0.03)]">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-sm">
+        Making NIRVAAN easier to use
+      </h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed">
+        In Settings you can turn on larger text, higher contrast,
+        slower speech and a data-saver mode for slow connections.
+      </p>
+      <a class="inline-flex items-center gap-space-xs font-label-md text-label-md
+                text-primary font-semibold" href="/settings">
+        <span>Open Settings</span>
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="rounded-2xl bg-surface-container-lowest p-6
+                shadow-[0_2px_12px_rgba(15,23,42,0.03)]">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-sm">
+        Learn the basics
+      </h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed">
+        Short, plain-language lessons on terminology, scams, investor rights
+        and digital safety - available offline once opened.
+      </p>
+      <a class="inline-flex items-center gap-space-xs font-label-md text-label-md
+                text-primary font-semibold" href="/learn">
+        <span>Go to Learn &amp; Explore</span>
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Back returns to the NIRVAAN page that linked here (not to an earlier
+  // section anchor on this page). Without one it falls back to the dashboard.
+  (function () {
+    var ref = document.referrer;
+    var same = ref && ref.indexOf(location.origin + "/") === 0 &&
+               ref.split("#")[0].split("?")[0] !== location.origin + location.pathname;
+    document.querySelectorAll("[data-back]").forEach(function (link) {
+      if (same) link.setAttribute("href", ref);
+    });
+  })();
+</script>
+{% endblock %}
